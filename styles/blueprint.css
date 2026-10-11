@@ -1,0 +1,146 @@
+/* =========================================================================
+   Blueprint intro (components/home/Blueprint.tsx)
+   Chalk linework on the page colour; follows the theme.
+   html.bp-run is set by the boot script in lib/blueprint.ts.
+   ========================================================================= */
+
+/* Hold the page back until its box inks it in. Load reveals are switched off
+   for the run (their rise would skew the measurements) and stay off after,
+   since the ink-in replaces them. */
+.bp-run :is(header, main, footer) { visibility: hidden; }
+:is(.bp-run, .bp-done) [data-reveal="load"] { animation: none !important; }
+.bp-run .bp-t { visibility: hidden; opacity: 0; transition: opacity 0.4s var(--ease-out), visibility 0s; }
+.bp-run .bp-t.bp-on { visibility: visible; opacity: 1; }
+/* anything that wasn't boxed fades up instead of popping */
+.bp-settle :is(header, main) { animation: bp-fade 0.6s var(--ease-out) both; }
+@keyframes bp-fade { from { opacity: 0.85; } }
+
+.bp {
+  --bp: 237 237 234;
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  overflow: hidden;
+  contain: strict;
+  color: rgb(var(--bp));
+  font-family: var(--font-mono);
+  transition: opacity 0.4s var(--ease-out);
+}
+:root[data-theme="light"] .bp { --bp: 18 18 19; }
+.bp.is-out { opacity: 0; }
+.bp.is-fast,
+.bp.is-fast * { transition-duration: 0.25s !important; transition-delay: 0s !important; }
+.bp > * { position: absolute; }
+
+/* ---- Sheet: 16px drafting grid locked to the content edge, hatched margins, live columns */
+.bp-sheet {
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+  background-image:
+    linear-gradient(rgb(var(--bp) / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--bp) / 0.03) 1px, transparent 1px);
+  background-size: 16px 16px;
+  background-position: var(--gx) 0;
+}
+.bp-hatch {
+  top: 0;
+  bottom: 0;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out) 0.11s;
+  background: repeating-linear-gradient(-45deg, rgb(var(--bp) / 0.07) 0 1px, transparent 1px 8px);
+}
+.bp-hatch.l { box-shadow: inset -1px 0 rgb(var(--bp) / 0.22); }
+.bp-hatch.r { box-shadow: inset 1px 0 rgb(var(--bp) / 0.22); }
+.bp-col {
+  top: 0;
+  bottom: 0;
+  background: rgb(var(--bp) / 0.016);
+  border-inline: 1px solid rgb(var(--bp) / 0.12);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.6s var(--ease-out) calc(var(--i) * 20ms);
+}
+.bp-col::after {
+  content: attr(data-n);
+  position: absolute;
+  left: 4px;
+  bottom: 8px;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: rgb(var(--bp) / 0.4);
+  transition: opacity 0.24s var(--ease-out);
+}
+.is-sheet .bp-sheet,
+.is-sheet .bp-hatch { opacity: 1; }
+.is-sheet .bp-col { transform: none; }
+
+/* ---- Handwritten notes, either side of the nav when there's room */
+.bp-note {
+  top: calc(var(--nav-top) + var(--nav-h) / 2 - 10px);
+  margin: 0;
+  padding: 2px 4px;
+  white-space: nowrap;
+  font-size: 15px;
+  line-height: 1;
+  color: rgb(var(--bp) / 0.78);
+  transform: rotate(-1.2deg);
+  transform-origin: left center;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 0.67s cubic-bezier(0.6, 0.1, 0.3, 1) 0.2s, opacity 0.29s var(--ease-out);
+}
+.bp-note.r { transform: rotate(0.8deg); transform-origin: right center; transition-delay: 0.29s, 0s; }
+.is-sheet .bp-note { clip-path: inset(0); }
+
+/* ---- Placeholder boxes: stroke + hatch draw in from the top-left corner */
+.bp-box { transition: opacity 0.29s var(--ease-out); }
+.bp-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgb(var(--bp) / 0.55);
+  background: repeating-linear-gradient(-45deg, rgb(var(--bp) / 0.11) 0 1px, transparent 1px 7px), rgb(var(--bp) / 0.035);
+  clip-path: inset(0 100% 100% 0);
+  transition: clip-path 0.36s var(--ease-out);
+}
+.bp-box.is-kid::before { border-style: dashed; border-color: rgb(var(--bp) / 0.4); background: rgb(var(--bp) / 0.05); }
+.bp-box.is-area::before { border: 0; border-bottom: 1px dashed rgb(var(--bp) / 0.35); background: rgb(var(--bp) / 0.02); }
+.bp-box.is-drawn::before { clip-path: inset(0); }
+.bp-box.is-out { opacity: 0; }
+
+.bp-dim b,
+.bp-gap b {
+  padding: 1px 4px;
+  font-size: 9px;
+  line-height: 1.3;
+  font-weight: var(--weight-medium);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: rgb(var(--bp));
+  background: var(--color-bg);
+  border: 1px solid rgb(var(--bp) / 0.45);
+}
+
+/* ---- Dimension lines: ticked rule + live number; dashed = what the snap gave back */
+.bp-dim { height: 9px; opacity: 0; transition: opacity 0.24s var(--ease-out); border-inline: 1px solid rgb(var(--bp) / 0.6); }
+.bp-dim::before { content: ""; position: absolute; left: 0; right: 0; top: 4px; border-top: 1px solid rgb(var(--bp) / 0.6); }
+.bp-dim b { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-style: normal; font-weight: var(--weight-bold); }
+.bp-dim.is-rem { border-color: rgb(var(--bp) / 0.35); }
+.bp-dim.is-rem::before { border-top-style: dashed; border-color: rgb(var(--bp) / 0.4); }
+.bp-dim.is-rem b { font-style: italic; font-weight: var(--weight-medium); }
+.bp-dimtop { opacity: 1; transform: scaleX(0); transition: transform 0.6s var(--ease-out) 0.11s, opacity 0.24s var(--ease-out); }
+.is-sheet .bp-dimtop { transform: none; }
+.is-dims .bp-dim { opacity: 1; }
+
+/* ---- Vertical rhythm down the hero stack */
+.bp-gap { width: 7px; opacity: 0; transition: opacity 0.24s var(--ease-out); border-block: 1px solid rgb(var(--bp) / 0.55); }
+.bp-gap::before { content: ""; position: absolute; left: 3px; top: 0; bottom: 0; border-left: 1px dashed rgb(var(--bp) / 0.55); }
+.bp-gap b { position: absolute; right: calc(100% + 4px); top: 50%; transform: translateY(-50%); display: none; }
+@media (min-width: 768px) { .bp-gap b { display: block; } }
+.is-dims .bp-gap { opacity: 1; }
+
+/* Annotations leave as the content inks in; only the bare grid stays for the lift */
+.bp.is-inking :is(.bp-dim, .bp-gap, .bp-note),
+.bp.is-inking .bp-col::after { opacity: 0; }

@@ -1,0 +1,101 @@
+/* =========================================================================
+   tl;dr — the notebook photo in a modal, with a selectable handwriting layer
+   ========================================================================= */
+.dialog {
+  max-width: none;
+  max-height: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 16px;
+  border: 0;
+  background: transparent;
+  place-items: center;
+}
+.dialog[open] {
+  display: grid;
+  animation: fade var(--dur-fast) var(--ease-out);
+}
+:global(html:has(dialog[open])) { overflow: hidden; }  /* page stays put behind it */
+.dialog::backdrop {
+  background: rgb(6 7 10 / 0.82);
+  backdrop-filter: blur(6px);
+}
+
+/* Fits the viewport height on desktop, full width on phones */
+.frame {
+  position: relative;
+  width: min(100%, calc((100dvh - 32px) * 0.75));
+  aspect-ratio: 3 / 4;
+  container-type: inline-size;
+}
+.dialog[open] .frame { animation: rise var(--dur-base) var(--ease-out); }
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* ---- Invisible text laid exactly over the ink -------------------------- */
+.transcript { position: absolute; inset: 0; }
+.line {
+  position: absolute;
+  left: var(--left);
+  top: var(--top);
+  height: var(--h);
+  white-space: pre;
+  font: 400 calc(var(--h) / 1.15) / var(--h) "Courier New", ui-monospace, monospace;
+  color: transparent;
+  cursor: text;
+}
+/* Monospace glyph stretched to its handwritten width: advance = 1ch + tracking */
+.line span { letter-spacing: calc(var(--adv) - 1ch); }
+.line .gap { display: inline-block; width: var(--adv); letter-spacing: 0; user-select: none; }
+.line .nl { font-size: 0; letter-spacing: 0; }
+.transcript ::selection { background: rgb(255 214 10 / 0.42); color: transparent; }
+.line a { color: transparent; text-decoration: none; cursor: pointer; border-radius: 0.4cqi; }
+.line a:hover, .line a:focus-visible { background: rgb(216 38 38 / 0.14); outline: none; }
+
+/* ---- TaskLearn / Visume preview, floating above the hovered ink ------- */
+.preview {
+  position: absolute;
+  z-index: 2;
+  padding-bottom: 10px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, calc(-100% + 8px));
+  transition: opacity 0.3s, transform 0.5s var(--ease-out);
+}
+.preview[data-open] { opacity: 1; transform: translate(-50%, -100%); }
+
+/* ---- Big X, top right of the photo -------------------------------------- */
+.close {
+  position: absolute;
+  top: 2.5cqi;
+  right: 2.5cqi;
+  display: grid;
+  place-items: center;
+  width: clamp(44px, 9cqi, 64px);
+  aspect-ratio: 1;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgb(10 10 12 / 0.78);
+  color: #fff;
+  font-size: clamp(22px, 4.5cqi, 32px);
+  cursor: pointer;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 8px 20px -8px rgb(0 0 0 / 0.7);
+  transition: transform 0.15s, background var(--dur-fast);
+}
+.close:hover { background: rgb(10 10 12 / 0.92); transform: scale(1.06); }
+.close:active { transform: scale(0.96); }
+.close:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+@keyframes fade { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(12px) scale(0.985); } }
+@media (prefers-reduced-motion: reduce) {
+  .dialog[open], .dialog[open] .frame { animation: none; }
+}

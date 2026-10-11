@@ -1,0 +1,21 @@
+/* The word keeps the surrounding text's colour and weight; the glyph is the accent. */
+.pair {
+  white-space: nowrap;
+}
+
+.glyph {
+  --glyph: #6ea8ff; /* bright blue: the dither drops half the pixels, so it needs the punch */
+  --glyph-glow: rgb(110 168 255 / 0.55);
+  display: inline-block;
+  color: var(--glyph);
+  filter: drop-shadow(0 0 5px var(--glyph-glow));
+  /* centred on the x-height, taking no extra line height (like the brand keys) */
+  vertical-align: middle;
+  margin-block: -0.3em;
+  margin-right: 0.28em;
+}
+
+:global(:root[data-theme="light"]) .glyph {
+  --glyph: #1f6bff;
+  --glyph-glow: rgb(31 107 255 / 0.3);
+}

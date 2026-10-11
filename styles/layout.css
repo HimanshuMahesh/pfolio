@@ -1,0 +1,27 @@
+/* =========================================================================
+   Layout primitives
+
+   .wrap     the page frame: max 1440, side margins from the grid tokens.
+   .grid     4 / 8 / 12 columns. Children place themselves with --m / --t / --d
+             (mobile / tablet / desktop), each falling back to the smaller
+             breakpoint. Set them with the `place()` helper in lib/grid.ts.
+   .section  vertical rhythm between homepage sections.
+   ========================================================================= */
+.wrap {
+  max-width: var(--page-max);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-cols), minmax(0, 1fr));
+  column-gap: var(--grid-gutter);
+}
+.grid > * { grid-column: var(--m, 1 / -1); }
+@media (min-width: 768px)  { .grid > * { grid-column: var(--t, var(--m, 1 / -1)); } }
+@media (min-width: 1200px) { .grid > * { grid-column: var(--d, var(--t, var(--m, 1 / -1))); } }
+
+/* Sections sit directly under one another; the gap is the previous
+   section's bottom padding, so the rhythm is one number. */
+.section { padding-bottom: var(--section-gap); }

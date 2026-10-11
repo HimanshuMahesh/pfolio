@@ -1,0 +1,145 @@
+.shell {
+  --sky-ink-faint: rgb(236 240 248 / 0.55);
+  --sky-text-shadow: 0 1px 2px rgb(0 0 0 / 0.28), 0 0 18px rgb(0 0 0 / 0.22);
+
+  position: relative;
+}
+
+/* ---- The sky layer ----------------------------------------------------------
+   Height is set by the controller (--sky-h) so the horizon runs through the
+   centre of the portrait. No hard edge, no long fade: a 6px feather. */
+.sky {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 0;
+  height: var(--sky-h, 230px);
+  pointer-events: none;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(#000 calc(100% - 6px), transparent);
+  mask-image: linear-gradient(#000 calc(100% - 6px), transparent);
+}
+.canvas { display: block; width: 100%; height: 100%; }
+.sky::after {
+  /* a whisper of grain: invisible, but enough to stop 8-bit banding */
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.025;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Scrub line + time label, shown while hovering / dragging the sky */
+.scrub {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: var(--scrub-end, 56px);
+  width: 1px;
+  transform: translateX(var(--x, 50%));
+  background: linear-gradient(rgb(255 255 255 / 0), rgb(255 255 255 / 0.35) 55%, rgb(255 255 255 / 0.6));
+  opacity: 0;
+  transition: opacity 0.35s var(--ease-out);
+}
+.scrub[data-on] { opacity: 1; }
+.scrubLabel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  transform: translate(calc(-50% + var(--shift, 0px)), 50%);
+  padding: 4px 10px 4px 7px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: #fff;
+  background: rgb(8 10 16 / 0.55);
+  border: 1px solid rgb(255 255 255 / 0.14);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Sun by day, crescent moon by night */
+.glyph {
+  width: 9px;
+  height: 9px;
+  flex: none;
+  border-radius: 50%;
+  transition: background-color 0.4s, box-shadow 0.4s;
+}
+.glyph[data-kind="sun"] {
+  background: #ffd98a;
+  box-shadow: 0 0 0 2px rgb(255 217 138 / 0.18), 0 0 8px 1px rgb(255 205 110 / 0.75);
+}
+.glyph[data-kind="moon"] {
+  background: transparent;
+  box-shadow: inset -3px -1px 0 0 #e8edff, 0 0 6px rgb(200 215 255 / 0.35);
+}
+
+/* ---- Hero frame ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  z-index: var(--z-content);
+  padding-top: calc(var(--nav-offset) + var(--space-4));
+  padding-bottom: var(--space-9);
+}
+.column {
+  max-width: var(--column-narrow);
+  margin-inline: auto;
+  padding-inline: var(--space-1);
+}
+
+/* ---- Open sky band above the horizon: hint, and where the scrub label lands */
+.band {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  text-shadow: var(--sky-text-shadow);
+}
+
+/* ---- Portrait row, sitting on the horizon ------------------------------------
+   portrait · place · time ····· bulb. On narrow phones the two chips stack
+   beside the portrait so the row never wraps. */
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-2);
+}
+.portrait { flex: none; }
+.chips {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 0;
+}
+.toggle { margin-left: auto; flex: none; display: flex; gap: var(--space-2); }
+.phase::before { content: "·"; margin-right: 7px; }
+
+@media (min-width: 768px) {
+  .row { gap: var(--space-4); margin-top: var(--space-3); }
+}
+@media (max-width: 519px) {
+  .chips { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+.hint {
+  font-size: var(--text-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--sky-ink-faint);
+  opacity: 0;
+  animation: hint-in 1.2s var(--ease-out) 1.6s forwards;
+  transition: opacity 0.6s var(--ease-out);
+}
+.hint[data-gone] { animation: none; opacity: 0; }
+@keyframes hint-in { to { opacity: 1; } }
+@media (max-width: 520px) {
+  .hint { display: none; }
+}

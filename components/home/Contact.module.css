@@ -1,0 +1,57 @@
+/* The heatmap footer follows directly, so this section closes tighter than the rest. */
+.contact:global(.section) { padding-bottom: var(--space-8); }
+
+.grid {
+  row-gap: var(--space-6);
+  justify-items: center;
+  text-align: center;
+}
+
+.quote {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 880px;
+}
+
+.quoteText {
+  margin: 0;
+  font-size: clamp(24px, 2.6vw, 36px);
+  line-height: 1.2;
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.03em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+/* The two phrases that matter: a slow drift through the site's blues, looping forever. */
+.glow {
+  background: linear-gradient(100deg, #7ea6ff, #c3d6ff 25%, #4f7dff 55%, #9dbbff 80%, #7ea6ff);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: drift 8s ease-in-out infinite alternate;
+}
+:root[data-theme="light"] .glow {
+  background-image: linear-gradient(100deg, #2f5fe0, #5b8cff 25%, #1d46b8 55%, #3f72f2 80%, #2f5fe0);
+}
+
+@keyframes drift {
+  from { background-position: 0% 50%; }
+  to { background-position: 100% 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow { animation: none; }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-3);
+}

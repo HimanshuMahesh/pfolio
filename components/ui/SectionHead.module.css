@@ -1,0 +1,11 @@
+.head {
+  margin-bottom: var(--space-7);
+  color: var(--color-muted);
+}
+.aside { text-align: right; }
+.aside a { transition: color var(--dur-fast); }
+.aside a:hover { color: var(--color-ink); }
+
+@media (min-width: 1200px) {
+  .head { margin-bottom: var(--space-8); }
+}

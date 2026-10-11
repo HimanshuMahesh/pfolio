@@ -1,0 +1,79 @@
+/* =========================================================================
+   Utilities — small, shared, deliberately few
+   ========================================================================= */
+
+/* ---- Type roles ---------------------------------------------------------- */
+.t-display {
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-display);
+  font-weight: var(--weight-medium);
+}
+.t-label {
+  font-size: var(--text-label);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+.t-small { font-size: var(--text-small); line-height: 1.5; }
+.muted { color: var(--color-muted); }
+
+/* Section index, e.g. "(02)" */
+.idx { color: var(--color-ink); margin-right: 6px; }
+/* Arrow glyphs (↗ ↑) sit a touch lighter than the text around them */
+.arr { display: inline-block; font-weight: var(--weight-regular); }
+
+/* ---- Responsive visibility (inline copy variants) ------------------------ */
+.hide-m { display: none; }
+@media (min-width: 768px) {
+  .hide-m { display: inline; }
+  .show-m { display: none; }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- Corner brackets ------------------------------------------------------
+   Four L-shaped corners drawn with backgrounds. Colour and arm length come
+   from --bc / --bl (registered in tokens.css, so they animate). Override them
+   on the element, e.g. `:hover { --bc: var(--color-ink); --bl: 10px; }`. */
+.brackets {
+  background-image:
+    linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+    linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+    linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc)),
+    linear-gradient(var(--bc), var(--bc)), linear-gradient(var(--bc), var(--bc));
+  background-size:
+    var(--bl) 1px, 1px var(--bl), var(--bl) 1px, 1px var(--bl),
+    var(--bl) 1px, 1px var(--bl), var(--bl) 1px, 1px var(--bl);
+  background-position: 0 0, 0 0, 100% 0, 100% 0, 0 100%, 0 100%, 100% 100%, 100% 100%;
+  background-repeat: no-repeat;
+  background-origin: border-box;
+  transition: --bc 0.3s, --bl 0.4s var(--ease-out);
+}
+
+/* ---- Reveal on scroll -----------------------------------------------------
+   Add `data-reveal` to any element; <RevealObserver /> sets `data-revealed`
+   when it enters the viewport. Stagger siblings with `--reveal-delay`.
+   Above the fold, use `data-reveal="load"`: it rises on page load in pure
+   CSS, without waiting for JS (so it never holds back first paint). Uses an animation (not a transition) so it
+   never overrides an element's own hover transitions. Without JS, or with
+   reduced motion, content is simply visible. */
+@keyframes reveal {
+  from { opacity: 0; translate: 0 16px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  [data-reveal="load"] { animation: reveal var(--dur-slow) var(--ease-out) var(--reveal-delay, 0s) both; }
+}
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-reveal]:not([data-reveal="load"]):not([data-revealed]) { opacity: 0; }
+  [data-reveal]:not([data-reveal="load"])[data-revealed] { animation: reveal var(--dur-slow) var(--ease-out) var(--reveal-delay, 0s) both; }
+}

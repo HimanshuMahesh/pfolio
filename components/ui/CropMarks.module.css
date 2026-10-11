@@ -1,0 +1,26 @@
+.mark {
+  --size: 11px;
+  --spread: 2px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  color: var(--color-faint);
+  pointer-events: none;
+  transition: color 0.3s, transform var(--dur-base) var(--ease-out);
+}
+.mark::before,
+.mark::after { content: ""; position: absolute; background: currentColor; }
+.mark::before { left: 5px; top: 0; width: 1px; height: var(--size); }
+.mark::after { top: 5px; left: 0; width: var(--size); height: 1px; }
+
+.tl { top: -6px; left: -6px; }
+.tr { top: -6px; right: -6px; }
+.bl { bottom: -6px; left: -6px; }
+.br { bottom: -6px; right: -6px; }
+
+/* the parent is hovered */
+:hover > .mark { color: var(--color-accent); }
+:hover > .tl { transform: translate(calc(var(--spread) * -1), calc(var(--spread) * -1)); }
+:hover > .tr { transform: translate(var(--spread), calc(var(--spread) * -1)); }
+:hover > .bl { transform: translate(calc(var(--spread) * -1), var(--spread)); }
+:hover > .br { transform: translate(var(--spread), var(--spread)); }

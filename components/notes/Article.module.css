@@ -1,0 +1,504 @@
+/* =========================================================================
+   A long-form note, on the site's 12-column grid (the article spans 3 / 12,
+   as the case studies do). Acts open on a rule and a SectionHead row; text
+   comes in chunks, each with its heading on the left. Figures are squares
+   that sit beside their text on desktop.
+
+   Two dashed rails run down the edges of the article; each act opens on a
+   dashed rule that spans rail to rail. All type is the site's own Zalando.
+
+   The figure plate's styles live here too: a separate CSS module beside it
+   was handed this module's class map by the dev bundler.
+   ========================================================================= */
+.page {
+  padding-top: calc(var(--nav-offset) + var(--space-9));
+  padding-bottom: var(--section-gap);
+}
+
+/* ---- the article between two dashed rails ---------------------------------- */
+.article {
+  --rail: repeating-linear-gradient(to bottom, var(--color-line-2) 0 4px, transparent 4px 9px);
+  /* the rails and the hatch run the full height of the page, not just the text */
+  --reach-up: calc(-1 * (var(--nav-offset) + var(--space-9)));
+  --reach-down: calc(-1 * var(--section-gap));
+  position: relative;
+  padding-inline: var(--grid-gutter);
+  padding-bottom: var(--space-6);
+}
+
+/* Diagonal hatch in the page margins, outside the rails: the same pattern as
+   the homepage's blueprint intro. The article is centred, so its margin is
+   half the viewport minus half its own width. */
+.hatch {
+  position: absolute;
+  top: var(--reach-up);
+  bottom: var(--reach-down);
+  width: calc(50vw - 50%);
+  pointer-events: none;
+  background: repeating-linear-gradient(-45deg, var(--color-line-2) 0 1px, transparent 1px 8px);
+  opacity: 0.6;
+}
+.hatch[data-side="l"] { right: 100%; }
+.hatch[data-side="r"] { left: 100%; }
+.article::before,
+.article::after {
+  content: "";
+  position: absolute;
+  top: var(--reach-up);
+  bottom: var(--reach-down);
+  width: 1px;
+  background: var(--rail);
+  pointer-events: none;
+}
+.article::before { left: 0; }
+.article::after { right: 0; }
+
+/* ---- header --------------------------------------------------------------- */
+.header { padding-top: var(--space-5); }
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-bottom: var(--space-6);
+  color: var(--color-muted);
+}
+.meta b { font-weight: inherit; color: var(--color-ink); }
+.dot { color: var(--color-faint); }
+
+.title {
+  max-width: 14ch;
+  font-size: clamp(44px, 6.6vw, 96px);
+  font-weight: var(--weight-medium);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: var(--color-ink);
+}
+
+.subtitle {
+  margin-top: var(--space-5);
+  font-size: clamp(20px, 2.2vw, 28px);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  color: var(--color-muted);
+}
+
+/* ---- acts ----------------------------------------------------------------- */
+.act {
+  position: relative;
+  margin-top: var(--space-9);
+  padding-top: var(--space-4);
+}
+/* the rule reaches out to both rails */
+.act::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--grid-gutter));
+  right: calc(-1 * var(--grid-gutter));
+  height: 1px;
+  background: repeating-linear-gradient(to right, var(--color-line-2) 0 4px, transparent 4px 9px);
+}
+.act > :first-child { margin-bottom: var(--space-6); }
+
+.h2 {
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: var(--weight-medium);
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+  text-wrap: pretty;
+}
+.h2 + * { margin-top: var(--space-6); }
+
+/* The opening line of a section: larger, and in ink. */
+.lead {
+  font-size: var(--text-intro);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  color: var(--color-ink-2);
+  text-wrap: pretty;
+}
+.lead strong { font-weight: var(--weight-medium); color: var(--color-ink); }
+
+/* ---- chunks: a heading on the left, a few short paragraphs on the right ---- */
+.chunk {
+  display: grid;
+  gap: var(--space-3) var(--grid-gutter);
+  margin-top: var(--grid-gutter);
+  padding: var(--space-5);
+  border: 1px solid var(--color-line-2);
+  background: var(--color-surface);
+}
+.h2 + .chunk, .lead + .chunk { margin-top: var(--space-7); }
+@media (min-width: 768px) {
+  .chunk { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .chunk > .side { grid-column: 1 / 4; }
+  .chunk > .body { grid-column: 4 / -1; }
+}
+.side {
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.side span { display: block; margin-bottom: 4px; color: var(--color-muted); font-weight: var(--weight-regular); font-variant-numeric: tabular-nums; }
+.side svg { display: block; width: 22px; height: 22px; margin-bottom: var(--space-3); color: var(--color-ink-2); }
+
+.body,
+.prose {
+  font-size: var(--text-body);
+  line-height: 1.65;
+  color: var(--color-copy);
+  text-wrap: pretty;
+}
+.body > * + *,
+.prose > * + * { margin-top: 1em; }
+.body strong,
+.prose strong { font-weight: var(--weight-medium); color: var(--color-ink); }
+.body em,
+.prose em { font-style: italic; }
+.body a,
+.prose a { color: var(--color-ink-2); text-decoration: underline; text-decoration-color: var(--color-line-2); text-underline-offset: 3px; }
+.body a:hover,
+.prose a:hover { text-decoration-color: var(--color-ink); }
+.prose { margin-top: var(--space-6); }
+
+.list { display: grid; border-top: 1px solid var(--color-line); }
+.list li {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: var(--space-4);
+  padding-block: 10px;
+  border-bottom: 1px solid var(--color-line);
+}
+.list li b { font-weight: var(--weight-medium); color: var(--color-ink); }
+
+/* The question the note keeps coming back to. */
+.question {
+  margin-top: var(--space-7);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--color-line-2);
+  font-size: clamp(22px, 2.4vw, 32px);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  color: var(--color-ink);
+  text-wrap: balance;
+}
+
+/* What changed for me, between the technical parts. */
+.reflection {
+  margin-top: var(--space-7);
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-line-2);
+  font-size: var(--text-lede);
+  line-height: 1.5;
+  color: var(--color-ink);
+}
+.body > .reflection { margin-top: var(--space-4); }
+.reflection > span {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-muted);
+}
+
+/* ---- split: a square figure beside its text ------------------------------- */
+.split {
+  display: grid;
+  gap: var(--space-6) var(--grid-gutter);
+  margin-top: var(--space-8);
+  align-items: start;
+}
+@media (min-width: 1000px) {
+  .split { grid-template-columns: repeat(9, minmax(0, 1fr)); }
+  .split > .splitText { grid-column: 1 / 5; }
+  .split > .splitFig { grid-column: 5 / -1; position: sticky; top: calc(var(--nav-offset) + var(--space-5)); }
+}
+.splitText > * + * { margin-top: 1em; }
+.splitText h3 {
+  font-size: var(--text-title);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--color-ink);
+}
+
+/* ---- cards: three or four blocks side by side ------------------------------ */
+.cards {
+  display: grid;
+  gap: var(--grid-gutter);
+  margin-top: var(--grid-gutter);
+}
+@media (min-width: 768px) { .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.card {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--color-line-2);
+  background: var(--color-surface);
+  font-size: var(--text-ui);
+  line-height: 1.6;
+  color: var(--color-copy);
+}
+.card svg { width: 22px; height: 22px; color: var(--color-ink-2); }
+.card h4 { font-size: var(--text-lede); font-weight: var(--weight-medium); letter-spacing: -0.01em; color: var(--color-ink); }
+.card strong { font-weight: var(--weight-medium); color: var(--color-ink); }
+
+/* ---- formulas -------------------------------------------------------------- */
+.formula {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border: 1px dashed var(--color-line-2);
+  background: var(--color-bg);
+}
+.formula > code {
+  font-family: var(--font-hand), var(--font-mono);
+  font-size: 18px;
+  letter-spacing: 0.01em;
+  line-height: 1.5;
+  color: var(--color-ink);
+  white-space: pre;
+  overflow-x: auto;
+}
+@media (max-width: 560px) { .formula > code { font-size: 15px; } }
+.formula dl { display: grid; grid-template-columns: auto 1fr; gap: 4px var(--space-4); font-size: var(--text-small); color: var(--color-muted); }
+.formula dt { font-family: var(--font-hand), var(--font-mono); font-size: 15px; color: var(--color-ink-2); }
+
+/* ---- timeline -------------------------------------------------------------- */
+.timeline { display: grid; margin-top: var(--grid-gutter); border: 1px solid var(--color-line-2); background: var(--color-surface); }
+.timeline li {
+  display: grid;
+  grid-template-columns: 64px 28px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  padding: var(--space-4) var(--space-5);
+  font-size: var(--text-ui);
+  line-height: 1.55;
+  color: var(--color-copy);
+}
+.timeline li + li { border-top: 1px dashed var(--color-line-2); }
+.timeline time { color: var(--color-ink); font-weight: var(--weight-medium); font-variant-numeric: tabular-nums; }
+.timeline svg { width: 20px; height: 20px; color: var(--color-ink-2); margin-top: 1px; }
+.timeline b { font-weight: var(--weight-medium); color: var(--color-ink); }
+.era { padding: var(--space-3) var(--space-5) !important; display: block !important; background: var(--color-bg); }
+
+/* ---- tables ---------------------------------------------------------------- */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-ui);
+  line-height: 1.45;
+}
+.table caption {
+  caption-side: bottom;
+  padding-top: var(--space-3);
+  text-align: left;
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+.table th {
+  padding: 0 var(--space-3) var(--space-2) 0;
+  text-align: left;
+  border-bottom: 1px solid var(--color-line-2);
+  color: var(--color-muted);
+}
+.table td {
+  padding: 10px var(--space-3) 10px 0;
+  vertical-align: top;
+  color: var(--color-copy);
+  border-bottom: 1px solid var(--color-line);
+}
+.table td:first-child { color: var(--color-ink); }
+.num { font-variant-numeric: tabular-nums; text-align: right !important; padding-right: 0 !important; }
+.big { color: var(--color-ink) !important; font-weight: var(--weight-medium); }
+
+/* ---- references and the end ------------------------------------------------ */
+.refs { display: grid; border-top: 1px solid var(--color-line); counter-reset: ref; }
+.refs li {
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  padding-block: 10px;
+  border-bottom: 1px solid var(--color-line);
+  font-size: var(--text-ui);
+  color: var(--color-copy);
+  counter-increment: ref;
+}
+.refs li::before { content: counter(ref, decimal-leading-zero); color: var(--color-muted); font-variant-numeric: tabular-nums; }
+.refs a { color: var(--color-ink-2); text-decoration: underline; text-decoration-color: var(--color-line-2); text-underline-offset: 3px; }
+
+.end {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-9);
+  padding-top: var(--space-4);
+  color: var(--color-muted);
+}
+.end::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * var(--grid-gutter));
+  right: calc(-1 * var(--grid-gutter));
+  height: 1px;
+  background: repeating-linear-gradient(to right, var(--color-line-2) 0 4px, transparent 4px 9px);
+}
+.end a { transition: color var(--dur-fast); }
+.end a:hover { color: var(--color-ink); }
+
+/* =========================================================================
+   Figure plate: a square with a label row on top, the drawing, a stepped
+   slider, and a hint and live readout along the bottom.
+   ========================================================================= */
+.figure { margin: 0; }
+
+.plate {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  aspect-ratio: 1;
+  padding: var(--space-4);
+  border: 1px solid var(--color-line-2);
+  background: var(--color-bg);
+}
+.plateHead,
+.plateFoot {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.plateHead > :first-child { color: var(--color-ink); }
+.plateFoot { margin-top: var(--space-4); padding-top: var(--space-3); border-top: 1px solid var(--color-line); }
+.readout { color: var(--color-ink); font-variant-numeric: tabular-nums; text-transform: none; letter-spacing: 0; }
+
+.drawing {
+  align-self: center;
+  width: 100%;
+  min-height: 0;
+  margin-inline: auto;
+}
+.drawing[data-hairline] {
+  --hairline-plate: var(--color-bg);
+  --hairline-hi: #d0d6e0;
+  --hairline-edge: #5b5d64;
+  --hairline-mid: #3e3e44;
+  --hairline-lo: #29292d;
+}
+
+.caption {
+  margin-top: var(--space-3);
+  font-size: var(--text-small);
+  line-height: 1.55;
+  color: var(--color-muted);
+}
+
+/* ---- charts inside plates --------------------------------------------------- */
+.chart { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--font-sans); }
+.tick { font-size: 10px; fill: var(--color-muted); font-variant-numeric: tabular-nums; }
+.edge { stroke: var(--color-line-2); stroke-width: 1; transition: opacity var(--dur-base); }
+.node { fill: var(--color-bg); stroke: var(--color-muted); stroke-width: 1; }
+.nodeOn { stroke: var(--color-ink); }
+.val { font-size: 12px; fill: var(--color-ink-2); font-variant-numeric: tabular-nums; }
+.cut .edge, .cut .node { stroke-dasharray: 3 3; opacity: 0.45; }
+.cut .val { opacity: 0.4; }
+
+/* ---- stepper: a discrete slider ------------------------------------------- */
+.stepper {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: var(--space-5);
+  padding-inline: 2px;
+}
+.stepperLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-medium);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.track {
+  position: relative;
+  height: 40px;
+  margin-inline: 30px;
+}
+.track::before,
+.track::after {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 0;
+  height: 1px;
+  background: var(--color-line-2);
+}
+.track::before { right: 0; }
+.track::after { width: var(--fill); background: var(--color-ink); transition: width var(--dur-base) var(--ease-out); }
+.stop {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  translate: -50% 0;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 7px 4px 0;
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--color-muted);
+  white-space: nowrap;
+  transition: color var(--dur-fast);
+}
+.stop::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border: 1px solid var(--color-line-2);
+  border-radius: 50%;
+  background: var(--color-bg);
+  transition: border-color var(--dur-fast), background var(--dur-fast), scale var(--dur-fast) var(--ease-out);
+}
+.stop:hover { color: var(--color-ink-2); }
+.stopOn::before { border-color: var(--color-ink); }
+.stopAt { color: var(--color-ink); }
+.stopAt::before { background: var(--color-ink); scale: 1.25; }
+
+@media (max-width: 560px) {
+  .plate { aspect-ratio: auto; padding: var(--space-3); }
+  .stepper { grid-template-columns: 1fr; gap: var(--space-2); }
+  .stop > span { display: none; }
+  .stop:first-child > span, .stop:last-child > span, .stopAt > span { display: block; }
+}
+
+/* ---- wireframe figures ------------------------------------------------------ */
+.wfPiece { transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-out); }
+.wfInk { fill: var(--color-ink); }
+.wfFill { fill: var(--color-muted); }
+.wfFaint { fill: var(--color-line-2); }
+.wfMid { fill: var(--color-surface); stroke: var(--color-muted); stroke-width: 1; }
+.wfSoft { fill: var(--color-bg); stroke: var(--color-line-2); stroke-width: 1; }
+.wfBlob { fill: var(--color-line); }
+.wfFrame { fill: var(--color-bg); stroke: var(--color-line-2); stroke-width: 1; }
+.wfFrameLine { stroke: var(--color-line-2); stroke-width: 1; }
+@media (prefers-reduced-motion: reduce) { .wfPiece { transition: none; } }
+
+/* Phones: placed last so these override the base rules above. */
+@media (max-width: 560px) {
+  .list li { grid-template-columns: 1fr; gap: 2px; }
+  .chunk, .card { padding: var(--space-4); }
+  .timeline li { grid-template-columns: 52px 1fr; padding: var(--space-3) var(--space-4); }
+  .timeline li > svg { display: none; }
+  .reflection { padding: var(--space-4); }
+}

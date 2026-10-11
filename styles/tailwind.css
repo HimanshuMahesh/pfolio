@@ -1,0 +1,34 @@
+/* =========================================================================
+   Tailwind — utilities only, for components ported from Spacered.
+
+   No preflight: base.css already owns the reset. The theme is `inline` and
+   `reference`, so utilities carry their own values (rounded-md stays 6px)
+   and Tailwind never writes :root variables over the site's tokens
+   (--radius-md, --font-sans, --ease-out… share names).
+   ========================================================================= */
+@import "tailwindcss/theme.css" theme(inline reference);
+@import "tailwindcss/utilities.css";
+
+/* Only scan the components that use it. */
+@source not "../app";
+@source not "../lib";
+@source not "../content";
+
+/* The Spacered palette, mapped onto this site's tokens. */
+@theme inline {
+  --color-spacered-heading: var(--color-ink);
+  --color-spacered-muted: var(--color-copy);
+  --color-spacered-canvas: var(--color-bg);
+  --color-spacered-surface-hover: var(--spacered-surface-hover);
+  --color-spacered-surface-tint: var(--spacered-surface-tint);
+}
+
+/* Spacered's #1f1f1f chip, pulled toward the site blue. */
+:root {
+  --spacered-surface-hover: #1a1d26;
+  --spacered-surface-tint: #1e2331;
+}
+:root[data-theme="light"] {
+  --spacered-surface-hover: #ffffff;
+  --spacered-surface-tint: #f2f5ff;
+}

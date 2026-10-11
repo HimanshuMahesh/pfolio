@@ -1,0 +1,198 @@
+.section { margin-top: var(--space-10); }
+
+.list { display: grid; gap: var(--space-6); }
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  column-gap: 14px;
+  transition: opacity 0.4s var(--ease-out);
+}
+.item { cursor: default; outline: none; }
+.item:focus-visible .title { text-decoration: underline; text-underline-offset: 0.2em; }
+/* dotted line from this mark down to the next one */
+.item:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  left: 12.5px;
+  top: 37px;
+  bottom: calc(-1 * var(--space-6) + 7px);
+  width: 3px;
+  background: radial-gradient(circle, var(--color-faint) 1px, transparent 1.5px) center top / 3px 6px repeat-y;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 2px var(--space-4);
+}
+.title {
+  font-size: var(--text-body);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.012em;
+}
+.date {
+  font-family: var(--font-button);
+  font-size: var(--text-label);
+  color: var(--color-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.sub {
+  margin-top: 1px;
+  font-size: var(--text-meta);
+  color: var(--color-muted);
+}
+
+/* Two lines, fading out; the row opens to the full text on hover. Height
+   animates through max-height (long enough for the longest entry on a phone). */
+.desc {
+  --line: 1.65em;
+  max-width: 80ch;
+  max-height: calc(var(--line) * 2);
+  margin-top: 10px;
+  overflow: hidden;
+  font-size: var(--text-small);
+  line-height: 1.65;
+  color: var(--color-ink-2);
+  mask-image: linear-gradient(180deg, #000 calc(var(--line) * 1.1), transparent calc(var(--line) * 2));
+  transition: max-height 0.6s var(--ease-out), mask-image 0.6s;
+}
+.item:is(:hover, :focus-within) .desc {
+  max-height: calc(var(--line) * 16);
+  mask-image: linear-gradient(180deg, #000 100%, transparent 100%);
+}
+
+/* ---- Hover fan --------------------------------------------------------------
+   The row's height opens on a 0fr → 1fr grid track, then the screens rise
+   out of a blur one after another, fanned like a hand of cards. Their lower
+   edge sinks into a progressive blur, so they read as peeking out of the
+   row rather than sitting on it. Tap or focus opens it on touch screens. */
+.reveal {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.6s var(--ease-out);
+}
+.revealInner { min-height: 0; overflow: hidden; }
+
+.fan {
+  --card-w: 130px;
+  perspective: 900px;
+  --step: 40px;
+  position: relative;
+  height: 150px;
+  margin-top: var(--space-4);
+  max-width: 640px;
+  /* the cards fade out where they meet the next row */
+  mask-image: linear-gradient(180deg, #000 52%, transparent 96%);
+}
+@media (min-width: 640px) {
+  .fan { --card-w: 190px; --step: 96px; height: 172px; }
+}
+/* wide screens: bigger cards, spread further apart */
+@media (min-width: 1200px) {
+  .fan { --card-w: 230px; --step: 150px; height: 200px; max-width: 900px; }
+}
+/* progressive blur along the bottom edge */
+.fan::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 60%;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  mask-image: linear-gradient(180deg, transparent, #000 75%);
+  pointer-events: none;
+}
+
+.card {
+  --lift: 0px;
+  position: absolute;
+  top: 18px;
+  left: calc(50% - var(--card-w) / 2);
+  z-index: calc(10 - var(--a) * 2);
+  width: var(--card-w);
+  aspect-ratio: 4 / 3;
+  /* a raised frame around the screen: lit from above, a darker lip below,
+     and a soft drop shadow, so each card reads as a small physical tile */
+  padding: 5px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #3a3a40, #1d1d21 55%, #141417);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    inset 0 -2px 0 rgb(0 0 0 / 0.5),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 1px 0 rgb(0 0 0 / 0.6),
+    0 18px 30px -14px rgb(0 0 0 / 0.7);
+  transform-style: preserve-3d;
+  /* closed: gathered in the middle, low, small and blurred */
+  opacity: 0;
+  filter: blur(12px);
+  transform:
+    translate(calc(var(--o) * var(--step) * 0.35), 56px)
+    rotate(calc(var(--o) * 2deg))
+    rotateX(18deg)
+    scale(0.86);
+  transition:
+    transform 0.45s var(--ease-out),
+    filter 0.35s var(--ease-out),
+    opacity 0.3s var(--ease-out);
+}
+:root[data-theme="light"] .card {
+  background: linear-gradient(180deg, #ffffff, #ecebe6 60%, #dedcd5);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    inset 0 -2px 0 rgb(0 0 0 / 0.08),
+    inset 0 0 0 1px rgb(0 0 0 / 0.07),
+    0 1px 0 rgb(0 0 0 / 0.1),
+    0 18px 30px -14px rgb(0 0 0 / 0.3);
+}
+/* the screen, set into the frame */
+.shot {
+  position: relative;
+  display: block;
+  height: 100%;
+  border-radius: 9px;
+  overflow: hidden;
+  background: var(--color-placeholder);
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.35);
+}
+.shot img { object-fit: cover; object-position: top center; }
+/* lines hold the place until the screen lands */
+.lines {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--color-ink) 22%, transparent) 0 1px,
+    transparent 1px 11px
+  );
+}
+
+/* open */
+.item:is(:hover, :focus-within) .reveal { grid-template-rows: 1fr; }
+.item:is(:hover, :focus-within) .card {
+  opacity: 1;
+  filter: blur(0);
+  transform:
+    translate(calc(var(--o) * var(--step)), calc(var(--a) * 9px + var(--lift)))
+    rotate(calc(var(--o) * 5deg))
+    rotateY(calc(var(--o) * -6deg))
+    rotateX(6deg)
+    scale(1);
+  transition-duration: 0.7s, 0.6s, 0.4s;
+  transition-delay: calc(120ms + var(--i) * 50ms);
+}
+/* a card lifts toward you under the pointer */
+@media (hover: hover) {
+  .fan .card:hover { --lift: -14px; z-index: 9; transition-delay: 0s; }
+  /* the other rows step back while one is open */
+  .list:has(.item:hover) .item:not(:hover) { opacity: 0.4; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .card, .desc { transition-duration: 0.01s !important; transition-delay: 0s !important; }
+}

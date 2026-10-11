@@ -1,0 +1,29 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-overlay);
+  pointer-events: none;
+}
+.overlay > div { height: 100%; }
+.overlay span {
+  grid-column: auto;
+  position: relative;
+  background: rgb(126 166 255 / 0.05);
+  border-inline: 1px solid rgb(126 166 255 / 0.16);
+}
+.overlay span::before {
+  content: attr(data-n);
+  position: absolute;
+  left: 4px;
+  bottom: 16px;
+  font-size: 10px;
+  color: var(--color-accent);
+}
+.overlay span:nth-child(n + 5) { display: none; }
+@media (min-width: 768px) {
+  .overlay span:nth-child(n + 5) { display: block; }
+  .overlay span:nth-child(n + 9) { display: none; }
+}
+@media (min-width: 1200px) {
+  .overlay span:nth-child(n + 9) { display: block; }
+}

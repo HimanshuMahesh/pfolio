@@ -1,0 +1,283 @@
+/* ---- Layout ------------------------------------------------------------------
+   Phone: one stacked column.
+   Tablet: objective | photo on top, then full-width rows.
+   Desktop: text (5.6) | photo (5); the photo sits beside the objective
+   (landscape), then the description runs down the left while the resume
+   and lists fill the right. */
+.bento {
+  /* Apple system colours, dark and light */
+  --apple-blue: #0a84ff;
+  --apple-blue-hover: #409cff;
+  --apple-yellow: #ffd60a;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas: "photo" "obj" "desc" "cta" "lists";
+}
+:root[data-theme="light"] .bento {
+  --apple-blue: #007aff;
+  --apple-blue-hover: #0062cc;
+  --apple-yellow: #e0a100; /* Notes' tint on white; system yellow is too pale for text */
+}
+@media (min-width: 768px) {
+  .bento {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    grid-template-areas:
+      "obj  photo"
+      "desc desc"
+      "cta  cta"
+      "lists lists";
+  }
+}
+@media (min-width: 1200px) {
+  .bento {
+    grid-template-columns: minmax(0, 5.6fr) minmax(0, 5fr);
+    grid-template-areas:
+      "obj  photo"
+      "desc cta"
+      "desc lists";
+  }
+}
+
+/* ---- Cells, as Apple widgets --------------------------------------------------
+   The nav bar's corners, a faint light across the top, a hairline edge drawn
+   inside, and a shadow that lifts them off the page. */
+.cell {
+  position: relative;
+  padding: 20px var(--space-5);
+  border-radius: var(--radius-xl);
+  background:
+    linear-gradient(180deg, var(--glass-shine), transparent 40%),
+    var(--color-surface);
+  box-shadow:
+    inset 0 0 0 1px var(--glass-edge),
+    var(--shadow-float);
+  overflow: hidden;
+}
+
+/* The cell's number: a frosted chip in the bottom-right corner, readable over
+   text, photo or turntable alike. */
+.label {
+  font-family: var(--font-button);
+  font-size: var(--text-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.acc { color: var(--color-accent); }
+.serif {
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+}
+
+/* ---- Objective ---------------------------------------------------------------- */
+.objective { grid-area: obj; padding-bottom: var(--space-6); }
+.objectiveText {
+  font-size: clamp(28px, 2.7vw, 42px);
+  line-height: 1.14;
+  letter-spacing: -0.028em;
+  text-wrap: pretty;
+}
+
+/* ---- Descriptive, in a macOS window ------------------------------------------- */
+.desc { grid-area: desc; padding: 0; }
+.titlebar {
+  /* unified with the window: same surface, no bar or rule */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding-inline: 16px;
+}
+.lights {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  gap: 8px;
+}
+.lights i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: inset 0 0 0 0.5px rgb(0 0 0 / 0.2);
+}
+.lights i:nth-child(2) { background: #febc2e; }
+.lights i:nth-child(3) { background: #28c840; }
+.tab {
+  font-size: 12.5px;
+  font-weight: var(--weight-medium);
+  color: var(--color-muted);
+}
+.body {
+  display: grid;
+  gap: 1.1em;
+  max-width: 62ch;
+  padding: 8px var(--space-5) 24px;
+  font-size: var(--text-ui);
+  line-height: 1.65;
+  color: var(--color-ink-2);
+}
+.tag { color: var(--color-accent); white-space: nowrap; }
+
+/* ---- Photo: full-bleed; lines hold its place until the landscape photo lands */
+.photo {
+  grid-area: photo;
+  aspect-ratio: 3 / 2;
+  padding: 0;
+  background: var(--color-placeholder);
+}
+.photo img { object-fit: cover; object-position: 50% 60%; }
+@media (min-width: 768px) {
+  .photo { aspect-ratio: auto; min-height: 260px; }
+}
+
+/* ---- Resume, as an incoming AirDrop -------------------------------------------- */
+.cta { grid-area: cta; padding: 0; }
+.drop {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-4);
+  padding: 16px 20px;
+}
+.dropText {
+  display: grid;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+.dropTitle {
+  font-size: var(--text-body);
+  font-weight: var(--weight-bold);
+  color: var(--color-ink);
+}
+.dropText p:last-child {
+  font-size: var(--text-small);
+  line-height: 1.4;
+  color: var(--color-ink-2);
+}
+.file { font-weight: var(--weight-medium); color: var(--color-ink); }
+
+/* the AirDrop icon: white rings on a flat system-blue disc */
+.airdropIcon {
+  flex: none;
+  width: 52px;
+  height: 52px;
+  padding: 8px;
+  border-radius: 50%;
+  background: var(--apple-blue);
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.airdropIcon circle { fill: #fff; stroke: none; }
+
+.dropActions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-2);
+  width: 100%;
+}
+@media (min-width: 640px) {
+  .dropActions { width: auto; grid-template-columns: repeat(2, 104px); }
+}
+.dropActions :is(button, a) {
+  display: grid;
+  place-items: center;
+  height: 38px;
+  border-radius: 12px;
+  font-size: var(--text-small);
+  font-weight: var(--weight-medium);
+  transition: background-color 0.2s, transform 0.15s var(--ease-out);
+}
+.dropActions :is(button, a):active { transform: scale(0.96); }
+.dropActions button {
+  color: var(--color-ink);
+  background: var(--color-placeholder);
+  box-shadow: inset 0 0 0 1px var(--color-line);
+}
+.dropActions button:hover { background: var(--color-line); }
+.dropActions a { color: #fff; background: var(--apple-blue); }
+.dropActions a:hover { background: var(--apple-blue-hover); }
+.refused button { color: var(--color-muted); animation: nope 0.45s var(--ease-out); }
+@keyframes nope {
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(5px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+
+/* ---- Lists -------------------------------------------------------------------- */
+.lists {
+  grid-area: lists;
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 640px) {
+  .lists { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* Notes: an open note, as in the app. Yellow back button and more-button,
+   a bold title, then a bulleted list. */
+.notesBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -4px -6px 0 -8px;
+  color: var(--apple-yellow);
+}
+.notesBar span {
+  display: flex;
+  align-items: center;
+  gap: 1px;
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+}
+.notesBar span svg { width: 18px; height: 18px; }
+.notesBar i {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--apple-yellow) 16%, transparent);
+}
+.notesBar i svg { width: 16px; height: 16px; }
+.notesTitle {
+  margin-top: var(--space-4);
+  font-size: 19px;
+  font-weight: var(--weight-bold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+.notesList {
+  display: grid;
+  gap: 6px;
+  margin-top: var(--space-3);
+  font-size: var(--text-ui);
+  line-height: 1.4;
+  color: var(--color-ink-2);
+}
+.notesList li { position: relative; padding-left: 16px; }
+.notesList li::before {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 0.62em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.note { font-size: var(--text-meta); color: var(--color-muted); white-space: nowrap; }
+
+/* Record player: the turntable fills the cell edge to edge */
+.turntable { padding: 0; aspect-ratio: 1; }
+@media (min-width: 640px) {
+  .turntable { aspect-ratio: auto; min-height: 240px; }
+}

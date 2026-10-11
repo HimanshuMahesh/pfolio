@@ -1,0 +1,41 @@
+.media {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-placeholder);
+}
+.fillParent { height: 100%; }
+
+.inner {
+  position: absolute;
+  inset: 0;
+  background: var(--media-fill, var(--color-placeholder));
+  transition: transform var(--dur-media) var(--ease-out);
+}
+.inner > img { object-fit: cover; }
+
+:global(a:hover) .inner { transform: scale(1.03); }
+
+/* Technical placeholder: diagonals, a 24px grid and a centre ring — reads
+   as "image goes here" on a spec sheet. */
+.pattern {
+  background-image:
+    linear-gradient(to top right, transparent calc(50% - 0.6px), var(--color-line-2) 50%, transparent calc(50% + 0.6px)),
+    linear-gradient(to bottom right, transparent calc(50% - 0.6px), var(--color-line-2) 50%, transparent calc(50% + 0.6px)),
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 24px 24px, 24px 24px;
+  background-position: 0 0, 0 0, -1px -1px, -1px -1px;
+}
+.pattern::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border: 1px solid var(--color-line-2);
+  border-radius: 50%;
+  background: var(--color-placeholder);
+}

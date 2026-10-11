@@ -1,0 +1,179 @@
+/* Portrait: a thick, translucent ring (the chips' black at 45% in dark,
+   the page's paper white in light) and a soft drop so it lifts off the page. */
+.avatar {
+  --ring: 4px;
+  --ring-color: rgb(11 11 13 / 0.45);
+  --drop: rgb(0 0 0 / 0.45);
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-placeholder);
+  box-shadow:
+    0 0 0 var(--ring) var(--ring-color),
+    0 10px 24px -8px var(--drop);
+}
+:global(:root[data-theme="light"]) .avatar {
+  --ring-color: rgb(252 252 250 / 0.7);
+  --drop: rgb(0 0 0 / 0.2);
+}
+.avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.identity {
+  margin-top: var(--space-6);
+  font-size: var(--text-intro);
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+}
+.greeting { color: var(--color-ink); font-weight: var(--weight-medium); }
+.role { color: var(--color-muted); }
+/* The one place the pixel face appears in running text: the word it names. */
+.pixels {
+  font-family: var(--font-button);
+  font-size: 0.92em;
+  letter-spacing: 0.02em;
+  color: var(--color-ink-2);
+}
+
+
+.intro {
+  margin-top: var(--space-6);
+  font-size: var(--text-intro);
+  line-height: var(--leading-relaxed);
+  letter-spacing: -0.005em;
+  color: var(--color-copy);
+  text-wrap: pretty;
+  transition: color 0.4s;
+}
+.intro p + p { margin-top: 1.4em; }
+
+/* While a hover word is open, everything else in the intro — and the name
+   above it — steps back. */
+.identity { transition: opacity 0.4s; }
+.identity:has(+ .intro [data-hover]:is(:hover, :focus-within, [data-open])) { opacity: 0.25; }
+.intro:has([data-hover]:is(:hover, :focus-within, [data-open])) { color: var(--color-faint); }
+.intro:has([data-hover]:is(:hover, :focus-within, [data-open])) .brand { color: var(--color-faint); }
+.intro:has([data-hover]:is(:hover, :focus-within, [data-open])) :global(.di-trigger) { color: var(--color-faint); }
+.intro:has([data-hover]:is(:hover, :focus-within, [data-open])) .brandMark { opacity: 0.35; }
+.intro:has([data-hover]:is(:hover, :focus-within, [data-open]))
+  [data-hover]:not(:hover, :focus-within, [data-open]) > * {
+  color: var(--color-faint);
+  text-decoration-color: transparent;
+}
+
+/* ---- Inline brand: name + mark on a small black key ------------------------- */
+.brand {
+  color: var(--color-ink);
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+  transition: color 0.4s;
+}
+.brandMark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.3em;
+  height: 1.3em;
+  margin-left: 0.3em;
+  /* centred on the text's x-height, and taking no extra line height */
+  vertical-align: middle;
+  margin-block: -0.3em;
+  overflow: hidden;
+  border-radius: 0.32em;
+  background: linear-gradient(180deg, #1c1c20, #0b0b0d);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.14),
+    inset 0 -1px 0 rgb(0 0 0 / 0.65),
+    inset 0 0 0 1px rgb(255 255 255 / 0.06),
+    0 1px 2px rgb(0 0 0 / 0.3);
+  transition: transform 0.5s var(--ease-out), opacity 0.4s;
+}
+.brand:hover .brandMark { transform: translateY(-0.08em) rotate(-8deg); }
+/* marks are sized in em against the key, never by their intrinsic size */
+.tavant {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 0.8em;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: #f37229; /* Tavant orange */
+}
+.spacered { display: block; width: auto; height: 0.85em; }
+
+/* ---- "startups": names scatter up out of the word ---------------------------- */
+.cloud {
+  --k: 0.6;
+  position: relative;
+  display: block;
+  width: 0;
+  height: 0;
+}
+.cloudCap,
+.cloudItem {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 6px) scale(0.96);
+  transition:
+    opacity 0.3s calc(var(--i) * 50ms),
+    transform 0.55s var(--ease-out) calc(var(--i) * 50ms);
+}
+.cloudCap {
+  text-shadow: 0 0 3px var(--color-bg), 0 0 12px var(--color-bg);
+  font-size: var(--text-label);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+.cloudItem {
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 8px;
+  line-height: 1;
+  color: var(--color-ink);
+  /* a soft halo in the page colour keeps logos legible over the dimmed copy */
+  text-shadow: 0 0 3px var(--color-bg), 0 0 14px var(--color-bg), 0 0 24px var(--color-bg);
+}
+/* Logos go monochrome: white on dark, black on light */
+.cloudLogo {
+  display: block;
+  flex: none;
+  width: auto;
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px var(--color-bg));
+}
+:global(:root[data-theme="light"]) .cloudLogo {
+  filter: brightness(0) drop-shadow(0 0 10px var(--color-bg));
+}
+.cloudWordmark {
+  font-size: 20px;
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.02em;
+}
+:global([data-hover]:is(:hover, :focus-within, [data-open])) .cloudCap,
+:global([data-hover]:is(:hover, :focus-within, [data-open])) .cloudItem {
+  opacity: 1;
+  transform: translate(-50%, 0) translate(calc(var(--x) * var(--k)), calc(var(--y) * var(--k))) rotate(var(--r));
+}
+
+/* ---- "creative side-quest": empty frames (photos go in later) -------------- */
+.frame {
+  display: block;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-line-2);
+  border-radius: 3px;
+  box-shadow: 0 10px 24px -12px rgb(0 0 0 / 0.55);
+  text-shadow: none;
+}
+.frame img { object-fit: cover; }
+
+@media (min-width: 768px) {
+  .cloud { --k: 1; }
+  .avatar {
+    width: 68px;
+    height: 68px;
+  }
+}

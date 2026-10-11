@@ -1,0 +1,23 @@
+.footer {
+  position: relative;
+  z-index: var(--z-content);
+}
+
+/* Same edge as the hero sky: no hard line, no long fade — a 6px feather. */
+.heatmap {
+  -webkit-mask-image: linear-gradient(transparent, #000 6px);
+  mask-image: linear-gradient(transparent, #000 6px);
+  display: block;
+  width: 100%;
+  height: 220px;
+  background: #1e3a8a;
+  cursor: crosshair;
+}
+
+@media (min-width: 768px) {
+  .heatmap { height: 300px; }
+}
+
+@media (min-width: 1200px) {
+  .heatmap { height: 360px; }
+}

@@ -1,0 +1,109 @@
+/* Hand-drawn diagrams, set in the site face. Pencil-grey strokes, and
+   North's green for "this part calls a model". */
+.scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+.svg {
+  --dg-ink: #d4d4ce;          /* box outlines */
+  --dg-text: var(--color-ink);
+  --dg-sub: #8d8d87;
+  --dg-line: #8f8f89;         /* connectors */
+  --dg-note: #a3a39d;
+  --dg-faint: #3a3a37;
+  --dg-green: #6cca6b;
+  --dg-wash: rgb(108 202 107 / 0.12);
+  --dg-paper: var(--color-bg);
+
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+:global(:root[data-theme="light"]) .svg {
+  --dg-ink: #2b2b28;
+  --dg-sub: #6f6f68;
+  --dg-line: #62625c;
+  --dg-note: #4a4a44;
+  --dg-faint: #cfcec7;
+  --dg-green: #2f8f3c;
+  --dg-wash: rgb(47 143 60 / 0.12);
+}
+
+/* ---- strokes ------------------------------------------------------------ */
+.stroke,
+.plain,
+.body,
+.head,
+.dot path {
+  fill: none;
+  stroke-width: 1.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.stroke { stroke: var(--dg-ink); }
+.plain { stroke: var(--dg-ink); }
+.faintStroke { stroke: var(--dg-faint); }
+.greenStroke { stroke: var(--dg-green); }
+.dashed { stroke-dasharray: 5 6; }
+
+.llm .stroke { stroke: var(--dg-green); }
+.wash { fill: var(--dg-wash); }
+
+.body,
+.head { stroke: var(--dg-line); }
+.arrowGreen .body,
+.arrowGreen .head { stroke: var(--dg-green); }
+
+/* ---- type --------------------------------------------------------------- */
+.mono {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  fill: var(--dg-text);
+}
+.title {
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 500;
+  fill: var(--dg-text);
+}
+.sub {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  fill: var(--dg-sub);
+}
+.edge {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  fill: var(--dg-sub);
+  /* knocks the connector out behind the label */
+  paint-order: stroke;
+  stroke: var(--dg-paper);
+  stroke-width: 6px;
+  stroke-linejoin: round;
+}
+.note {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  fill: var(--dg-note);
+}
+.faint { fill: var(--dg-sub); }
+.tag {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  fill: var(--dg-sub);
+}
+
+/* ---- dots --------------------------------------------------------------- */
+.dot path { stroke: var(--dg-ink); }
+.dotFilled circle { fill: var(--dg-green); }
+.dotFilled path { stroke: var(--dg-green); }
+.dotInk circle { fill: var(--dg-ink); }
+.dotInk path { stroke: var(--dg-ink); }

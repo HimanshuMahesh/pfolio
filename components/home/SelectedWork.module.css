@@ -1,0 +1,175 @@
+/* A shorter gap into Writing than the page's usual section rhythm: the
+   notes open with their own large heading, which already reads as a break. */
+section.work { padding-bottom: var(--space-8); }
+@media (min-width: 1200px) {
+  section.work { padding-bottom: var(--space-9); }
+}
+
+/* The covers sit close under the head so the first row peeks above the fold. */
+.work .head { margin-bottom: var(--space-4); }
+
+/* One column on phones, two from 640px — the covers are too small to read
+   two-up below that. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: var(--grid-gutter);
+  row-gap: 20px;
+}
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 768px) {
+  .grid { row-gap: var(--space-5); }
+}
+
+/* The card keeps the old 4:3 footprint: the cover takes what's left after
+   the caption row, so the gradient sits contained inside the card. */
+.link {
+  --notch-r: 8px;
+  display: grid;
+  /* The column is pinned to the card's width: left as `auto` it grows to the
+     caption's unwrapped title and the cover spills past the card. */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  aspect-ratio: 4 / 3;
+  padding: var(--space-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: 18px;
+  transition: border-color 0.3s var(--ease-out);
+}
+.link:hover { border-color: var(--color-line-2); }
+
+/* Project name in a notch cut into the cover's top-left corner. */
+.notch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  padding: 2px var(--space-4) 10px 6px;
+  background: var(--color-surface);
+  border-bottom-right-radius: var(--notch-r);
+  font-size: clamp(13px, 1.05vw, 15px);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  color: var(--color-ink);
+  /* Its own compositing layer, so a playing cover film can't paint over it. */
+  transform: translateZ(0);
+}
+/* Inverted corners where the notch meets the cover, so it reads as carved
+   out. Each overlaps the notch by 1px and the ramp is a hard stop, so no
+   half-transparent seam lets the cover show through. */
+.notch::before,
+.notch::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--notch-r) + 1px);
+  height: calc(var(--notch-r) + 1px);
+  background: radial-gradient(
+    circle at 100% 100%,
+    transparent calc(var(--notch-r) - 0.25px),
+    var(--color-surface) calc(var(--notch-r) + 0.25px)
+  );
+}
+/* Grown up/left by 1px so the curve's centre stays exactly where it was. */
+.notch::before { top: -1px; left: calc(100% - 1px); }
+.notch::after { top: calc(100% - 1px); left: -1px; }
+
+/* Work-in-progress tape: two comically oversized strips crossed over the
+   cover, clipped by its rounded edge. Sized off the cover itself (cqh), so
+   it stays just as absurd at any card width. Sits under the notch. */
+.tape {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  container-type: size;
+  pointer-events: none;
+}
+.strip {
+  --tape: #ffd21f;
+  --tape-ink: #111;
+  position: absolute;
+  left: -40%;
+  width: 180%;
+  top: 50%;
+  height: 22cqh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+  /* hazard stripes along both edges, flat yellow in the middle */
+  background:
+    repeating-linear-gradient(-45deg, var(--tape-ink) 0 1.6cqh, var(--tape) 1.6cqh 3.2cqh) top / 100% 2.4cqh no-repeat,
+    repeating-linear-gradient(-45deg, var(--tape-ink) 0 1.6cqh, var(--tape) 1.6cqh 3.2cqh) bottom / 100% 2.4cqh no-repeat,
+    var(--tape);
+  box-shadow: 0 1.2cqh 3cqh rgb(0 0 0 / 0.35);
+  font-family: var(--font-sans);
+  font-size: 10cqh;
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.02em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--tape-ink);
+}
+.stripA { transform: translateY(-50%) translateY(-14cqh) rotate(-11deg); }
+.stripB { transform: translateY(-50%) translateY(16cqh) rotate(7deg); }
+
+/* A slot holding a film paints nothing of its own: at fractional zoom its
+   rounded edge lands on part-covered pixels, and any colour behind the film
+   (the placeholder, a fill) blends in there as a faint hairline ring. */
+.link .film { background: transparent; }
+
+/* Cover film: fills the slot as an image would. It overdraws by 1px on
+   every side so the card's fractional size can't leave a hairline seam.
+   Chrome composites <video> on its own layer, which can escape the
+   parent's rounded overflow clip — so the film clips itself to the same
+   rounded box (inset 1px = the slot's edge). */
+.video {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  object-fit: cover;
+  display: block;
+  clip-path: inset(1px round var(--radius-md));
+}
+
+.caption {
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  padding: var(--space-3) 6px var(--space-1);
+}
+.title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: clamp(14px, 1.1vw, 16px);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+}
+.meta {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 0.9vw, 13px);
+  line-height: var(--leading-snug);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--color-muted);
+}
+
+.link:hover .title {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--color-line-2);
+}

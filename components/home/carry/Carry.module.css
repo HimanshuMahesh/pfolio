@@ -1,0 +1,106 @@
+/* Between Work and Notes, inside the page frame (.wrap) so the strip's edges sit
+   on the grid margins like every other section. The drawings' paper is the page
+   background, so the band has no edges of its own: the ends fade instead. */
+.strip {
+  /* Drawing px → CSS px. One fluid factor keeps the whole set at one scale and
+     tracks the viewport: about 0.58 on a phone, 0.82 at the 1440 frame. */
+  --u: clamp(0.58px, 0.49px + 0.0229vw, 0.82px);
+  --gap: var(--grid-gutter);
+  --duration: 60s;
+  /* Work above already ends on its own gap; Writing opens straight on its head, so give it air. */
+  margin-bottom: var(--space-8);
+}
+
+.viewport {
+  overflow: hidden;
+  padding-block: var(--space-4);
+  mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: carry-drift var(--duration) linear infinite;
+}
+.viewport:hover .track { animation-play-state: paused; }
+
+.set {
+  display: flex;
+  align-items: flex-start;
+  /* Between objects: two gutters, so the rhythm follows the grid's own spacing. */
+  gap: calc(var(--gap) * 2);
+  padding-right: calc(var(--gap) * 2);
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.item {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: calc(var(--w) * var(--u));
+}
+
+/* Every item has the same shelf height and its drawing sits at the bottom, so
+   the plinths stand on one line and the notes start on one line. */
+.art {
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: calc(var(--shelf) * var(--u));
+  transition: transform 0.5s var(--ease-out);
+}
+.frame {
+  position: relative;
+  width: 100%;
+  height: calc(var(--h) * var(--u));
+}
+.frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Hover: the object lifts and its live drawing (shutter, flash, sound,
+   screen, second hand) crossfades in over the still. */
+.item:hover .art { transform: translateY(-6px); }
+.live {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s;
+}
+.item:hover .live { opacity: 1; }
+
+/* Dark is the default theme; light swaps the drawing. */
+.light { display: none !important; }
+:root[data-theme="light"] .light { display: block !important; }
+:root[data-theme="light"] .dark { display: none !important; }
+
+/* The margin note: a grey handwritten line under each object, tilted a little
+   either way like something jotted on the desk. Never wider than its object. */
+.note {
+  max-width: min(27ch, 100%);
+  margin: var(--space-2) 0 0;
+  font-size: clamp(13px, 1.1vw, 15px);
+  line-height: 1.35;
+  color: var(--color-muted);
+  text-align: center;
+  transform: rotate(-1.5deg);
+  transition: color 0.3s;
+}
+.item:nth-child(even) .note { transform: rotate(1.2deg); }
+.item:hover .note { color: var(--color-ink-2); }
+
+@keyframes carry-drift {
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track { animation: none; }
+  .art, .item:hover .art { transform: none; }
+  .live { display: none !important; }
+  .viewport { overflow-x: auto; mask-image: none; }
+}

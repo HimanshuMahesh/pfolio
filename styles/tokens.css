@@ -1,0 +1,177 @@
+/* =========================================================================
+   Design tokens
+   Every colour, size and timing the site uses lives here. Components read
+   these; they should not introduce raw values of their own unless the value
+   is genuinely local to that one component (and then it is named at the top
+   of that component's module).
+
+   Breakpoints (CSS can't read custom properties in media queries, so they
+   are written literally wherever they're used — keep them in sync):
+     tablet  ≥ 768px   8 columns
+     desktop ≥ 1200px  12 columns
+   ========================================================================= */
+
+/* Registered so they animate, and so grid placement never inherits into
+   nested grids. */
+@property --m  { syntax: "*"; inherits: false; }
+@property --t  { syntax: "*"; inherits: false; }
+@property --d  { syntax: "*"; inherits: false; }
+@property --bc { syntax: "<color>";  inherits: true; initial-value: #2d2d32; }
+@property --bl { syntax: "<length>"; inherits: true; initial-value: 6px; }
+
+/* ---- Colour: dark (default) ----------------------------------------------
+   The site is designed dark first. `data-theme="light"` on <html> swaps the
+   palette below; it is set before first paint by the script in app/layout. */
+:root {
+  color-scheme: dark;
+
+  --color-bg: #0a0a0b;
+  --color-surface: #121214;
+  --color-placeholder: #161618;
+  --color-ink: #ededea;          /* headings, names, active text */
+  --color-ink-2: #b4b4ae;        /* secondary text, ledes */
+  --color-copy: #9b9b95;         /* long-form body copy */
+  --color-muted: #7d7d78;        /* labels, meta */
+  --color-faint: #3e3e3b;        /* crop marks, dimmed text */
+  --color-line: #1f1f22;         /* hairlines */
+  --color-line-2: #2d2d32;       /* stronger hairlines, hover borders */
+  --color-accent: #7ea6ff;
+  --color-accent-soft: rgb(126 166 255 / 0.1);
+  --color-button: #2f63e6;
+  --color-button-hover: #3f72f2;
+  --color-on-button: #fff;
+
+  /* frosted glass (floating nav) */
+  --glass: rgb(16 16 18 / 0.58);
+  --glass-strong: rgb(16 16 18 / 0.8);
+  --glass-edge: rgb(255 255 255 / 0.08);
+  --glass-edge-strong: rgb(255 255 255 / 0.1);
+  --glass-shine: rgb(255 255 255 / 0.04);
+  --shadow-float: 0 10px 30px -14px rgb(0 0 0 / 0.6);
+  --shadow-float-strong: 0 16px 36px -14px rgb(0 0 0 / 0.75);
+
+  --bc: var(--color-line-2);     /* default corner-bracket colour (see .brackets) */
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: #f5f4f0;
+  --color-surface: #fcfcfa;
+  --color-placeholder: #ebeae5;
+  --color-ink: #121213;
+  --color-ink-2: #46463f;
+  --color-copy: #5b5b54;
+  --color-muted: #6f6f68;
+  --color-faint: #c6c5be;
+  --color-line: #e3e2dc;
+  --color-line-2: #cfcec7;
+  --color-accent: #2f5fe0;
+  --color-accent-soft: rgb(47 95 224 / 0.1);
+  --color-button: #2f63e6;
+  --color-button-hover: #2556d6;
+
+  --glass: rgb(252 252 250 / 0.62);
+  --glass-strong: rgb(252 252 250 / 0.86);
+  --glass-edge: rgb(0 0 0 / 0.07);
+  --glass-edge-strong: rgb(0 0 0 / 0.09);
+  --glass-shine: rgb(255 255 255 / 0.8);
+  --shadow-float: 0 10px 30px -14px rgb(0 0 0 / 0.16);
+  --shadow-float-strong: 0 16px 36px -14px rgb(0 0 0 / 0.22);
+}
+
+:root {
+  /* ---- Type ------------------------------------------------------------ */
+  --font-sans: var(--font-zalando), "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  --font-button: var(--font-bitcount), var(--font-mono);   /* buttons, keys, chips */
+
+  --text-label: 11px;            /* uppercase labels */
+  --text-caption: 12px;          /* mono section heads, tooltips */
+  --text-meta: 13px;             /* dates, footer, mono readouts */
+  --text-small: 14px;            /* UI text, buttons */
+  --text-ui: 15px;               /* nav, link lists, note descriptions */
+  --text-body: 16px;
+  --text-lede: 17px;
+  --text-intro: 18px;            /* hero identity + intro copy (19 from tablet) */
+  --text-title: 22px;            /* note titles */
+  --text-display: clamp(44px, 5.6vw, 84px);
+
+  --leading-tight: 0.98;
+  --leading-snug: 1.35;
+  --leading-body: 1.55;
+  --leading-relaxed: 1.6;
+
+  --tracking-label: 0.08em;
+  --tracking-mono: 0.04em;
+  --tracking-display: -0.045em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-bold: 700;
+
+  /* ---- Space (4pt scale) ----------------------------------------------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+  --space-11: 160px;
+
+  /* ---- Layout: the 4 / 8 / 12 column grid -------------------------------- */
+  --grid-cols: 4;
+  --grid-margin: 16px;
+  --grid-gutter: 16px;
+  --page-max: 1440px;
+  --section-gap: var(--space-9);
+  --column-narrow: 760px;        /* hero column + floating nav */
+
+  --nav-h: 52px;
+  --nav-top: 10px;
+  --nav-offset: calc(var(--nav-top) + var(--nav-h));
+
+  /* ---- Shape ----------------------------------------------------------- */
+  --radius-xs: 2px;              /* buttons, project covers */
+  --radius-md: 10px;             /* nav button */
+  --radius-lg: 14px;             /* avatar */
+  --radius-xl: 16px;             /* floating nav */
+  --radius-pill: 999px;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-fast: 0.25s;
+  --dur-base: 0.45s;
+  --dur-slow: 0.9s;
+  --dur-media: 1s;
+
+  /* ---- Depth ----------------------------------------------------------- */
+  --z-content: 1;
+  --z-nav: 50;
+  --z-overlay: 60;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --grid-cols: 8;
+    --grid-margin: 32px;
+    --grid-gutter: 20px;
+    --section-gap: var(--space-10);
+    --nav-h: 56px;
+    --nav-top: 16px;
+    --text-intro: 19px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --grid-cols: 12;
+    --grid-margin: 48px;
+    --grid-gutter: 24px;
+    --section-gap: var(--space-11);
+  }
+}

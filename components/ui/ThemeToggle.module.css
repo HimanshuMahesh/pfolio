@@ -1,0 +1,22 @@
+.toggle {
+  --bulb-light: #ffd66e;
+  --bulb-glow: rgb(255 204 92 / 0.7);
+}
+
+.bulb {
+  width: 17px;
+  height: 17px;
+  opacity: 0.85;
+  transition: color var(--dur-base) var(--ease-out), filter var(--dur-base) var(--ease-out), opacity var(--dur-fast);
+}
+.toggle:hover .bulb { opacity: 1; }
+
+/* Lights on: light mode */
+:global(:root[data-theme="light"]) .bulb {
+  opacity: 1;
+  color: var(--bulb-light);
+  filter: drop-shadow(0 0 5px var(--bulb-glow));
+}
+:global(:root[data-theme="light"]) .toggle:not(:active) {
+  box-shadow: var(--chip-bevel), inset 0 0 12px rgb(255 200 90 / 0.14), var(--chip-lift);
+}

@@ -1,0 +1,48 @@
+.root { position: relative; }
+
+.trigger {
+  color: var(--color-ink);
+  font-weight: var(--weight-medium);
+  cursor: default;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--color-line-2);
+  transition: color 0.4s, text-decoration-color 0.3s;
+}
+a.trigger { cursor: pointer; }
+.trigger:focus-visible { outline-offset: 2px; }
+
+.anchor { position: relative; white-space: nowrap; }
+
+/* ---- Panel ------------------------------------------------------------------
+   Sits above the word, centred on it (plus --shift to stay on screen). Its
+   bottom padding is a hover bridge, so the pointer can travel into it. */
+.panel {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  z-index: 20;
+  padding-bottom: 12px;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(calc(-50% + var(--shift, 0px)), 8px);
+  transition: opacity 0.3s, transform 0.5s var(--ease-out);
+  white-space: normal;
+  text-align: left;
+  font-weight: var(--weight-regular);
+}
+
+.root:hover .panel,
+.root:focus-within .panel,
+.root[data-open] .panel {
+  opacity: 1;
+  transform: translate(calc(-50% + var(--shift, 0px)), 0);
+}
+.root:hover .interactive,
+.root:focus-within .interactive,
+.root[data-open] .interactive { pointer-events: auto; }
+
+.root:hover .trigger,
+.root:focus-within .trigger,
+.root[data-open] .trigger { text-decoration-color: var(--color-ink); }
