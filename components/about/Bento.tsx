@@ -101,9 +101,7 @@ export function Bento() {
             ))}
           </ul>
         </div>
-        <div className={cx(styles.cell, styles.turntable)} data-reveal="load" style={stagger(5)}>
-          <Turntable />
-        </div>
+        <Turntable className={cx(styles.cell, styles.turntable)} style={stagger(5)} />
       </div>
     </section>
   );

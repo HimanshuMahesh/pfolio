@@ -81,32 +81,6 @@
   box-shadow: inset -3px -1px 0 0 #e8edff, 0 0 6px rgb(200 215 255 / 0.35);
 }
 
-/* ---- Handwritten aside, tucked under the sky's right corner (desktop only).
-   Fades in after the hero settles; leaves for good once the sky is scrubbed. */
-.skyNote {
-  display: none;
-  position: absolute;
-  top: calc(var(--sky-h, 230px) + var(--space-3));
-  right: var(--space-6);
-  z-index: var(--z-content);
-  max-width: 34ch;
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.4;
-  text-align: right;
-  color: var(--color-muted);
-  transform: rotate(-1.5deg);
-  transform-origin: right top;
-  pointer-events: none;
-  opacity: 0;
-  animation: hint-in 1.2s var(--ease-out) 2.4s forwards;
-  transition: opacity 0.6s var(--ease-out);
-}
-@media (min-width: 1200px) and (hover: hover) and (pointer: fine) {
-  .skyNote { display: block; }
-}
-.shell:has(.hint[data-gone]) .skyNote { animation: none; opacity: 0; }
-
 /* ---- Hero frame ------------------------------------------------------------ */
 .hero {
   position: relative;
