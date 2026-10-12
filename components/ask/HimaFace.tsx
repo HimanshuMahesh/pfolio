@@ -96,9 +96,12 @@ export function HimaFace({ mood = "idle", className }: { mood?: Mood; className?
     let nextBlink = performance.now() + rand(1200, 3500);
     let blinkAt = -1e9;
     let raf = 0;
+    let lastL = "";
+    let lastR = "";
 
     const frame = (now: number) => {
       raf = requestAnimationFrame(frame);
+      if (document.hidden) return;
       const box = el.getBoundingClientRect();
       if (box.width === 0) return;
       const cx = box.left + box.width / 2;
@@ -138,8 +141,11 @@ export function HimaFace({ mood = "idle", className }: { mood?: Mood; className?
       const t = (now - blinkAt) / 150;
       const lid = t < 1 ? 1 - Math.sin(t * Math.PI) * 0.85 : 1;
 
-      l.setAttribute("d", eye(-1, cur.x, cur.y, lid, joy));
-      r.setAttribute("d", eye(1, cur.x, cur.y, lid, joy));
+      // Only touch the DOM when the eyes actually moved: most frames they're resting.
+      const dl = eye(-1, cur.x, cur.y, lid, joy);
+      const dr = eye(1, cur.x, cur.y, lid, joy);
+      if (dl !== lastL) l.setAttribute("d", (lastL = dl));
+      if (dr !== lastR) r.setAttribute("d", (lastR = dr));
     };
     raf = requestAnimationFrame(frame);
     return () => {
