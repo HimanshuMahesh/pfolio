@@ -12,19 +12,20 @@ import { UserFocusIcon } from "@phosphor-icons/react/dist/ssr/UserFocus";
 import { CoverVideo } from "@/components/ui/CoverVideo";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { CaseRail, type RailItem } from "@/components/case/CaseRail";
+import { TechMark, type Tech } from "@/components/case/tech";
 import { cx, place } from "@/lib/grid";
 import s from "./Case.module.css";
 
 /*
  * The short case-study format: a technical brief rather than a design story.
- * Intro, a few numbers, the screens, notes from the build, the stack.
+ * Intro, the screens, how the product works, the stack.
  * The long design write-ups live on the studio site.
  */
 
 type Icon = ComponentType<IconProps>;
 export type Point = { icon: Icon; title: string; text: ReactNode };
 export type Screen = { src: string; alt: string; caption: ReactNode; wide?: boolean };
-export type StackRow = { icon: Icon; label: string; items: string[] };
+export type StackRow = { icon: Icon; label: string; items: Tech[] };
 
 /** The page shell: grid, the section rail, the article column, and the end links. */
 export function BriefPage({ rail, accent, next, children }: {
@@ -52,7 +53,7 @@ export function BriefPage({ rail, accent, next, children }: {
   );
 }
 
-export function BriefHeader({ kicker, title, lede, role, timeline, platform, stack, cover, coverBg, link }: {
+export function BriefHeader({ kicker, title, lede, role, timeline, platform, stack, cover, coverBg, link, metric }: {
   kicker: string;
   title: string;
   lede: ReactNode;
@@ -65,6 +66,8 @@ export function BriefHeader({ kicker, title, lede, role, timeline, platform, sta
   coverBg: string;
   /** `live` turns the link into the "Live" key: the product is out there, go use it. */
   link?: { href: string; label: string; live?: boolean };
+  /** One real number, set beside the link, e.g. { value: "10,000+", label: "learners" }. */
+  metric?: { value: string; label: string };
 }) {
   const meta = [
     { icon: UserFocusIcon, dt: "Role", dd: role },
@@ -80,13 +83,22 @@ export function BriefHeader({ kicker, title, lede, role, timeline, platform, sta
         </p>
         <h1 className={cx("t-display", s.title)}>{title}</h1>
         <p className={s.lede}>{lede}</p>
-        {link?.live && (
-          <a className={s.live} href={link.href} target="_blank" rel="noreferrer">
-            <span className={s.liveDot} aria-hidden="true" />
-            <span className={s.liveTag}>Live</span>
-            <span className={s.liveUrl}>{link.label}</span>
-            <ArrowUpRightIcon weight="bold" aria-hidden="true" />
-          </a>
+        {(link?.live || metric) && (
+          <div className={s.keys}>
+            {link?.live && (
+              <a className={s.live} href={link.href} target="_blank" rel="noreferrer">
+                <span className={s.liveDot} aria-hidden="true" />
+                <span className={s.liveTag}>Live</span>
+                <span className={s.liveUrl}>{link.label}</span>
+                <ArrowUpRightIcon weight="bold" aria-hidden="true" />
+              </a>
+            )}
+            {metric && (
+              <p className={s.metric}>
+                <strong>{metric.value}</strong> {metric.label}
+              </p>
+            )}
+          </div>
         )}
         {link && !link.live && (
           <a className={cx("t-label", s.visit)} href={link.href} target="_blank" rel="noreferrer">
@@ -128,19 +140,6 @@ export function Section({ id, n, label, aside, title, children }: {
 
 export function Prose({ children }: { children: ReactNode }) {
   return <div className={s.prose}>{children}</div>;
-}
-
-export function Stats({ items }: { items: { value: string; label: string }[] }) {
-  return (
-    <div className={s.stats}>
-      {items.map((it) => (
-        <div key={it.label} data-reveal>
-          <span className={s.stat}>{it.value}</span>
-          <span className={s.statLabel}>{it.label}</span>
-        </div>
-      ))}
-    </div>
-  );
 }
 
 export function Points({ items }: { items: Point[] }) {
@@ -190,7 +189,7 @@ export function Screens({ items, ratio = "4 / 3" }: { items: Screen[]; ratio?: s
   );
 }
 
-/** The stack, one layer per row, like the /about entries. */
+/** The stack, one layer per row, each tool a tag with its logo. */
 export function Stack({ rows }: { rows: StackRow[] }) {
   return (
     <dl className={s.stack}>
@@ -199,8 +198,13 @@ export function Stack({ rows }: { rows: StackRow[] }) {
           <dt className={cx("t-label", s.stackLabel)}>
             <I weight="duotone" aria-hidden="true" />{label}
           </dt>
-          <dd className={s.stackItems}>
-            {items.map((it) => <span key={it}>{it}</span>)}
+          <dd className={s.tags}>
+            {items.map((it) => (
+              <span key={it} className={s.tag}>
+                <TechMark name={it} className={s.tagMark} />
+                {it}
+              </span>
+            ))}
           </dd>
         </div>
       ))}

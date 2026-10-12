@@ -20,7 +20,7 @@ import { SigmaIcon } from "@phosphor-icons/react/dist/ssr/Sigma";
 import { StackIcon } from "@phosphor-icons/react/dist/ssr/Stack";
 import { TelevisionSimpleIcon } from "@phosphor-icons/react/dist/ssr/TelevisionSimple";
 import { TreeStructureIcon } from "@phosphor-icons/react/dist/ssr/TreeStructure";
-import { site } from "@/content/site";
+import { sharedOpenGraph, site } from "@/content/site";
 import { HairlineFigure } from "@/components/notes/figures/HairlineFigure";
 import { Balance } from "@/components/notes/figures/Balance";
 import { PruningTree } from "@/components/notes/figures/MathFigures";
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   title: `${TITLE} · ${site.name}`,
   description:
     "I binge-watched GothamChess, got curious about the engine bar, and went down the rabbit hole: search, evaluation, AlphaZero, Stockfish's NNUE, and what any of it has to do with the agents I build at work.",
-  openGraph: { title: TITLE, type: "article", publishedTime: DATE },
+  openGraph: { ...sharedOpenGraph, title: TITLE, type: "article", publishedTime: DATE, url: "/notes/how-to-build-a-mind-that-plays-chess" },
 };
 
 

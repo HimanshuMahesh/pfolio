@@ -2,19 +2,20 @@ import type { Metadata } from "next";
 import { CloudIcon } from "@phosphor-icons/react/dist/ssr/Cloud";
 import { CompassIcon } from "@phosphor-icons/react/dist/ssr/Compass";
 import { DesktopIcon } from "@phosphor-icons/react/dist/ssr/Desktop";
-import { FeatherIcon } from "@phosphor-icons/react/dist/ssr/Feather";
-import { GitBranchIcon } from "@phosphor-icons/react/dist/ssr/GitBranch";
 import { HardDrivesIcon } from "@phosphor-icons/react/dist/ssr/HardDrives";
 import { ImagesIcon } from "@phosphor-icons/react/dist/ssr/Images";
-import { LightningIcon } from "@phosphor-icons/react/dist/ssr/Lightning";
-import { ScanIcon } from "@phosphor-icons/react/dist/ssr/Scan";
+import { ListChecksIcon } from "@phosphor-icons/react/dist/ssr/ListChecks";
+import { PlayCircleIcon } from "@phosphor-icons/react/dist/ssr/PlayCircle";
+import { SealCheckIcon } from "@phosphor-icons/react/dist/ssr/SealCheck";
+import { SparkleIcon } from "@phosphor-icons/react/dist/ssr/Sparkle";
 import { StackIcon } from "@phosphor-icons/react/dist/ssr/Stack";
-import { WrenchIcon } from "@phosphor-icons/react/dist/ssr/Wrench";
+import { TreeIcon } from "@phosphor-icons/react/dist/ssr/Tree";
 import { site } from "@/content/site";
 import type { RailItem } from "@/components/case/CaseRail";
 import {
-  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack, Stats,
+  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack,
 } from "@/components/case/Brief";
+import { Video } from "@/components/case/Video";
 
 export const metadata: Metadata = {
   title: `TaskLearn — ${site.name}`,
@@ -25,8 +26,9 @@ export const metadata: Metadata = {
 const rail: RailItem[] = [
   { id: "overview", label: "Overview", icon: <CompassIcon weight="duotone" /> },
   { id: "screens", label: "Screens", icon: <ImagesIcon weight="duotone" /> },
-  { id: "notes", label: "Build notes", icon: <WrenchIcon weight="duotone" /> },
+  { id: "how", label: "How it works", icon: <ListChecksIcon weight="duotone" /> },
   { id: "stack", label: "Stack", icon: <StackIcon weight="duotone" /> },
+  { id: "v1", label: "First version", icon: <PlayCircleIcon weight="duotone" /> },
 ];
 
 export default function TaskLearnCaseStudy() {
@@ -43,6 +45,7 @@ export default function TaskLearnCaseStudy() {
         stack="React 19, Express, Prisma, Postgres"
         cover={{ src: "/work/tasklearn.mp4", poster: "/work/tasklearn-poster.jpg" }}
         coverBg="radial-gradient(120% 70% at 50% 120%, #7c5cf0 0%, #2a1470 40%, #000 75%)"
+        metric={{ value: "10,000+", label: "learners" }}
       />
 
       <Section id="overview" n="01" label="Overview" title="A certificate proves you watched something. TaskLearn asks you to make something.">
@@ -53,13 +56,6 @@ export default function TaskLearnCaseStudy() {
             it against the task&rsquo;s own rubric, and the result is something you can show, not just a badge.
           </p>
         </Prose>
-        <Stats
-          items={[
-            { value: "10k+", label: "learners on the platform" },
-            { value: "6", label: "jobs handed to models, from reviewing work to writing the blog" },
-            { value: "0", label: "servers involved in cloning your repo. It happens in your tab" },
-          ]}
-        />
       </Section>
 
       <Section id="screens" n="02" label="Screens" title="Dark, a little tactile, and violet where it counts.">
@@ -75,13 +71,13 @@ export default function TaskLearnCaseStudy() {
         />
       </Section>
 
-      <Section id="notes" n="03" label="Build notes" title="The bits I'd point at in a code review.">
+      <Section id="how" n="03" label="How it works" title="Pick a brief, do the work, get a real review.">
         <Points
           items={[
-            { icon: GitBranchIcon, title: "Git, inside the browser", text: "Code tasks take a GitHub link. The repo is cloned in the tab with isomorphic-git into an in-browser file system, filtered, and only the files that matter are uploaded. The server never runs a clone." },
-            { icon: ScanIcon, title: "Two passes, not one", text: "A cheap pass decides which files matter for this task. The expensive one reads only those. Reviews got quicker and stopped commenting on config files." },
-            { icon: LightningIcon, title: "Every model call has a plan B", text: "If the first provider fails, the same prompt goes to a second one. Model choices live in a config the admin panel edits live, so swapping a model needs no deploy." },
-            { icon: FeatherIcon, title: "An agent writes the blog", text: "A background agent drafts posts and their cover images in batches, each run tracked as a job in the database so a failed one can be picked up again." },
+            { icon: CompassIcon, title: "Tasks written like briefs", text: "Every task reads like a request from a real team: what to make, who it's for, and what done looks like. Explore suggests tasks for the tracks you pick, and each card shows the thing you'll build." },
+            { icon: SparkleIcon, title: "Steps, with help on hand", text: "A task breaks into timed steps. Lumo, the built-in assistant, sits under each one to unblock you without doing the work for you." },
+            { icon: SealCheckIcon, title: "Reviewed like a senior would", text: "Hand in the named deliverables, a repo, a deck or a prototype, and get a score out of 100 against the task's own rubric, with notes pinned to the exact part of the work they're about." },
+            { icon: TreeIcon, title: "A portfolio that proves it", text: "Only work that passes review lands on your public portfolio, with your activity, skill scores and milestones from Sapling to Forest." },
           ]}
         />
       </Section>
@@ -89,10 +85,19 @@ export default function TaskLearnCaseStudy() {
       <Section id="stack" n="04" label="Stack" title="What it runs on.">
         <Stack
           rows={[
-            { icon: DesktopIcon, label: "Interface", items: ["React 19", "Vite", "Tailwind 4", "Zustand", "GSAP", "Lenis", "dnd-kit", "isomorphic-git"] },
-            { icon: HardDrivesIcon, label: "Server", items: ["Node", "Express", "Prisma", "Postgres", "Better Auth"] },
-            { icon: CloudIcon, label: "Files + infra", items: ["Cloudflare R2", "Cloudinary", "Docker", "Scheduled backups"] },
+            { icon: DesktopIcon, label: "Interface", items: ["React", "Vite", "Tailwind", "Zustand", "GSAP", "Lenis", "dnd-kit", "isomorphic-git"] },
+            { icon: HardDrivesIcon, label: "Server", items: ["Node.js", "Express", "Prisma", "Postgres", "Better Auth"] },
+            { icon: CloudIcon, label: "Files + infra", items: ["Cloudflare R2", "Cloudinary", "Docker", "Postgres backups"] },
           ]}
+        />
+      </Section>
+
+      <Section id="v1" n="05" label="First version" title="Where it started.">
+        <Video
+          id="7UYfeezeYx0"
+          title="TaskLearn v1 demo"
+          caption="The first TaskLearn demo. Almost everything in it has since been redesigned or rebuilt, which is the point of showing it."
+          note="Fair warning: it’s old, and I shot it like an amateur."
         />
       </Section>
     </BriefPage>

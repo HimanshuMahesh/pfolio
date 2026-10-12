@@ -32,15 +32,21 @@ const bitcount = Bitcount_Grid_Single({
 });
 
 
+// The share image itself is app/opengraph-image.jpg (+ twitter-image.jpg), derived from the LinkedIn banner.
 export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
   title: `${site.name} — ${site.role}`,
   description: site.description,
   openGraph: {
     title: `${site.name} — ${site.role}`,
     description: site.description,
+    url: "/",
+    siteName: site.name,
     type: "website",
     locale: "en_IN",
   },
+  // Title and description fall back to each page's og: tags.
+  twitter: { card: "summary_large_image" },
 };
 
 export const viewport: Viewport = {

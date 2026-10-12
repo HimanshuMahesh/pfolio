@@ -3,8 +3,9 @@
  * Details follow Himanshu_Resume_New.html.
  */
 
-// TODO: drop the PDF into public/resume.pdf
 export const resumeHref = "/resume.pdf";
+/** File name the resume saves under when downloaded. */
+export const resumeFileName = "Himanshu K Mahesh · Resume.pdf";
 
 export const enjoying: Array<{ label: string; note?: string }> = [
   { label: "Reading", note: "avid" },

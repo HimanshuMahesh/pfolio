@@ -1,22 +1,24 @@
 import type { Metadata } from "next";
-import { BracketsCurlyIcon } from "@phosphor-icons/react/dist/ssr/BracketsCurly";
+import { BrainIcon } from "@phosphor-icons/react/dist/ssr/Brain";
+import { ChartLineUpIcon } from "@phosphor-icons/react/dist/ssr/ChartLineUp";
+import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr/ChatsCircle";
 import { CloudIcon } from "@phosphor-icons/react/dist/ssr/Cloud";
 import { CompassIcon } from "@phosphor-icons/react/dist/ssr/Compass";
 import { DesktopIcon } from "@phosphor-icons/react/dist/ssr/Desktop";
-import { EyeIcon } from "@phosphor-icons/react/dist/ssr/Eye";
-import { FilmStripIcon } from "@phosphor-icons/react/dist/ssr/FilmStrip";
 import { HardDrivesIcon } from "@phosphor-icons/react/dist/ssr/HardDrives";
 import { ImagesIcon } from "@phosphor-icons/react/dist/ssr/Images";
-import { SpeakerHighIcon } from "@phosphor-icons/react/dist/ssr/SpeakerHigh";
+import { ListChecksIcon } from "@phosphor-icons/react/dist/ssr/ListChecks";
+import { NotePencilIcon } from "@phosphor-icons/react/dist/ssr/NotePencil";
+import { PlayCircleIcon } from "@phosphor-icons/react/dist/ssr/PlayCircle";
 import { StackIcon } from "@phosphor-icons/react/dist/ssr/Stack";
-import { ChatsCircleIcon } from "@phosphor-icons/react/dist/ssr/ChatsCircle";
-import { WaveformIcon } from "@phosphor-icons/react/dist/ssr/Waveform";
-import { WrenchIcon } from "@phosphor-icons/react/dist/ssr/Wrench";
+import { VideoCameraIcon } from "@phosphor-icons/react/dist/ssr/VideoCamera";
+import { WifiSlashIcon } from "@phosphor-icons/react/dist/ssr/WifiSlash";
 import { site } from "@/content/site";
 import type { RailItem } from "@/components/case/CaseRail";
 import {
-  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack, Stats,
+  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack,
 } from "@/components/case/Brief";
+import { Video } from "@/components/case/Video";
 
 export const metadata: Metadata = {
   title: `Visume — ${site.name}`,
@@ -27,8 +29,9 @@ export const metadata: Metadata = {
 const rail: RailItem[] = [
   { id: "overview", label: "Overview", icon: <CompassIcon weight="duotone" /> },
   { id: "screens", label: "Screens", icon: <ImagesIcon weight="duotone" /> },
-  { id: "notes", label: "Build notes", icon: <WrenchIcon weight="duotone" /> },
+  { id: "how", label: "How it works", icon: <ListChecksIcon weight="duotone" /> },
   { id: "stack", label: "Stack", icon: <StackIcon weight="duotone" /> },
+  { id: "v1", label: "First version", icon: <PlayCircleIcon weight="duotone" /> },
 ];
 
 export default function VisumeCaseStudy() {
@@ -45,6 +48,7 @@ export default function VisumeCaseStudy() {
         stack="React, Express, Prisma, MySQL"
         cover={{ src: "/work/visume.mp4", poster: "/work/visume-poster.jpg" }}
         coverBg="radial-gradient(80% 50% at 50% 60%, #1e6bff 0%, transparent 70%), linear-gradient(180deg, #041233, #06205c 60%, #020a1f)"
+        metric={{ value: "1,000+", label: "interviews taken" }}
       />
 
       <Section id="overview" n="01" label="Overview" title="A PDF tells you where someone worked. Five minutes of them talking tells you the rest.">
@@ -56,13 +60,6 @@ export default function VisumeCaseStudy() {
             pile.
           </p>
         </Prose>
-        <Stats
-          items={[
-            { value: "1,000+", label: "interviews taken" },
-            { value: "2", label: "sides of the hiring table, served by one product" },
-            { value: "60s", label: "between checks that a real person is still there" },
-          ]}
-        />
       </Section>
 
       <Section id="screens" n="02" label="Screens" title="Light, calm and blue, because hiring is stressful enough.">
@@ -77,15 +74,15 @@ export default function VisumeCaseStudy() {
         />
       </Section>
 
-      <Section id="notes" n="03" label="Build notes" title="Most of the work was making a browser behave like a studio.">
+      <Section id="how" n="03" label="How it works" title="One interview from the candidate. A ranked shortlist for the team.">
         <Points
           items={[
-            { icon: SpeakerHighIcon, title: "The question is in the recording", text: "Questions are spoken with Amazon Polly, and that audio is mixed into the candidate's recording. A reviewer hears the question and the answer in one take, not a face talking to silence." },
-            { icon: WaveformIcon, title: "Transcripts while they talk", text: "Answers stream to AssemblyAI over a socket as the candidate speaks, so the transcript is ready the moment they stop." },
-            { icon: ChatsCircleIcon, title: "Questions that follow up", text: "Each question is written from the resume, the role and every answer so far. Two candidates for the same job don't get the same interview." },
-            { icon: EyeIcon, title: "Is anyone there?", text: "Once a minute a webcam frame goes to Gemini to check a person is in shot. Miss twice and the interview pauses rather than ends, so a bad connection doesn't cost anyone their attempt." },
-            { icon: BracketsCurlyIcon, title: "Scores as data, not prose", text: "Scoring asks the model for JSON that matches a schema, with OpenRouter behind Gemini if it fails. The UI never has to parse an essay." },
-            { icon: FilmStripIcon, title: "Videos you can scrub", text: "Browsers record WebM without a duration, so seeking breaks. Each recording is patched before upload, so the player's timeline works." },
+            { icon: NotePencilIcon, title: "Post a role in a minute", text: "The hiring team writes the job once: the role, skills as tags, the experience range and locations. That's what every interview is built around." },
+            { icon: VideoCameraIcon, title: "Candidates interview once", text: "Each candidate records a five-minute interview from the browser, on desktop or phone, whenever suits them. The interviewer speaks every question aloud, so it feels like a conversation, not a form." },
+            { icon: ChatsCircleIcon, title: "Questions that follow up", text: "Questions are written from the candidate's resume, the role and their answers so far, so two people applying for the same job don't get the same interview." },
+            { icon: WifiSlashIcon, title: "Forgiving of a bad connection", text: "The interview checks that someone is still in front of the camera. If they drop out, it pauses rather than ends, so a flaky connection doesn't cost anyone their attempt." },
+            { icon: BrainIcon, title: "Scored and summarised", text: "Every interview comes back with a skills score, a communication breakdown and a short AI summary, next to the recording and a transcript you can read along with." },
+            { icon: ChartLineUpIcon, title: "Start from a ranked list", text: "Recruiters search by role and location and see candidates with their scores, then shortlist in a click. The dashboard tracks everyone from shortlisted to offer." },
           ]}
         />
       </Section>
@@ -93,10 +90,20 @@ export default function VisumeCaseStudy() {
       <Section id="stack" n="04" label="Stack" title="What it runs on.">
         <Stack
           rows={[
-            { icon: DesktopIcon, label: "Interface", items: ["React 18", "Vite", "Tailwind", "Zustand", "Framer Motion", "ApexCharts", "Monaco"] },
-            { icon: HardDrivesIcon, label: "Server", items: ["Node", "Express", "Prisma", "MySQL", "JWT + Google sign-in"] },
+            { icon: DesktopIcon, label: "Interface", items: ["React", "Vite", "Tailwind", "Zustand", "Framer Motion", "ApexCharts", "Monaco"] },
+            { icon: HardDrivesIcon, label: "Server", items: ["Node.js", "Express", "Prisma", "MySQL", "JWT", "Google sign-in"] },
+            { icon: BrainIcon, label: "AI + voice", items: ["Gemini", "OpenRouter", "AssemblyAI", "Amazon Polly"] },
             { icon: CloudIcon, label: "Infra", items: ["Cloudflare R2", "Netlify"] },
           ]}
+        />
+      </Section>
+
+      <Section id="v1" n="05" label="First version" title="Where it started.">
+        <Video
+          id="zHavn2c3aJo"
+          title="Looking back at the first Visume prototype"
+          caption="The first Visume prototype, from the demo we submitted to Accel. The product has moved a long way since."
+          note="Fair warning: it’s old, and I shot it like an amateur."
         />
       </Section>
     </BriefPage>

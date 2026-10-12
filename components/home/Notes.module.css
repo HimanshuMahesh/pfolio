@@ -11,12 +11,9 @@
 }
 
 /* ---- Layout -------------------------------------------------------------------
-   Three notes, one below the other, on the page grid.
-   Phone: full width, image on top, text below.
-   Tablet: all 8 columns; text 5 | image 3.
-   Desktop: columns 2–11 (10 of 12); text 6 | image 4.
-   The card and its link are subgrids, so the image's edge sits on a grid line. */
-.list { row-gap: var(--space-6); }
+   Text-only cards, two to a row from tablet up (one column on phones), split
+   like the Work grid. Cards in a row share a height; the footer sits at the bottom. */
+.list { row-gap: var(--grid-gutter); }
 
 .note {
   position: relative;
@@ -26,36 +23,14 @@
 }
 .note:hover { border-color: var(--color-line-2); }
 
-.link { display: grid; height: 100%; grid-column: 1 / -1; }
-
-/* At least 16:9 (the spacer), and if the text runs taller the image
-   stretches to fill its cell — never wider than its columns. */
-.media {
-  position: relative;
-  order: -1;
-  overflow: hidden;
-  border-bottom: 1px solid var(--color-line);
-}
-.media::before { content: ""; display: block; padding-top: 56.25%; }
-.media > * { position: absolute; inset: 0; }
-
-/* A spec-sheet caption on the image */
-.fig {
-  position: absolute;
-  left: var(--space-3);
-  bottom: var(--space-3);
-  padding: 3px 7px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-line);
-  color: var(--color-muted);
-  transition: color 0.3s;
-}
-.link:hover .fig { color: var(--color-ink); }
+.link { display: block; height: 100%; }
 
 .text {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
+  height: 100%;
+  min-height: 260px;
   padding: var(--space-5);
   min-width: 0;
 }
@@ -87,13 +62,13 @@
   text-wrap: balance;
 }
 .desc {
-  max-width: 52ch;
+  max-width: 60ch;
   font-size: var(--text-ui);
   color: var(--color-muted);
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
   overflow: hidden;
 }
 
@@ -150,23 +125,12 @@
 .link:hover .arrow { transform: translate(2px, -2px); }
 
 @media (min-width: 768px) {
-  .note { display: grid; grid-template-columns: subgrid; }
-  .link { grid-template-columns: subgrid; }
-  .text { grid-column: 1 / 6; }
-  .media {
-    grid-column: 6 / -1;
-    order: 0;
-    border-bottom: 0;
-    border-left: 1px solid var(--color-line);
-  }
   .text { padding: var(--space-6); }
   .title { font-size: clamp(22px, 2.2vw, 30px); letter-spacing: -0.028em; }
 }
 
 @media (min-width: 1200px) {
   .intro { margin-bottom: var(--space-9); }
-  .text { grid-column: 1 / 7; }
-  .media { grid-column: 7 / -1; }
 }
 
 @media (prefers-reduced-motion: reduce) {

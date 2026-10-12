@@ -1,20 +1,21 @@
 import type { Metadata } from "next";
 import { BrainIcon } from "@phosphor-icons/react/dist/ssr/Brain";
-import { CheckCircleIcon } from "@phosphor-icons/react/dist/ssr/CheckCircle";
 import { CompassIcon } from "@phosphor-icons/react/dist/ssr/Compass";
 import { DatabaseIcon } from "@phosphor-icons/react/dist/ssr/Database";
 import { DesktopIcon } from "@phosphor-icons/react/dist/ssr/Desktop";
+import { FileCsvIcon } from "@phosphor-icons/react/dist/ssr/FileCsv";
+import { FolderSimpleIcon } from "@phosphor-icons/react/dist/ssr/FolderSimple";
 import { ImagesIcon } from "@phosphor-icons/react/dist/ssr/Images";
-import { KeyIcon } from "@phosphor-icons/react/dist/ssr/Key";
-import { LockIcon } from "@phosphor-icons/react/dist/ssr/Lock";
+import { ListChecksIcon } from "@phosphor-icons/react/dist/ssr/ListChecks";
 import { PrinterIcon } from "@phosphor-icons/react/dist/ssr/Printer";
 import { ShieldCheckIcon } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
+import { SparkleIcon } from "@phosphor-icons/react/dist/ssr/Sparkle";
 import { StackIcon } from "@phosphor-icons/react/dist/ssr/Stack";
-import { WrenchIcon } from "@phosphor-icons/react/dist/ssr/Wrench";
+import { WarningCircleIcon } from "@phosphor-icons/react/dist/ssr/WarningCircle";
 import { site } from "@/content/site";
 import type { RailItem } from "@/components/case/CaseRail";
 import {
-  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack, Stats,
+  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack,
 } from "@/components/case/Brief";
 
 export const metadata: Metadata = {
@@ -26,7 +27,7 @@ export const metadata: Metadata = {
 const rail: RailItem[] = [
   { id: "overview", label: "Overview", icon: <CompassIcon weight="duotone" /> },
   { id: "screens", label: "Screens", icon: <ImagesIcon weight="duotone" /> },
-  { id: "notes", label: "Build notes", icon: <WrenchIcon weight="duotone" /> },
+  { id: "how", label: "How it works", icon: <ListChecksIcon weight="duotone" /> },
   { id: "stack", label: "Stack", icon: <StackIcon weight="duotone" /> },
 ];
 
@@ -54,13 +55,6 @@ export default function SmritiCaseStudy() {
             and take into a meeting. It&rsquo;s deliberately a project tool, not a lab notebook, and it says so.
           </p>
         </Prose>
-        <Stats
-          items={[
-            { value: "24", label: "checks in CI that try to break the access rules" },
-            { value: "3", label: "AI features, all off until the owner says yes" },
-            { value: "₹0", label: "a month. It runs on a free tier, on purpose" },
-          ]}
-        />
       </Section>
 
       <Section id="screens" n="02" label="Screens" title="Quiet and dense, readable at the end of a long lab day.">
@@ -75,13 +69,15 @@ export default function SmritiCaseStudy() {
         />
       </Section>
 
-      <Section id="notes" n="03" label="Build notes" title="Boring on purpose, where boring means safe.">
+      <Section id="how" n="03" label="How it works" title="One place for the work, and nothing a lab has to worry about.">
         <Points
           items={[
-            { icon: ShieldCheckIcon, title: "Rules live in the database", text: "Every table has row-level security tied to project membership. The interface hides buttons, but it's Postgres that actually says no." },
-            { icon: KeyIcon, title: "AI as the owner's decision", text: "The AI features are built and return \"disabled\" until the owner sets a key. Setting it is how the company answers \"may project text go to Google?\"" },
-            { icon: LockIcon, title: "Confidential means confidential", text: "Projects marked confidential are refused by the server even with AI on. The CSV import that sets up a project works without AI too." },
-            { icon: PrinterIcon, title: "Reports that print", text: "Status reports are HTML templates with a print-to-PDF path, so they can go into a meeting on paper." },
+            { icon: FolderSimpleIcon, title: "Every project in one place", text: "Each project holds its milestones, tasks and team. The board groups them by status, and every card shows funding, priority and progress at a glance." },
+            { icon: WarningCircleIcon, title: "See what's slipping", text: "Home opens on what's in progress, what's overdue and which milestones are due, plus what changed since you last looked." },
+            { icon: ShieldCheckIcon, title: "People see their own projects", text: "Access follows project membership, and it's enforced by the database itself, not just hidden in the interface." },
+            { icon: SparkleIcon, title: "Polish, when you want it", text: "Type a rushed note and Smriti suggests a clearer task. The AI stays off until the company turns it on, and projects marked confidential are never sent to it." },
+            { icon: FileCsvIcon, title: "Set up from a spreadsheet", text: "A whole project, with its milestones and tasks, can come in from a CSV, so moving off the old sheets takes minutes." },
+            { icon: PrinterIcon, title: "Reports that print", text: "Status reports print cleanly to PDF, so a lead can take one into a meeting on paper." },
           ]}
         />
       </Section>
@@ -89,10 +85,9 @@ export default function SmritiCaseStudy() {
       <Section id="stack" n="04" label="Stack" title="What it runs on.">
         <Stack
           rows={[
-            { icon: DesktopIcon, label: "Interface", items: ["React 18", "TypeScript", "Vite", "Tailwind", "shadcn/ui on Radix", "TanStack Query", "React Hook Form + Zod"] },
-            { icon: DatabaseIcon, label: "Backend", items: ["Supabase", "Postgres with row-level security", "Supabase Auth", "Deno edge functions"] },
-            { icon: BrainIcon, label: "AI", items: ["Gemini, behind edge functions", "Off by default"] },
-            { icon: CheckCircleIcon, label: "Quality", items: ["Access-rule tests in CI", "Migrations in the repo", "Auth config pinned in code"] },
+            { icon: DesktopIcon, label: "Interface", items: ["React", "TypeScript", "Vite", "Tailwind", "shadcn/ui", "Radix", "TanStack Query", "React Hook Form", "Zod"] },
+            { icon: DatabaseIcon, label: "Backend", items: ["Supabase", "Postgres", "Row-level security", "Deno"] },
+            { icon: BrainIcon, label: "AI", items: ["Gemini"] },
           ]}
         />
       </Section>

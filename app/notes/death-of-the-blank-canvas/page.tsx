@@ -18,7 +18,7 @@ import { SquaresFourIcon } from "@phosphor-icons/react/dist/ssr/SquaresFour";
 import { SwatchesIcon } from "@phosphor-icons/react/dist/ssr/Swatches";
 import { TextAaIcon } from "@phosphor-icons/react/dist/ssr/TextAa";
 import { UsersThreeIcon } from "@phosphor-icons/react/dist/ssr/UsersThree";
-import { site } from "@/content/site";
+import { sharedOpenGraph, site } from "@/content/site";
 import { Act, Aside, Card, Cards, Chunk, DUO as D, Lead, List, NotePage, Prose, Question, Split, Timeline } from "@/components/notes/Blocks";
 import { HairlineFigure } from "@/components/notes/figures/HairlineFigure";
 import { GeneratedToDesigned, SystemConsistency } from "@/components/notes/figures/DesignFigures";
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   title: `${TITLE} · ${site.name}`,
   description:
     "AI can make a polished interface in a minute, so why do so many of them feel off? How design tools got here, what they still miss, and what it means to be a designer now.",
-  openGraph: { title: `${TITLE}: designing with AI`, type: "article", publishedTime: DATE },
+  openGraph: { ...sharedOpenGraph, title: `${TITLE}: designing with AI`, type: "article", publishedTime: DATE, url: "/notes/death-of-the-blank-canvas" },
 };
 
 export default function BlankCanvasNote() {

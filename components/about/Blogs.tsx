@@ -11,7 +11,7 @@ export function Blogs() {
       <SectionHead id="blogs-heading" index="02" label="Blogs" aside={`${notes.length} notes`} />
       <div className={cx("grid", styles.list)}>
         {notes.map((note, i) => (
-          <NoteRow key={note.slug} note={note} index={i % 3} span="1 / -1" />
+          <NoteRow key={note.slug} note={note} index={i} />
         ))}
       </div>
     </section>

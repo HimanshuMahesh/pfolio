@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { resumeHref } from "@/content/about";
+import { resumeFileName, resumeHref } from "@/content/about";
 import { cx } from "@/lib/grid";
 import styles from "./Bento.module.css";
 
@@ -17,7 +17,7 @@ function AirDropIcon() {
 }
 
 /**
- * The resume, offered as an incoming AirDrop. Accept opens the PDF.
+ * The resume, offered as an incoming AirDrop. Accept downloads the PDF.
  * Decline doesn't: the button shakes its head and says so.
  */
 export function AirDropWidget() {
@@ -45,7 +45,7 @@ export function AirDropWidget() {
         <button type="button" onClick={decline}>
           {refused ? "Nice try" : "Decline"}
         </button>
-        <a href={resumeHref} target="_blank" rel="noopener" aria-label="Accept: open my resume (PDF)">
+        <a href={resumeHref} download={resumeFileName} aria-label="Accept: download my resume (PDF)">
           Accept
         </a>
       </div>

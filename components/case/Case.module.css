@@ -359,20 +359,95 @@
   color: var(--color-muted);
 }
 .stackLabel svg { width: 16px; height: 16px; color: var(--color-ink-2); }
-.stackItems {
+/* Tools as tags: the logo in the text colour, a quiet chip around it. */
+.tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 4px 0;
+  gap: 8px;
   margin: 0;
-  font-size: var(--text-body);
-  line-height: 1.5;
+}
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 32px;
+  padding: 0 12px 0 10px;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  background: var(--color-surface);
   color: var(--color-ink);
+  font-size: var(--text-small);
+  line-height: 1;
+  white-space: nowrap;
+  transition: border-color var(--dur-fast);
 }
-.stackItems span:not(:last-child)::after {
-  content: "·";
-  margin: 0 0.6em;
-  color: var(--color-faint);
+.tag:hover { border-color: var(--color-line-2); }
+.tagMark { width: 14px; height: 14px; flex: none; color: var(--color-ink-2); }
+
+/* ---- the "Live" key and the one number beside it --------------------------- */
+.keys {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3) var(--space-5);
+  margin-top: var(--space-6);
 }
+.keys .live { margin-top: 0; }
+.metric {
+  font-size: var(--text-ui);
+  color: var(--color-muted);
+}
+.metric strong {
+  color: var(--color-ink);
+  font-weight: var(--weight-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- video: a card, the embed on the left half, the words on the right ---- */
+.video {
+  display: grid;
+  margin-top: var(--space-7);
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+@media (min-width: 768px) {
+  .video { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+.videoFrame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+.videoFrame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.videoText {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  font-size: var(--text-ui);
+  line-height: 1.55;
+  color: var(--color-ink-2);
+}
+.videoNote {
+  font-size: var(--text-small);
+  font-style: italic;
+  color: var(--color-muted);
+}
+.videoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  font-size: var(--text-small);
+  color: var(--color-ink-2);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line-2);
+  text-underline-offset: 3px;
+}
+.videoLink:hover { color: var(--color-ink); }
+.videoLink svg { width: 15px; height: 15px; }
 
 /* ---- the "Live" key: a black bevelled key, like the hero chips ----------- */
 .live {

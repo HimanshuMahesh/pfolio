@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
+import { CalendarCheckIcon } from "@phosphor-icons/react/dist/ssr/CalendarCheck";
 import { CompassIcon } from "@phosphor-icons/react/dist/ssr/Compass";
-import { CubeIcon } from "@phosphor-icons/react/dist/ssr/Cube";
 import { DatabaseIcon } from "@phosphor-icons/react/dist/ssr/Database";
 import { DesktopIcon } from "@phosphor-icons/react/dist/ssr/Desktop";
-import { ImageIcon } from "@phosphor-icons/react/dist/ssr/Image";
 import { ImagesIcon } from "@phosphor-icons/react/dist/ssr/Images";
-import { LightningIcon } from "@phosphor-icons/react/dist/ssr/Lightning";
-import { PuzzlePieceIcon } from "@phosphor-icons/react/dist/ssr/PuzzlePiece";
+import { ListChecksIcon } from "@phosphor-icons/react/dist/ssr/ListChecks";
+import { ListIcon } from "@phosphor-icons/react/dist/ssr/List";
+import { PathIcon } from "@phosphor-icons/react/dist/ssr/Path";
+import { PencilSimpleLineIcon } from "@phosphor-icons/react/dist/ssr/PencilSimpleLine";
+import { RocketLaunchIcon } from "@phosphor-icons/react/dist/ssr/RocketLaunch";
+import { SparkleIcon } from "@phosphor-icons/react/dist/ssr/Sparkle";
 import { StackIcon } from "@phosphor-icons/react/dist/ssr/Stack";
 import { WrenchIcon } from "@phosphor-icons/react/dist/ssr/Wrench";
 import { site } from "@/content/site";
 import type { RailItem } from "@/components/case/CaseRail";
 import {
-  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack, Stats,
+  BriefHeader, BriefPage, Points, Prose, Screens, Section, Stack,
 } from "@/components/case/Brief";
 
 export const metadata: Metadata = {
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
 const rail: RailItem[] = [
   { id: "overview", label: "Overview", icon: <CompassIcon weight="duotone" /> },
   { id: "screens", label: "Screens", icon: <ImagesIcon weight="duotone" /> },
-  { id: "notes", label: "Build notes", icon: <WrenchIcon weight="duotone" /> },
+  { id: "how", label: "How it works", icon: <ListChecksIcon weight="duotone" /> },
   { id: "stack", label: "Stack", icon: <StackIcon weight="duotone" /> },
 ];
 
@@ -47,18 +50,11 @@ export default function SpaceredCaseStudy() {
       <Section id="overview" n="01" label="Overview" title="A studio site has one job: make someone want to book a call.">
         <Prose>
           <p>
-            The studio&rsquo;s client case studies live on spacered.studio. This page is about the site itself: how the
-            site is built. It&rsquo;s one Next.js app that serves the pages and hosts the CMS, with the heavy visual
-            moments drawn live in WebGL rather than played from video.
+            spacered.studio is the studio&rsquo;s front door. In a few scrolls it has to say what the studio does, show
+            the standard of the work, and get the right visitor onto a call. And the studio has to be able to keep it
+            current, adding case studies and pages, without waiting on a developer.
           </p>
         </Prose>
-        <Stats
-          items={[
-            { value: "1", label: "app for the site and the CMS that edits it" },
-            { value: "0", label: "JPEGs uploaded. Images become AVIF before they leave the browser" },
-            { value: "30m", label: "discovery call, booked without leaving the page" },
-          ]}
-        />
       </Section>
 
       <Section id="screens" n="02" label="Screens" title="Black, red, and one big idea per screen.">
@@ -75,13 +71,15 @@ export default function SpaceredCaseStudy() {
         />
       </Section>
 
-      <Section id="notes" n="03" label="Build notes" title="Small decisions that keep it fast and editable.">
+      <Section id="how" n="03" label="How it works" title="From first scroll to a booked call.">
         <Points
           items={[
-            { icon: CubeIcon, title: "Shaders, not video", text: "The hero field and the warp are WebGL with hand-written GLSL. They stay sharp at any screen size and weigh a fraction of a video." },
-            { icon: ImageIcon, title: "AVIF before upload", text: "Images added in the admin are encoded to AVIF in a Web Worker with a WASM encoder. Turbopack hung on the encoder's nested worker, so it imports the single-threaded build directly." },
-            { icon: PuzzlePieceIcon, title: "Case studies from blocks", text: "Payload runs inside the Next.js app on its own admin route. A case study is a stack of text, image and design-system blocks, so a new one needs no code." },
-            { icon: LightningIcon, title: "Checks that keep up", text: "Bun, oxlint, oxfmt, the React Compiler and the native TypeScript preview keep every check fast enough to run on each change." },
+            { icon: SparkleIcon, title: "A first screen that sets the tone", text: "The hero opens on a live particle field, the time and weather in Bengaluru, and the brands the studio works with, so a visitor knows who's behind it before they scroll." },
+            { icon: ListIcon, title: "Services in one list", text: "Brand identity, product design, websites, spatial design and illustration, each row opening into exactly what's included." },
+            { icon: PathIcon, title: "A process you can picture", text: "Discover, Define, Design, Deliver, each step with its own line drawing, so working with the studio feels mapped out before the first call." },
+            { icon: RocketLaunchIcon, title: "Before and after, at warp", text: "The page jumps to light speed between \"before Spacered\" and \"after\". It's drawn live rather than played from a video, so it stays sharp on any screen." },
+            { icon: CalendarCheckIcon, title: "Book without leaving", text: "A 30-minute discovery call is booked from a calendar right on the page. No form, no back-and-forth email." },
+            { icon: PencilSimpleLineIcon, title: "The studio runs it", text: "A built-in CMS lets the studio publish case studies from text, image and design-system blocks, with images optimised on upload, so a new one needs no code." },
           ]}
         />
       </Section>
@@ -89,9 +87,9 @@ export default function SpaceredCaseStudy() {
       <Section id="stack" n="04" label="Stack" title="What it runs on.">
         <Stack
           rows={[
-            { icon: DesktopIcon, label: "Site", items: ["Next.js 16", "React 19", "React Compiler", "Tailwind 4", "Motion", "Base UI", "WebGL + GLSL"] },
-            { icon: DatabaseIcon, label: "Content", items: ["Payload CMS 3", "Lexical", "Neon Postgres", "UploadThing", "jSquash AVIF"] },
-            { icon: WrenchIcon, label: "Tooling", items: ["Bun", "oxlint", "oxfmt", "TypeScript native preview", "Vercel", "PostHog", "Cal.com"] },
+            { icon: DesktopIcon, label: "Site", items: ["Next.js", "React", "Tailwind", "Motion", "Base UI", "WebGL"] },
+            { icon: DatabaseIcon, label: "Content", items: ["Payload CMS", "Lexical", "Neon", "UploadThing", "AVIF in WebAssembly"] },
+            { icon: WrenchIcon, label: "Tooling", items: ["Bun", "Oxc", "TypeScript", "Vercel", "PostHog", "Cal.com"] },
           ]}
         />
       </Section>

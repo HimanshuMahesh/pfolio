@@ -3,7 +3,6 @@ import Link from "next/link";
 import type { CSSProperties } from "react";
 import { notes, notesIndexHref, type Note } from "@/content/notes";
 import { CropMarks } from "@/components/ui/CropMarks";
-import { Media } from "@/components/ui/Media";
 import { SectionHead } from "@/components/ui/SectionHead";
 import { cx, place } from "@/lib/grid";
 import styles from "./Notes.module.css";
@@ -27,11 +26,19 @@ function ReadMeter({ minutes }: { minutes: number }) {
   );
 }
 
-/** A note card; a child of a `.grid`, spanning `span` on desktop (columns 2–11 by default). */
-export function NoteRow({ note, index, span = "2 / 12" }: { note: Note; index: number; span?: string }) {
-  const delay = { "--reveal-delay": `${index * 80}ms` } as CSSProperties;
+/** Two-up on tablet and desktop, split like the Work grid; one column on phones. */
+const COLUMNS = [
+  { m: "1 / -1", t: "1 / 5", d: "1 / 7" },
+  { m: "1 / -1", t: "5 / 9", d: "7 / 13" },
+];
+
+/** A text-only note card; a child of a `.grid`, alternating left and right columns. */
+export function NoteRow({ note, index }: { note: Note; index: number }) {
+  const column = index % 2;
+  // The right-hand card of each pair rises a beat after the left.
+  const delay = { "--reveal-delay": `${column * 80}ms` } as CSSProperties;
   return (
-    <article className={styles.note} data-reveal style={place({ d: span }, delay)}>
+    <article className={styles.note} data-reveal style={place(COLUMNS[column], delay)}>
       <a className={styles.link} href={note.href}>
         <div className={styles.text}>
           <div className={cx("t-label", styles.top)}>
@@ -52,16 +59,13 @@ export function NoteRow({ note, index, span = "2 / 12" }: { note: Note; index: n
             </span>
           </div>
         </div>
-        <div className={styles.media}>
-          <Media overlay={<span className={cx("t-label", styles.fig)}>Fig. {note.number}</span>} />
-        </div>
       </a>
       <CropMarks />
     </article>
   );
 }
 
-/** (02) Writing — three notes, one below the other, text | 16:9 image, on the grid. */
+/** (02) Writing — the latest notes as text-only cards, two to a row. */
 export function Notes() {
   return (
     <section className={cx("wrap", "section")} id="writing" aria-labelledby="writing-heading">
