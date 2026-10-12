@@ -92,8 +92,9 @@
     /* grooves: kept low-contrast so the fine rings don't moiré */
     repeating-radial-gradient(circle, #121214 0 0.6px, #161618 0.6px 1.3px);
   box-shadow: 0 0 0 1px rgb(0 0 0 / 0.6), 0 0.6cqmin 1.4cqmin rgb(0 0 0 / 0.6);
-  animation: spin 1.8s linear infinite;
+  animation: spin 1.8s linear infinite paused;
 }
+.deck[data-state="playing"] .record { animation-play-state: running; }
 .label {
   position: absolute;
   inset: 34%;
@@ -162,6 +163,49 @@
   height: 100%;
   overflow: visible;
 }
+
+/* At rest the arm is swung out onto its rest; playing, it swings in so the
+   stylus lands in the lead-in grooves. Rotates about the pivot (87, 17). */
+.swing {
+  transform-box: view-box;
+  transform-origin: 87px 17px;
+  transform: rotate(-21deg);
+  transition: transform 1.1s cubic-bezier(0.45, 0, 0.2, 1);
+}
+.deck:not([data-state="idle"]) .swing { transform: rotate(0deg); }
+.deck[data-state="idle"]:has(.hit:hover) .swing { transform: rotate(-18deg); }
+@media (prefers-reduced-motion: reduce) {
+  .swing { transition: none; }
+}
+
+/* The whole deck is the play / stop button */
+.hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border: 0;
+  padding: 0;
+  border-radius: inherit;
+  background: none;
+  cursor: pointer;
+}
+.hit:focus-visible { outline: 2px solid #ff9f0a; outline-offset: 3px; }
+
+/* Handwritten prompt in the empty corner beside the keys */
+.note {
+  position: absolute;
+  left: 40%;
+  right: 13%;
+  bottom: 4.6%;
+  font-size: clamp(12px, 4.2cqmin, 16px);
+  line-height: 1.2;
+  color: rgb(236 236 240 / 0.6);
+  transform: rotate(-3deg);
+  transform-origin: left bottom;
+  pointer-events: none;
+  transition: color 0.3s;
+}
+.deck:has(.hit:hover) .note { color: rgb(236 236 240 / 0.9); }
 
 /* ---- Keys: bevelled caps in recessed wells, engraved legends ------------------ */
 .well {

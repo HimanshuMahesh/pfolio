@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { Architects_Daughter } from "next/font/google";
 import { site } from "@/content/site";
 import { ClockIcon } from "@phosphor-icons/react/dist/csr/Clock";
 import { MapPinIcon } from "@phosphor-icons/react/dist/csr/MapPin";
@@ -10,6 +11,8 @@ import { createSky } from "@/lib/sky/controller";
 import { cx } from "@/lib/grid";
 import chip from "@/components/ui/Chip.module.css";
 import styles from "./SkyHero.module.css";
+
+const hand = Architects_Daughter({ weight: "400", subsets: ["latin"], display: "swap" });
 
 type Props = {
   /** The portrait. The horizon runs through its centre. */
@@ -71,6 +74,13 @@ export function SkyHero({ portrait, children }: Props) {
           </span>
         </div>
       </div>
+
+      {/* Desktop only: a pencilled aside under the sky's corner, gone once the sky has been touched. */}
+      <p className={cx(styles.skyNote, hand.className)} aria-hidden="true">
+        that&rsquo;s the real sky over Bengaluru, right now.
+        <br />
+        hover across it to run the day forward &amp; back ↝
+      </p>
 
       <section ref={section} className={cx("wrap", styles.hero)} aria-label="Introduction" id="hero" data-section="hero" data-section-title="Intro" data-section-aliases="who, about him, startups, clients, ola electric, triplespeed, cortekz, based in bengaluru">
         <div className={styles.column}>

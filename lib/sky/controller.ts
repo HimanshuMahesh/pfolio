@@ -126,7 +126,7 @@ export function createSky(el: SkyElements): () => void {
   function fit() {
     const y = topWithin(el.horizon);
     const skyH = Math.round(y + el.horizon.offsetHeight / 2 + FEATHER / 2);
-    el.sky.style.setProperty("--sky-h", `${skyH}px`);
+    el.shell.style.setProperty("--sky-h", `${skyH}px`);
     // the scrub line ends, and its label sits, on the band's centre line
     const bandMid = topWithin(el.band) + el.band.offsetHeight / 2;
     el.sky.style.setProperty("--scrub-end", `${Math.round(skyH - bandMid)}px`);

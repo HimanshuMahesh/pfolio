@@ -1,4 +1,14 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { Architects_Daughter } from "next/font/google";
 import styles from "./Turntable.module.css";
+
+const hand = Architects_Daughter({ weight: "400", subsets: ["latin"], display: "swap" });
+
+const SONG = { src: "/about/hero-kiwanuka.mp3", title: "Hero", artist: "Michael Kiwanuka" };
+/** Arm swing time; the needle drops (and the clip starts) once it lands. */
+const DROP_MS = 1100;
 
 /**
  * A turntable seen from above, filling its cell. The deck is a square stage
@@ -6,13 +16,55 @@ import styles from "./Turntable.module.css";
  * tonearm SVG shares its 100 × 100 coordinates.
  *
  * Platter centre (44, 46), r 40; record r ≈ 36.5; the stylus sits in the
- * lead-in grooves at (63, 66.5). The record turns at 33⅓ rpm (1.8 s a turn)
- * while its reflections stay put, which is what sells the spin.
+ * lead-in grooves at (63, 66.5). At rest the arm sits swung out on its rest;
+ * a click swings it onto the record, which turns at 33⅓ rpm (1.8 s a turn)
+ * while its reflections stay put, and plays thirty seconds of a song.
  */
 export function Turntable() {
+  const [state, setState] = useState<"idle" | "dropping" | "playing">("idle");
+  const audio = useRef<HTMLAudioElement | null>(null);
+  const timer = useRef<number | undefined>(undefined);
+
+  useEffect(
+    () => () => {
+      window.clearTimeout(timer.current);
+      audio.current?.pause();
+    },
+    [],
+  );
+
+  function stop() {
+    window.clearTimeout(timer.current);
+    const a = audio.current;
+    if (a) {
+      a.pause();
+      a.currentTime = 0;
+    }
+    setState("idle");
+  }
+
+  function toggle() {
+    if (state !== "idle") return stop();
+    if (!audio.current) {
+      audio.current = new Audio(SONG.src);
+      audio.current.volume = 0.85;
+      audio.current.addEventListener("ended", stop);
+    }
+    // Start loading now so the clip is ready when the needle lands.
+    audio.current.load();
+    setState("dropping");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    timer.current = window.setTimeout(() => {
+      setState("playing");
+      audio.current?.play().catch(stop);
+    }, reduced ? 0 : DROP_MS);
+  }
+
+  const on = state !== "idle";
+
   return (
-    <div className={styles.deck} role="img" aria-label="A record player, playing">
-      <div className={styles.stage}>
+    <div className={styles.deck} data-state={state}>
+      <div className={styles.stage} aria-hidden="true">
         <div className={styles.platter}>
           <div className={styles.record}>
             <div className={styles.label}>
@@ -42,14 +94,14 @@ export function Turntable() {
           </defs>
 
           {/* arm rest */}
-          <circle cx="93" cy="57" r="2.4" fill="url(#tt-base)" stroke="#000" strokeOpacity="0.5" strokeWidth="0.3" />
-          <path d="M91.6 56.2h2.8" stroke="#8e8f95" strokeWidth="0.8" strokeLinecap="round" />
+          <circle cx="89" cy="57" r="2.4" fill="url(#tt-base)" stroke="#000" strokeOpacity="0.5" strokeWidth="0.3" />
+          <path d="M87.6 56.2h2.8" stroke="#8e8f95" strokeWidth="0.8" strokeLinecap="round" />
 
           {/* pivot housing */}
           <circle cx="87" cy="17" r="7.6" fill="url(#tt-base)" stroke="#000" strokeOpacity="0.6" strokeWidth="0.4" />
           <circle cx="87" cy="17" r="7.6" fill="none" stroke="#fff" strokeOpacity="0.08" strokeWidth="0.4" />
 
-          <g filter="url(#tt-lift)">
+          <g filter="url(#tt-lift)" className={styles.swing}>
             {/* counterweight, behind the pivot, knurled */}
             <line x1="88.1" y1="12.4" x2="90" y2="4.4" stroke="url(#tt-steel)" strokeWidth="5.4" />
             <line
@@ -99,7 +151,25 @@ export function Turntable() {
           <span className={styles.slot} />
           <span className={styles.knob} />
         </span>
+
+        <span className={`${styles.note} ${hand.className}`}>
+          {on ? (
+            <>
+              now playing · {SONG.title}, {SONG.artist}
+            </>
+          ) : (
+            "play song?"
+          )}
+        </span>
       </div>
+
+      <button
+        type="button"
+        className={styles.hit}
+        onClick={toggle}
+        aria-pressed={on}
+        aria-label={on ? `Stop ${SONG.title} by ${SONG.artist}` : `Play thirty seconds of ${SONG.title} by ${SONG.artist}`}
+      />
     </div>
   );
 }
