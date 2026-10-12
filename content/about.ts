@@ -22,6 +22,10 @@ export type EntryMark =
   | { kind: "text"; text: string; color?: string };
 
 export type Entry = {
+  /** Anchor for the row (#experience-<slug>) and its section id for Hima. */
+  slug: string;
+  /** Words people use for this entry that its copy doesn't, for Hima's search. */
+  aliases?: string[];
   title: string;
   date: string;
   sub: string;
@@ -37,6 +41,8 @@ export const experiencePeriod = "2022 — 2026";
 
 export const experience: Entry[] = [
   {
+    slug: "tavant",
+    aliases: ["day job", "current job", "ai engineer", "agents", "production agents", "agent builder", "claude code", "mcp", "evals"],
     title: "AI Engineer Intern",
     date: "Jan 2026 — Jul 2026",
     sub: "Tavant · Enterprise AI platform engineering",
@@ -47,6 +53,8 @@ export const experience: Entry[] = [
   },
   {
     // TODO: confirm title — resume says "Designer"; he now runs the studio
+    slug: "spacered",
+    aliases: ["studio", "agency", "design studio", "clients", "ola electric", "triplespeed", "cortekz"],
     title: "Designer",
     date: "Jan 2026 — Present",
     sub: "Spacered · New-age design agency",
@@ -62,6 +70,8 @@ export const experience: Entry[] = [
       "A design agency working with deep-tech and fast-moving startups, including Ola Electric, TripleSpeed and Cortekz. Set up the studio’s positioning, service structure and visual identity system, and built a 10-agent internal stack covering the full client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output does not scale linearly with headcount.",
   },
   {
+    slug: "gridrnd",
+    aliases: ["tasklearn", "visume", "product studio", "side projects"],
     title: "Early Team Member",
     date: "Feb 2025 — May 2026",
     sub: "GridRnD · Early-stage product studio",
@@ -77,6 +87,8 @@ export const experience: Entry[] = [
       "Joined early on two products and carried both to launch: TaskLearn, an AI learning platform now at 10,000+ learners, and Visume, an AI video-interview screener with 1,000+ interviews taken. Owned product design and user flows across both, and worked the stack as a generalist wherever something needed building: frontend, candidate scoring logic, and the AI interview experience itself.",
   },
   {
+    slug: "education",
+    aliases: ["college", "university", "degree", "dsatm", "cgpa", "studied", "hackathons", "school"],
     title: "B.E. Computer Science and Engineering",
     date: "2022 — 2026",
     sub: "Dayananda Sagar Academy of Technology and Management · CGPA 9.0/10.0",

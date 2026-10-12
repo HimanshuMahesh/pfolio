@@ -62,7 +62,7 @@
   mask-image: linear-gradient(180deg, #000 calc(var(--line) * 1.1), transparent calc(var(--line) * 2));
   transition: max-height 0.6s var(--ease-out), mask-image 0.6s;
 }
-.item:is(:hover, :focus-within) .desc {
+.item:is(:hover, :focus-within, [data-open]) .desc {
   max-height: calc(var(--line) * 16);
   mask-image: linear-gradient(180deg, #000 100%, transparent 100%);
 }
@@ -173,8 +173,8 @@
 }
 
 /* open */
-.item:is(:hover, :focus-within) .reveal { grid-template-rows: 1fr; }
-.item:is(:hover, :focus-within) .card {
+.item:is(:hover, :focus-within, [data-open]) .reveal { grid-template-rows: 1fr; }
+.item:is(:hover, :focus-within, [data-open]) .card {
   opacity: 1;
   filter: blur(0);
   transform:

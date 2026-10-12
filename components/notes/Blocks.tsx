@@ -58,7 +58,7 @@ export function NotePage({ number, category, date, minutes, title, subtitle, chi
 /** A section: a dashed rule from rail to rail, a SectionHead row and a heading. */
 export function Act({ n, label, aside, title, children }: { n: string; label: string; aside: string; title: string; children: ReactNode }) {
   return (
-    <section className={s.act}>
+    <section className={s.act} id={`act-${n}`} data-section={`act-${n}`} data-section-title={`${label} · ${title}`}>
       <SectionHead index={n} label={label} aside={aside} />
       <h2 className={s.h2}>{title}</h2>
       {children}

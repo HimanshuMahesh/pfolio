@@ -24,7 +24,7 @@ function Tag({ children }: { children: ReactNode }) {
  */
 export function Bento() {
   return (
-    <section className={styles.bento} aria-labelledby="about-heading">
+    <section className={styles.bento} id="intro" data-section="intro" data-section-title="About · intro" data-section-aliases="fun, hobbies, free time, interests, off the clock, formula 1, f1, reading, books, movies, travel, based, location, resume" aria-labelledby="about-heading">
       <h1 id="about-heading" className="sr-only">
         About
       </h1>

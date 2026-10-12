@@ -69,6 +69,9 @@ export function Carry() {
     <section
       className={cx("wrap", styles.strip)}
       style={SHELF}
+      id="carry"
+      data-section="carry"
+      data-section-title="Everyday carry"
       aria-label="Everyday carry: a camera, a phone's triple camera, in-ear monitors, a handheld console and a watch"
     >
       <div className={styles.viewport}>

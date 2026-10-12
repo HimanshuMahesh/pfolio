@@ -1,0 +1,551 @@
+/* =========================================================================
+   Hima — the key with Hima's face, the Ask panel, and the page's lit edge
+   (homepage and /about)
+
+   One motion opens it. From 1024px, --ask-w animates on <html> (layout.css)
+   and three things read it at once: the body narrows, the nav re-centres,
+   and the panel slides in by exactly the room the page gave up, so the seam
+   between page and panel never opens. The key rides the page's right edge.
+   Below 1024px the panel floats over the page; on phones it's a bottom sheet.
+   ========================================================================= */
+.panel,
+.key,
+.glow {
+  --ask-in: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.panel {
+  --ask-pad: var(--space-5);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: var(--z-ask);
+  width: var(--ask-panel);
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-surface);
+  border-left: 1px solid var(--color-line);
+  /* Hidden once fully away; the delay lets it finish leaving first. */
+  visibility: hidden;
+  transition: visibility 0s 0.45s;
+}
+.panel[data-open] { visibility: visible; transition-delay: 0s; }
+
+/* Docked: coupled to the page's own narrowing */
+@media (min-width: 1024px) {
+  .panel { transform: translateX(calc(var(--ask-panel) - var(--ask-w))); }
+  .scrim { display: none; }
+}
+
+/* Floating, from the right (tablet) */
+@media (max-width: 1023px) {
+  .panel {
+    width: min(420px, 100vw);
+    transform: translateX(100%);
+    box-shadow: -30px 0 60px -30px rgb(0 0 0 / 0.6);
+    transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1), visibility 0s 0.42s;
+  }
+  .panel[data-open] {
+    transform: none;
+    transition: transform 0.6s var(--ask-in), visibility 0s;
+  }
+  :global(html[data-ask-open]) { overflow: hidden; }
+}
+
+/* A bottom sheet (phones) */
+@media (max-width: 767px) {
+  .panel {
+    --ask-pad: var(--space-4);
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: min(86dvh, 760px);
+    border-left: 0;
+    border-top: 1px solid var(--color-line-2);
+    border-radius: 18px 18px 0 0;
+    transform: translateY(100%);
+    box-shadow: 0 -30px 60px -30px rgb(0 0 0 / 0.6);
+  }
+}
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-ask);
+  background: rgb(6 7 10 / 0.55);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+.scrim[data-open] { opacity: 1; pointer-events: auto; }
+
+/* ---- What's inside steps in once the panel is arriving ----------------- */
+.rise {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
+  transition: opacity 0.15s, transform 0.2s, filter 0.15s;
+}
+.panel[data-open] .rise {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition:
+    opacity 0.45s ease-out var(--d, 0ms),
+    transform 0.7s var(--ask-in) var(--d, 0ms),
+    filter 0.45s ease-out var(--d, 0ms);
+}
+/* Suggestions that turn up under an answer play the same entrance on mount */
+.me .rise { animation: rise 0.6s var(--ask-in) var(--d, 0ms) both; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+}
+
+/* ---- Hima: a little round orb ---------------------------------------------------
+   Shared by the key and the badge in the panel's head. One flat blue, with a
+   thin, half-clear ring just outside. Sized by --orb. */
+.orb {
+  --orb: 38px;
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: var(--orb);
+  height: var(--orb);
+  border-radius: 50%;
+  background: #2456f5;
+  box-shadow:
+    0 0 0 calc(var(--orb) * 0.06) rgb(120 170 255 / 0.28),
+    0 calc(var(--orb) * 0.18) calc(var(--orb) * 0.45) calc(var(--orb) * -0.2) rgb(20 60 200 / 0.6);
+}
+
+/* ---- The key ------------------------------------------------------------ */
+.key {
+  position: fixed;
+  z-index: var(--z-ask);
+  top: calc(var(--nav-top) + (var(--nav-h) - var(--orb)) / 2);
+  right: calc(var(--ask-w) + var(--grid-margin));
+  cursor: pointer;
+  transition: transform 0.5s var(--ask-in), opacity 0.3s, box-shadow 0.3s;
+}
+.key:hover { transform: scale(1.07); }
+.key:active { transform: scale(0.94); }
+/* Once the panel is up, Hima lives in its head; the key tucks away */
+.key[data-open] { transform: scale(0.5); opacity: 0; pointer-events: none; }
+.key:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; border-radius: 50%; }
+.keyFace { font-size: calc(var(--orb) * 0.95); }
+
+/* "Ask Hima ⌘K", out to the left of the key on hover (a sibling, so the
+   orb can clip its own paint) */
+.tip {
+  position: fixed;
+  z-index: var(--z-ask);
+  right: calc(var(--ask-w) + var(--grid-margin) + 38px + 12px);
+  top: calc(var(--nav-top) + var(--nav-h) / 2);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 30px;
+  padding: 0 6px 0 11px;
+  border-radius: 7px;
+  background: linear-gradient(180deg, #1c1c20, #0b0b0d);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.12),
+    inset 0 0 0 1px rgb(255 255 255 / 0.05),
+    0 8px 16px -8px rgb(0 0 0 / 0.55);
+  color: rgb(238 240 245 / 0.92);
+  font-size: var(--text-meta);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(6px, -50%);
+  transition: opacity 0.2s, transform 0.35s var(--ease-out);
+}
+.tip kbd,
+.note kbd {
+  font: inherit;
+  font-size: 11px;
+  padding: 2px 5px;
+  border-radius: 4px;
+  background: rgb(255 255 255 / 0.08);
+  color: rgb(238 240 245 / 0.6);
+}
+@media (hover: hover) {
+  .key:is(:hover, :focus-visible):not([data-open]) + .tip { opacity: 1; transform: translate(0, -50%); }
+}
+
+/* Phones: a thumb-height key at the bottom right, clear of the nav */
+@media (max-width: 767px) {
+  .key {
+    --orb: 48px;
+    top: auto;
+    bottom: calc(var(--space-4) + env(safe-area-inset-bottom));
+    right: var(--space-4);
+  }
+  .tip { display: none; }
+}
+
+/* ---- Head --------------------------------------------------------------- */
+.head {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* Sits on the same line as the nav and the key */
+  height: calc(var(--nav-top) * 2 + var(--nav-h));
+  padding: 0 calc(var(--ask-pad) - 6px) 0 var(--ask-pad);
+}
+.title {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-size: var(--text-ui);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+}
+/* Hima again, small, beside the name */
+.badge { --orb: 22px; }
+.badge > * { font-size: calc(var(--orb) * 0.95); }
+.tools { display: flex; gap: 2px; }
+.tool {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  color: var(--color-muted);
+  transition: color var(--dur-fast), background-color var(--dur-fast);
+}
+.tool svg { width: 16px; height: 16px; }
+.tool:hover:not(:disabled) { color: var(--color-ink); background: var(--color-placeholder); }
+.tool:disabled { opacity: 0.35; cursor: default; }
+.tool:focus-visible { outline-offset: -2px; border-radius: 8px; }
+
+@media (max-width: 767px) {
+  .head { height: 56px; position: relative; }
+  /* the grabber */
+  .head::before {
+    content: "";
+    position: absolute;
+    top: 7px;
+    left: 50%;
+    width: 36px;
+    height: 4px;
+    margin-left: -18px;
+    border-radius: 2px;
+    background: var(--color-line-2);
+  }
+}
+
+/* ---- Conversation --------------------------------------------------------- */
+.scroll {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line-2) transparent;
+  /* older lines fade out under the head */
+  mask-image: linear-gradient(to bottom, transparent, #000 28px);
+}
+/* Bottom-anchored until it fills: the empty state rests on the field */
+.log {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-6) var(--ask-pad) var(--space-4);
+}
+
+.empty { display: flex; flex-direction: column; }
+.hello {
+  font-size: var(--text-title);
+  font-weight: var(--weight-medium);
+  letter-spacing: -0.02em;
+  color: var(--color-ink);
+}
+.sub {
+  margin-top: var(--space-2);
+  font-size: var(--text-small);
+  line-height: var(--leading-snug);
+  color: var(--color-muted);
+  text-wrap: pretty;
+}
+
+.prompts { display: flex; flex-direction: column; gap: 2px; margin-top: var(--space-5); }
+.promptsSmall { margin-top: var(--space-4); }
+.prompt {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  padding: 7px 0;
+  text-align: left;
+  font-size: var(--text-small);
+  line-height: var(--leading-snug);
+  color: var(--color-ink-2);
+  transition: color var(--dur-fast);
+}
+.promptsSmall .prompt { font-size: var(--text-meta); color: var(--color-muted); padding: 5px 0; }
+.arrow {
+  flex: none;
+  color: var(--color-muted);
+  transition: transform 0.35s var(--ease-out), color var(--dur-fast);
+}
+.prompt:hover,
+.prompt:hover .arrow { color: var(--color-ink); }
+.prompt:hover .arrow { transform: translateX(3px); }
+.prompt:focus-visible { outline-offset: 2px; }
+
+/* What was asked: a small bubble on the right */
+.you {
+  align-self: flex-end;
+  max-width: 85%;
+  padding: 9px 14px;
+  border-radius: 14px 14px 4px 14px;
+  background: var(--color-placeholder);
+  border: 1px solid var(--color-line);
+  font-size: var(--text-small);
+  line-height: var(--leading-snug);
+  color: var(--color-ink);
+  overflow-wrap: anywhere;
+  animation: sent 0.45s var(--ask-in) both;
+}
+@keyframes sent {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); transform-origin: 100% 100%; }
+}
+
+/* The answer: no bubble, just text */
+.me { font-size: var(--text-small); line-height: var(--leading-relaxed); color: var(--color-copy); overflow-wrap: anywhere; }
+.answer p + p { margin-top: 0.8em; }
+.word { animation: ink 0.42s ease-out both; }
+@keyframes ink {
+  from { opacity: 0; filter: blur(3px); }
+}
+.link {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--color-line-2);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur-fast);
+}
+.link:hover { text-decoration-color: currentColor; }
+
+/* Where the answer came from: small chips under it. ↓ shows the section on
+   this page; ↗ goes to another page. */
+.sources { display: flex; flex-wrap: wrap; gap: 6px; margin-top: var(--space-3); min-width: 0; }
+.source {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 9px 0 10px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-line-2);
+  font-size: var(--text-caption);
+  color: var(--color-ink-2);
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--dur-fast), border-color var(--dur-fast), background-color var(--dur-fast);
+}
+.source:hover { color: var(--color-ink); border-color: var(--color-muted); background: var(--color-placeholder); }
+.sourceArrow { color: var(--color-muted); font-size: 11px; transition: transform 0.3s var(--ease-out); }
+button.source:hover .sourceArrow { transform: translateY(2px); }
+a.source:hover .sourceArrow { transform: translate(1px, -1px); }
+
+/* "Quick answer": the models were down and this one is scripted */
+.quick {
+  margin-top: var(--space-2);
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+}
+
+/* Thinking: the pixel face with light passing through it */
+.thinking {
+  display: inline-block;
+  font-family: var(--font-button);
+  font-size: var(--text-meta);
+  letter-spacing: 0.02em;
+  color: transparent;
+  background: linear-gradient(
+      90deg,
+      var(--color-muted) 0%,
+      var(--color-muted) 35%,
+      var(--color-ink) 50%,
+      var(--color-muted) 65%,
+      var(--color-muted) 100%
+    )
+    0 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer 1.4s linear infinite, rise 0.4s ease-out both;
+}
+@keyframes shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: 0% 0; }
+}
+
+/* ---- Composer -------------------------------------------------------------- */
+.composer {
+  flex: none;
+  padding: var(--space-2) var(--ask-pad) calc(var(--space-4) + env(safe-area-inset-bottom));
+}
+.field {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  padding: 7px 7px 7px 14px;
+  border-radius: 14px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-line-2);
+  transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
+}
+.field:focus-within {
+  border-color: var(--color-muted);
+  box-shadow: 0 0 0 4px var(--color-accent-soft);
+}
+.field textarea {
+  flex: 1;
+  min-width: 0;
+  max-height: 132px;
+  padding: 5px 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+  overflow-y: hidden;
+  background: none;
+  font: inherit;
+  font-size: var(--text-ui);
+  line-height: 1.4;
+  color: var(--color-ink);
+}
+.field textarea::placeholder { color: var(--color-muted); }
+/* Resting: the field goes quiet until Hima's back */
+.field[data-resting] { border-style: dashed; background: transparent; }
+.field textarea:disabled { cursor: not-allowed; }
+.left { color: var(--color-ink-2); }
+/* phones zoom into fields under 16px */
+@media (max-width: 767px) { .field textarea { font-size: var(--text-body); } }
+
+.send { flex: none; }
+.send svg { width: 15px; height: 15px; }
+.send:disabled { opacity: 0.35; cursor: default; pointer-events: none; }
+
+.note {
+  margin-top: var(--space-2);
+  padding-inline: 2px;
+  font-size: var(--text-caption);
+  color: var(--color-muted);
+}
+@media (pointer: coarse) { .esc { display: none; } }
+.note kbd { background: var(--color-placeholder); color: var(--color-ink-2); }
+
+@media (prefers-reduced-motion: reduce) {
+  .rise, .panel[data-open] .rise { filter: none; transform: none; }
+  .word { animation: none; }
+}
+
+/* ---- The lit edge -------------------------------------------------------------
+   A hairline of slowly turning colour around the page (not the panel), with a
+   soft blurred glow bleeding inward from it, like the edge of the screen when
+   Apple Intelligence wakes. It flares as Hima opens, settles thin, and breathes
+   brighter while Hima is thinking or writing. The colour turns by rotating an
+   oversized gradient behind a fixed frame-shaped mask, so it's a transform the
+   compositor runs, not a repaint. */
+.glow {
+  position: fixed;
+  inset: 0 var(--ask-w) 0 0;
+  z-index: var(--z-ask);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-out, visibility 0s 0.5s;
+}
+.glow[data-open] {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.25s, visibility 0s;
+}
+
+/* A frame: everything inside --edge is cut away */
+.ring {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  padding: var(--edge, 1.5px);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+.ring::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  margin: -75vmax 0 0 -75vmax;
+  background: conic-gradient(#bc82f3, #f5b9ea, #8d9fff, #70c9ff, #ff6778, #ffba71, #c686ff, #bc82f3);
+  animation: turn 7s linear infinite paused;
+}
+.glow[data-open] .ring::before { animation-play-state: running; }
+
+/* The glow: a thicker frame, blurred (the blur sits on the parent so the
+   mask doesn't clip it) */
+.halo {
+  position: absolute;
+  inset: 0;
+  filter: blur(14px);
+  opacity: 0.75;
+}
+/* Resting a little dim, so it has somewhere to go while Hima is busy */
+.halo .ring { --edge: var(--halo-w); opacity: 0.7; }
+.glow[data-open] .halo { animation: flare 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+.glow[data-busy] .halo .ring { animation: breathe 1.8s ease-in-out infinite; }
+
+@keyframes turn {
+  to { transform: rotate(1turn); }
+}
+@keyframes flare {
+  0% { --halo-w: 2px; opacity: 0; }
+  22% { --halo-w: 34px; opacity: 1; }
+  100% { --halo-w: 8px; opacity: 0.75; }
+}
+@keyframes breathe {
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring::before, .glow[data-open] .halo, .glow[data-busy] .halo .ring { animation: none; }
+}
+
+/* ---- Spotlight -------------------------------------------------------------
+   A thin rainbow outline (the lit edge's colours) around the section Hima is
+   showing. JS keeps it on the section while the page moves. */
+.spot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: calc(var(--z-nav) - 1);
+  border-radius: 16px;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 0 10px rgb(188 130 243 / 0.45));
+  transition: opacity 0.6s ease-out;
+}
+.spot[data-on] { opacity: 1; transition-duration: 0.35s; animation: spotIn 0.7s var(--ease-out) both; }
+.spot .ring { border-radius: inherit; --edge: 1.5px; }
+@keyframes spotIn {
+  from { clip-path: inset(0 100% 0 0 round 16px); }
+  to { clip-path: inset(0 0 0 0 round 16px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spot[data-on] { animation: none; }
+}
+.spot[data-on] .ring::before { animation-play-state: running; }

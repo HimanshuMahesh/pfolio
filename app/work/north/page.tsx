@@ -55,7 +55,7 @@ import { cx, place } from "@/lib/grid";
 import s from "@/components/case/Case.module.css";
 
 export const metadata: Metadata = {
-  title: `North — ${site.name}`,
+  title: `North · ${site.name}`,
   description:
     "Case study: North, a personal finance assistant you talk to. Product design and AI engineering by Himanshu K Mahesh.",
 };
@@ -83,7 +83,7 @@ function Section({ id, n, label, aside, title, children }: {
   id: string; n: string; label: string; aside?: ReactNode; title: ReactNode; children?: ReactNode;
 }) {
   return (
-    <section id={id} className={s.section} aria-labelledby={`${id}-h`}>
+    <section id={id} data-section={id} data-section-title={label} className={s.section} aria-labelledby={`${id}-h`}>
       <SectionHead index={n} label={label} aside={aside} />
       <h2 id={`${id}-h`} className={s.h2} data-reveal>{title}</h2>
       {children}

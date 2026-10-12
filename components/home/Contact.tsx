@@ -8,7 +8,7 @@ import styles from "./Contact.module.css";
 /** (03) Contact — a closing quote, then the ways to reach me. */
 export function Contact() {
   return (
-    <section className={cx("wrap", "section", styles.contact)} id="contact" aria-labelledby="contact-heading">
+    <section className={cx("wrap", "section", styles.contact)} id="contact" data-section="contact" data-section-title="Contact" data-section-aliases="contact, email, reach, hire, say hi, linkedin, github, socials, based, location, bengaluru" aria-labelledby="contact-heading">
       <SectionHead
         index="03"
         label="Contact"

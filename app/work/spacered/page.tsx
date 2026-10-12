@@ -19,7 +19,7 @@ import {
 } from "@/components/case/Brief";
 
 export const metadata: Metadata = {
-  title: `Spacered — ${site.name}`,
+  title: `Spacered · ${site.name}`,
   description:
     "spacered.studio, the site and CMS for Spacered, a design studio. Designed and built by Himanshu K Mahesh.",
 };

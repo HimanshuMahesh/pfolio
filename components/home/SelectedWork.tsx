@@ -32,7 +32,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
   const firstRow = index < 2;
   const delay = { "--reveal-delay": `${(firstRow ? 270 : 0) + column * 80}ms` } as CSSProperties;
   return (
-    <article data-reveal={firstRow ? "load" : ""} style={delay}>
+    <article data-reveal={firstRow ? "load" : ""} style={delay} id={`work-${project.slug}`} data-section={`work.${project.slug}`} data-section-title={`Selected work · ${project.name}`}>
       <a className={styles.link} href={project.href}>
         <Media
           fill={project.video ? "transparent" : project.cover}
@@ -65,7 +65,7 @@ export function SelectedWork() {
   const count = String(projects.length).padStart(2, "0");
 
   return (
-    <section className={cx("wrap", "section", styles.work)} id="work" data-spy="work" aria-labelledby="work-heading">
+    <section className={cx("wrap", "section", styles.work)} id="work" data-spy="work" data-section="work" data-section-title="Selected work" data-section-aliases="projects, portfolio, case studies, work, built, shipped" aria-labelledby="work-heading">
       <h2 id="work-heading" className="sr-only">Selected work</h2>
       <SectionHead
         index="01"

@@ -1,0 +1,763 @@
+{
+ "version": "9af6830d9c",
+ "sections": [
+  {
+   "id": "home",
+   "route": "/",
+   "anchor": null,
+   "page": "Home",
+   "title": "Home",
+   "aliases": [],
+   "text": "Himanshu K Mahesh. Himanshu K Mahesh is an AI engineer at Tavant and runs Spacered, a new-age design agency in Bengaluru. He is also building TaskLearn and Visume."
+  },
+  {
+   "route": "/",
+   "anchor": "hero",
+   "page": "Home",
+   "title": "Intro",
+   "aliases": [
+    "who",
+    "about him",
+    "startups",
+    "clients",
+    "ola electric",
+    "triplespeed",
+    "cortekz",
+    "based in bengaluru"
+   ],
+   "id": "home.hero",
+   "text": "Hey! I’m Himanshu An engineer who cares way too much about pixels. I’m an AI engineer at Tavant, and I run Spacered, a design studio working with several deep-tech and fast-moving startups, including Ola Electric, TripleSpeed, and Cortekz. Right now I’m also building TaskLearn and Visume. I like building at the intersection of technology and art, and I’m always wrapped up in some creative side-quest."
+  },
+  {
+   "route": "/",
+   "anchor": "work",
+   "page": "Home",
+   "title": "Selected work",
+   "aliases": [
+    "projects",
+    "portfolio",
+    "case studies",
+    "work",
+    "built",
+    "shipped"
+   ],
+   "id": "home.work",
+   "text": "Selected work (01)Selected work 06 projects"
+  },
+  {
+   "route": "/",
+   "anchor": "work-tasklearn",
+   "page": "Home",
+   "title": "Selected work · TaskLearn",
+   "aliases": [],
+   "id": "home.work.tasklearn",
+   "text": "TaskLearn AI learning platform: do real work, earn badges 10,000+ learners"
+  },
+  {
+   "route": "/",
+   "anchor": "work-visume",
+   "page": "Home",
+   "title": "Selected work · Visume",
+   "aliases": [],
+   "id": "home.work.visume",
+   "text": "Visume Resume screening, replaced by a 5-minute AI interview 1,000+ interviews"
+  },
+  {
+   "route": "/",
+   "anchor": "work-xython-pm",
+   "page": "Home",
+   "title": "Selected work · Smriti Operations",
+   "aliases": [],
+   "id": "home.work.xython-pm",
+   "text": "Smriti Operations AI-enabled project management for Xython Biotech Biotech"
+  },
+  {
+   "route": "/",
+   "anchor": "work-personal-finance-agents",
+   "page": "Home",
+   "title": "Selected work · North: Personal Finance",
+   "aliases": [],
+   "id": "home.work.personal-finance-agents",
+   "text": "North: Personal Finance Upload a bank CSV, ask anything, answered by a team of agents Fintech"
+  },
+  {
+   "route": "/",
+   "anchor": "work-spacered",
+   "page": "Home",
+   "title": "Selected work · Spacered",
+   "aliases": [],
+   "id": "home.work.spacered",
+   "text": "Spacered Positioning, services and identity for a design studio Brand"
+  },
+  {
+   "route": "/",
+   "anchor": "work-studio-os",
+   "page": "Home",
+   "title": "Selected work · Studio OS",
+   "aliases": [],
+   "id": "home.work.studio-os",
+   "text": "Work in progressStudio OS The internal system that runs the studio Spacered • Internal"
+  },
+  {
+   "route": "/",
+   "anchor": "carry",
+   "page": "Home",
+   "title": "Everyday carry",
+   "aliases": [],
+   "id": "home.carry",
+   "text": "weekend street walks. most shots never leave the card three lenses, still shoots everything on 1× the off switch for an open office pokémon, mostly. still chasing a shiny, 400 resets in set two minutes fast. fools no one"
+  },
+  {
+   "route": "/",
+   "anchor": "writing",
+   "page": "Home",
+   "title": "Writing",
+   "aliases": [
+    "written",
+    "writing",
+    "blog",
+    "blogs",
+    "articles",
+    "notes",
+    "essays",
+    "posts"
+   ],
+   "id": "home.writing",
+   "text": "(02)Writing All notes ↗ Notes Things I’ve learned building products, written down so I don’t forget them. Design04.1 Death of the Blank Canvas: designing with AI AI can make a polished interface in a minute, so why do so many of them feel off? How design tools got here, what they still miss, and what it means to be a designer now. Oct 12, 202610 minRead note AI04.2 How to Build a Mind That Plays Chess I binge-watched GothamChess, got curious about the engine bar, and went down the rabbit hole. Search, evaluation, AlphaZero, and what it all has to do with building agents. Oct 11, 202615 minRead note"
+  },
+  {
+   "route": "/",
+   "anchor": "contact",
+   "page": "Home",
+   "title": "Contact",
+   "aliases": [
+    "contact",
+    "email",
+    "reach",
+    "hire",
+    "say hi",
+    "linkedin",
+    "github",
+    "socials",
+    "based",
+    "location",
+    "bengaluru"
+   ],
+   "id": "home.contact",
+   "text": "(03)Contact Bengaluru · --:-- IST “The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.” — Steve Jobs Check out my LinkedIn Check out my X Check out my GitHub"
+  },
+  {
+   "id": "about",
+   "route": "/about",
+   "anchor": null,
+   "page": "About",
+   "title": "About",
+   "aliases": [],
+   "text": "About. About Himanshu K Mahesh: AI engineer and product designer in Bengaluru. Experience at Tavant, Spacered and GridRnD, plus notes on building products."
+  },
+  {
+   "route": "/about",
+   "anchor": "intro",
+   "page": "About",
+   "title": "About · intro",
+   "aliases": [
+    "fun",
+    "hobbies",
+    "free time",
+    "interests",
+    "off the clock",
+    "formula 1",
+    "f1",
+    "reading",
+    "books",
+    "movies",
+    "travel",
+    "based",
+    "location",
+    "resume"
+   ],
+   "id": "about.intro",
+   "text": "About “Ever since I was a kid, I knew I wanted to visualize complex data to increase shareholder value.” [ tl;dr ] I’m Himanshu Mahesh. I build AI things, design the parts people actually touch, and can’t really leave anything half-shipped. Based in [ Bengaluru, India ]. Off the clock I’m usually halfway through a book, deep in some movie or pop culture rabbit hole, or up way too late for an [ F1 ] race. I also save corners of the internet before they vanish, and I’ll take any excuse to travel. I’m an AI engineer at [ Tavant ]. Before that I helped take TaskLearn (10k+ learners) and Visume (1k+ interviews) from zero to launch at GridRnD, and I run Spacered, a small design studio, on the side. AirDrop I’d like to share my resume. Accept Things I currently enjoy Reading [ avid ] Movies & pop culture Formula 1 [ every race ] Internet archiving Travel [ whenever I can ] SIDE A33⅓ START·STOP3345"
+  },
+  {
+   "route": "/about",
+   "anchor": "experience",
+   "page": "About",
+   "title": "Experience",
+   "aliases": [],
+   "id": "about.experience",
+   "text": "(01)Experience 2022 — 2026"
+  },
+  {
+   "route": "/about",
+   "anchor": "experience-tavant",
+   "page": "About",
+   "title": "Experience · Tavant",
+   "aliases": [
+    "day job",
+    "current job",
+    "ai engineer",
+    "agents",
+    "production agents",
+    "agent builder",
+    "claude code",
+    "mcp",
+    "evals"
+   ],
+   "id": "about.experience.tavant",
+   "text": "AI Engineer Intern Jan 2026 — Jul 2026 Tavant · Enterprise AI platform engineering Built roughly 40 production agents across data science automation and Ad Ops. Building an agent builder that ships as part of the Tavant platform: a Claude Code plugin that turns a spec into a production-ready agent, with tools, evals and guardrails wired in from the start instead of bolted on afterwards. Wrote MCP servers so agents reach internal tools through one interface, built eval harnesses to test behaviour before release, and ran studies on new models, agent frameworks and protocols to see what actually holds up in production."
+  },
+  {
+   "route": "/about",
+   "anchor": "experience-spacered",
+   "page": "About",
+   "title": "Experience · Spacered",
+   "aliases": [
+    "studio",
+    "agency",
+    "design studio",
+    "clients",
+    "ola electric",
+    "triplespeed",
+    "cortekz"
+   ],
+   "id": "about.experience.spacered",
+   "text": "Designer Jan 2026 — Present Spacered · New-age design agency A design agency working with deep-tech and fast-moving startups, including Ola Electric, TripleSpeed and Cortekz. Set up the studio’s positioning, service structure and visual identity system, and built a 10-agent internal stack covering the full client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output does not scale linearly with headcount."
+  },
+  {
+   "route": "/about",
+   "anchor": "experience-gridrnd",
+   "page": "About",
+   "title": "Experience · GridRnD",
+   "aliases": [
+    "tasklearn",
+    "visume",
+    "product studio",
+    "side projects"
+   ],
+   "id": "about.experience.gridrnd",
+   "text": "Early Team Member Feb 2025 — May 2026 GridRnD · Early-stage product studio Joined early on two products and carried both to launch: TaskLearn, an AI learning platform now at 10,000+ learners, and Visume, an AI video-interview screener with 1,000+ interviews taken. Owned product design and user flows across both, and worked the stack as a generalist wherever something needed building: frontend, candidate scoring logic, and the AI interview experience itself."
+  },
+  {
+   "route": "/about",
+   "anchor": "experience-education",
+   "page": "About",
+   "title": "Experience · Dayananda Sagar Academy of Technology and Management",
+   "aliases": [
+    "college",
+    "university",
+    "degree",
+    "dsatm",
+    "cgpa",
+    "studied",
+    "hackathons",
+    "school"
+   ],
+   "id": "about.experience.education",
+   "text": "B.E. Computer Science and Engineering 2022 — 2026 Dayananda Sagar Academy of Technology and Management · CGPA 9.0/10.0 Four years of computer science in Bengaluru, alongside two products, two national hackathons and a design studio. Before that, Pre-University in Science at Deeksha PU College (2020 — 2022, 92%)."
+  },
+  {
+   "route": "/about",
+   "anchor": "blogs",
+   "page": "About",
+   "title": "Blogs",
+   "aliases": [
+    "written",
+    "writing",
+    "blog",
+    "articles",
+    "notes",
+    "essays",
+    "posts"
+   ],
+   "id": "about.blogs",
+   "text": "(02)Blogs 2 notes Design04.1 Death of the Blank Canvas: designing with AI AI can make a polished interface in a minute, so why do so many of them feel off? How design tools got here, what they still miss, and what it means to be a designer now. Oct 12, 202610 minRead note AI04.2 How to Build a Mind That Plays Chess I binge-watched GothamChess, got curious about the engine bar, and went down the rabbit hole. Search, evaluation, AlphaZero, and what it all has to do with building agents. Oct 11, 202615 minRead note"
+  },
+  {
+   "id": "fun",
+   "route": "/fun",
+   "anchor": null,
+   "page": "Fun",
+   "title": "Fun",
+   "aliases": [],
+   "text": "Fun. Side quests by Himanshu K Mahesh: sketches, experiments and photos."
+  },
+  {
+   "id": "work.tasklearn",
+   "route": "/work/tasklearn",
+   "anchor": null,
+   "page": "TaskLearn",
+   "title": "TaskLearn",
+   "aliases": [],
+   "text": "TaskLearn. TaskLearn, an AI learning platform where you do real work and get it reviewed. Product design and AI engineering by Himanshu K Mahesh."
+  },
+  {
+   "route": "/work/tasklearn",
+   "anchor": "overview",
+   "page": "TaskLearn",
+   "title": "TaskLearn · Overview",
+   "aliases": [],
+   "id": "work.tasklearn.overview",
+   "text": "(01)Overview A certificate proves you watched something. TaskLearn asks you to make something. Courses end in a quiz, and a quiz can’t tell anyone whether you can write a PRD, design a flow or ship an app. So every task on TaskLearn ends in a real deliverable: a repo, a deck, a prototype. A model reviews it against the task’s own rubric, and the result is something you can show, not just a badge."
+  },
+  {
+   "route": "/work/tasklearn",
+   "anchor": "screens",
+   "page": "TaskLearn",
+   "title": "TaskLearn · Screens",
+   "aliases": [],
+   "id": "work.tasklearn.screens",
+   "text": "(02)Screens Dark, a little tactile, and violet where it counts. 01Explore. Tasks picked for your interests, each cover showing the thing you’ll make. 02A task breaks into timed steps. Lumo, the assistant, sits under each one. 03Deliverables are named up front, so a submission is a checklist, not a guess. 04The review: one score out of 100, then the rubric that built it. 05Notes pinned to the work itself, numbered, instead of a wall of text. 06The portfolio: activity, milestones and skills, built only from work that passed review."
+  },
+  {
+   "route": "/work/tasklearn",
+   "anchor": "how",
+   "page": "TaskLearn",
+   "title": "TaskLearn · How it works",
+   "aliases": [],
+   "id": "work.tasklearn.how",
+   "text": "(03)How it works Pick a brief, do the work, get a real review. Tasks written like briefs Every task reads like a request from a real team: what to make, who it’s for, and what done looks like. Explore suggests tasks for the tracks you pick, and each card shows the thing you’ll build. Steps, with help on hand A task breaks into timed steps. Lumo, the built-in assistant, sits under each one to unblock you without doing the work for you. Reviewed like a senior would Hand in the named deliverables, a repo, a deck or a prototype, and get a score out of 100 against the task’s own rubric, with notes pinned to the exact part of the work they’re about. A portfolio that proves it Only work that passes review lands on your public portfolio, with your activity, skill scores and milestones from Sapling to Forest."
+  },
+  {
+   "route": "/work/tasklearn",
+   "anchor": "stack",
+   "page": "TaskLearn",
+   "title": "TaskLearn · Stack",
+   "aliases": [],
+   "id": "work.tasklearn.stack",
+   "text": "(04)Stack What it runs on. Interface ReactViteTailwindZustandGSAPLenisdnd-kitisomorphic-git Server Node.jsExpressPrismaPostgresBetter Auth Files + infra Cloudflare R2CloudinaryDockerPostgres backups"
+  },
+  {
+   "route": "/work/tasklearn",
+   "anchor": "v1",
+   "page": "TaskLearn",
+   "title": "TaskLearn · First version",
+   "aliases": [],
+   "id": "work.tasklearn.v1",
+   "text": "(05)First version Where it started. The first TaskLearn demo. Almost everything in it has since been redesigned or rebuilt, which is the point of showing it. Fair warning: it’s old, and I shot it like an amateur. Watch on YouTube"
+  },
+  {
+   "id": "work.visume",
+   "route": "/work/visume",
+   "anchor": null,
+   "page": "Visume",
+   "title": "Visume",
+   "aliases": [],
+   "text": "Visume. Visume replaces resume screening with a five-minute AI video interview. Product design and AI engineering by Himanshu K Mahesh."
+  },
+  {
+   "route": "/work/visume",
+   "anchor": "overview",
+   "page": "Visume",
+   "title": "Visume · Overview",
+   "aliases": [],
+   "id": "work.visume.overview",
+   "text": "(01)Overview A PDF tells you where someone worked. Five minutes of them talking tells you the rest. Recruiters skim hundreds of near-identical resumes and decide on formatting. Visume swaps the stack of PDFs for a short interview the candidate takes once, whenever suits them. An AI interviewer asks the questions, follows up on the answers, and scores what it hears. The hiring team starts from a ranked list instead of a pile."
+  },
+  {
+   "route": "/work/visume",
+   "anchor": "screens",
+   "page": "Visume",
+   "title": "Visume · Screens",
+   "aliases": [],
+   "id": "work.visume.screens",
+   "text": "(02)Screens Light, calm and blue, because hiring is stressful enough. 01The hiring team’s home: shortlisted, unlocked, interviewed, offered. 02A job description in a minute: role, skills as tags, experience, locations. 03Search by role and place. Every result carries a score from the interview. 04A candidate: the recording, the question being answered, the transcript beside it. 05Skills and communication scores, an AI summary, and one button to shortlist."
+  },
+  {
+   "route": "/work/visume",
+   "anchor": "how",
+   "page": "Visume",
+   "title": "Visume · How it works",
+   "aliases": [],
+   "id": "work.visume.how",
+   "text": "(03)How it works One interview from the candidate. A ranked shortlist for the team. Post a role in a minute The hiring team writes the job once: the role, skills as tags, the experience range and locations. That’s what every interview is built around. Candidates interview once Each candidate records a five-minute interview from the browser, on desktop or phone, whenever suits them. The interviewer speaks every question aloud, so it feels like a conversation, not a form. Questions that follow up Questions are written from the candidate’s resume, the role and their answers so far, so two people applying for the same job don’t get the same interview. Forgiving of a bad connection The interview checks that someone is still in front of the camera. If they drop out, it pauses rather than ends, so a flaky connection doesn’t cost anyone their attempt. Scored and summarised Every interview comes back with a skills score, a communication breakdown and a short AI summary, next to the recording and a transcript you can read along with. Start from a ranked list Recruiters search by role and location and see candidates with their scores, then shortlist in a click. The dashboard tracks everyone from shortlisted to offer."
+  },
+  {
+   "route": "/work/visume",
+   "anchor": "stack",
+   "page": "Visume",
+   "title": "Visume · Stack",
+   "aliases": [],
+   "id": "work.visume.stack",
+   "text": "(04)Stack What it runs on. Interface ReactViteTailwindZustandFramer MotionApexChartsMonaco Server Node.jsExpressPrismaMySQLJWTGoogle sign-in AI + voice GeminiOpenRouterAssemblyAIAmazon Polly Infra Cloudflare R2Netlify"
+  },
+  {
+   "route": "/work/visume",
+   "anchor": "v1",
+   "page": "Visume",
+   "title": "Visume · First version",
+   "aliases": [],
+   "id": "work.visume.v1",
+   "text": "(05)First version Where it started. The first Visume prototype, from the demo we submitted to Accel. The product has moved a long way since. Fair warning: it’s old, and I shot it like an amateur. Watch on YouTube"
+  },
+  {
+   "id": "work.smriti",
+   "route": "/work/smriti",
+   "anchor": null,
+   "page": "Smriti",
+   "title": "Smriti",
+   "aliases": [],
+   "text": "Smriti. Smriti, project management for Xython Biotech's R&D team. Product design and engineering by Himanshu K Mahesh."
+  },
+  {
+   "route": "/work/smriti",
+   "anchor": "overview",
+   "page": "Smriti",
+   "title": "Smriti · Overview",
+   "aliases": [],
+   "id": "work.smriti.overview",
+   "text": "(01)Overview A lab runs on spreadsheets until someone asks what’s overdue. Xython’s scientists were tracking assay runs and validation work across sheets and chats. Smriti gives them one place: every project with its milestones and tasks, who owns what, and a report a lead can print and take into a meeting. It’s deliberately a project tool, not a lab notebook, and it says so."
+  },
+  {
+   "route": "/work/smriti",
+   "anchor": "screens",
+   "page": "Smriti",
+   "title": "Smriti · Screens",
+   "aliases": [],
+   "id": "work.smriti.screens",
+   "text": "(02)Screens Quiet and dense, readable at the end of a long lab day. 01Home: what’s in progress, what’s overdue, and what changed since you last looked. 02Projects by status, each card with its funding, priority and progress. 03One project: progress, open tasks and milestones, then the detail in tabs. 04Polish turns a rushed note into a clear task. You decide whether to use it. 05Tasks with owner, status and priority, all editable in place."
+  },
+  {
+   "route": "/work/smriti",
+   "anchor": "how",
+   "page": "Smriti",
+   "title": "Smriti · How it works",
+   "aliases": [],
+   "id": "work.smriti.how",
+   "text": "(03)How it works One place for the work, and nothing a lab has to worry about. Every project in one place Each project holds its milestones, tasks and team. The board groups them by status, and every card shows funding, priority and progress at a glance. See what’s slipping Home opens on what’s in progress, what’s overdue and which milestones are due, plus what changed since you last looked. People see their own projects Access follows project membership, and it’s enforced by the database itself, not just hidden in the interface. Polish, when you want it Type a rushed note and Smriti suggests a clearer task. The AI stays off until the company turns it on, and projects marked confidential are never sent to it. Set up from a spreadsheet A whole project, with its milestones and tasks, can come in from a CSV, so moving off the old sheets takes minutes. Reports that print Status reports print cleanly to PDF, so a lead can take one into a meeting on paper."
+  },
+  {
+   "route": "/work/smriti",
+   "anchor": "stack",
+   "page": "Smriti",
+   "title": "Smriti · Stack",
+   "aliases": [],
+   "id": "work.smriti.stack",
+   "text": "(04)Stack What it runs on. Interface ReactTypeScriptViteTailwindshadcn/uiRadixTanStack QueryReact Hook FormZod Backend SupabasePostgresRow-level securityDeno AI Gemini"
+  },
+  {
+   "id": "work.north",
+   "route": "/work/north",
+   "anchor": null,
+   "page": "North",
+   "title": "North",
+   "aliases": [],
+   "text": "North. Case study: North, a personal finance assistant you talk to. Product design and AI engineering by Himanshu K Mahesh."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "overview",
+   "page": "North",
+   "title": "North · Overview",
+   "aliases": [],
+   "id": "work.north.overview",
+   "text": "(01)Overview Money apps tell you what already happened. I wanted one that helps with what happens next. The finance apps I looked at, YNAB, Mint and Copilot among them, are good at showing the past: a pie chart, a list of categories, a number in red. Ask one of them “can I do a Goa trip in December without touching rent money?” and you get the same pie chart back. North is my go at the other half. You import a statement once, then talk to it. Behind the chat is a small team of agents: one works out what you’re asking, one does the maths, one plays out what-ifs, one hunts forgotten subscriptions, and one writes the answer in plain words. I designed and built all of it, so this page covers both jobs: what North should feel like to use, and what had to be true underneath for that feeling to hold up. 5screens, and one of them is a conversation 4specialist agents behind one chat box 0model calls to work out your spending personality"
+  },
+  {
+   "route": "/work/north",
+   "anchor": "users",
+   "page": "North",
+   "title": "North · Who it's for",
+   "aliases": [],
+   "id": "work.north.users",
+   "text": "(02)Who it’s for People who know money matters but don’t have time to manage it. I designed for someone aged 22 to 35, salaried or freelance, with one or two bank accounts and at least one subscription they’ve forgotten about. They pay for almost everything over UPI, so the data already exists. It sits in a CSV nobody opens. Doesn’t know the real burn They know their salary. They don’t know what a normal month actually costs. Can’t plan ahead “Can I afford this in three months?” gets answered with a guess. Quiet leaks Subscriptions they stopped using still charge them every month. Generic advice Tips written for an average person, not for how this person spends. Job to be done When money comes in, I want to know what I can safely spend and what I’m quietly wasting, so I can stop guessing."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "process",
+   "page": "North",
+   "title": "North · Process",
+   "aliases": [],
+   "id": "work.north.process",
+   "text": "(03)Process Double Diamond Two diamonds, and I had to go through the second one twice. The Double Diamond keeps a designer honest: go wide before deciding what the problem is, then go wide again before deciding on the answer. North followed it closely, with one catch. My first lap through Develop and Deliver produced something that worked and wasn’t good, so I wrote a blunt review of it and went round again. Fig. 01. The Double Diamond, as North went through it. DiscoverCollect the real questions I listed the questions people actually ask about money. Almost none were about the past. They were “can I”, “should I” and “what if”. DefineA conversation, not a dashboard The dashboard would exist, but as a place to land. The product would be the answers. Developv1 worked, and felt robotic Replies read like bank statements. One big model did everything, slowly. Deliverv2 got a voice and a spine A warmer voice, visible reasoning, answers as ranges, and a rebuilt engine underneath."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "principles",
+   "page": "North",
+   "title": "North · Principles",
+   "aliases": [],
+   "id": "work.north.principles",
+   "text": "(04)Principles Four rules I checked every screen against. 01Talk first, chart second Charts answer questions nobody asked. North leads with a sentence, and a chart only turns up when it helps that sentence land. 02Show the work An AI that’s quietly thinking looks broken. North shows each step as it happens, so waiting feels like watching someone work. 03Ranges, not promises Anything about the future comes as a range. People don’t behave like averages, and pretending they do breaks trust the first time it’s wrong. 04Nothing changes without a yes North can suggest a goal or a challenge. It can’t create one until you tap confirm. It’s your money."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "flow",
+   "page": "North",
+   "title": "North · Flow",
+   "aliases": [],
+   "id": "work.north.flow",
+   "text": "(05)Flow One setup step, then everything is a conversation. The information architecture is small on purpose. The sidebar has four places: Import, Transactions, Dashboard and Subscriptions. Past chats sit under them, grouped into Today, Yesterday and Previous 7 Days, a pattern people already know from ChatGPT. The main path is three steps: import, see yourself, ask. Fig. 02. The main path, and what a chat turn can hand back."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "import",
+   "page": "North",
+   "title": "North · Import",
+   "aliases": [],
+   "id": "work.north.import",
+   "text": "(06)Import Making a CSV upload feel less like paperwork. Uploading a bank statement is the moment most people would give up, so this screen asks for very little and explains everything it does. Say what’s needed up front The drop zone names the three columns it needs: date, amount and merchant. No surprises after the upload. Preview before saving You see the rows and the columns North found before anything is written. Add or replace, asked once If data already exists, North asks whether the new file adds to it or replaces it. Uploading March twice should never count March twice. Make the wait legible Processing takes a few seconds, so five steps tick off one by one: parsing, categorising, spotting anomalies, flagging recurring charges, saving. Import, with 96 transactions already loaded. The banner says so before you drop another file, and starting fresh is a separate, deliberate action."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "dashboard",
+   "page": "North",
+   "title": "North · Dashboard",
+   "aliases": [],
+   "id": "work.north.dashboard",
+   "text": "(07)Dashboard Who you are first, then how you’re doing, then where it leaks. The dashboard reads top to bottom like a short story. The spending archetype comes first because it’s the most personal thing North knows about you. The health score comes next, with the reason it isn’t higher. Then the money leaving without you noticing. Trends and categories come last, for when you want the detail. The dashboard on sample data: a Homebody who is also a Foodie, with a health score of 61. An archetype, not a label Two people can both spend ₹50k a month and need opposite advice. One loses it on weekends, the other to a dozen subscriptions. Seven archetypes, a primary and an optional secondary. A score that explains itself Health is out of 100, built from savings (40), stability (25), subscriptions (20) and trend (15). Anomalies show as a tag you can act on. Always compared to last month A number alone means nothing. Average spend always carries its change since last month, in green or red. One warm colour for leaks Subscription bleed is the only orange block on the page. The eye finds it without being told to."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "chat",
+   "page": "North",
+   "title": "North · Chat",
+   "aliases": [],
+   "id": "work.north.chat",
+   "text": "(08)Chat An empty chat box is a blank page. North’s isn’t. The first time you open chat, North introduces itself and offers four cards: Spending Analysis, Subscription Detective, What-If Simulator and Smart Budgeting. Each one maps to a real agent in the graph, so the interface teaches what the system can do without a help page. One-tap questions sit underneath, like “What if I save ₹5,000 more a month?” The empty state. The four cards are the four things North is good at. The Pipeline panel lists each step as it runs, with what it decided. A what-if answer: three futures over six months, not one confident number. Starters that map to agents Every starter card sends a question the graph routes to one specialist. Nobody has to guess what to type. A pipeline you can open A small Pipeline pill sits in the corner. Open it and you see the router pick a path, the specialist take over and the reply get written. Charts inside the answer When a chart helps, it sits inside the reply, right under the sentence it supports. Cards for anything that sticks Suggested goals arrive as a card with one button. Anything that would write to your data waits for a confirmation card. Giving it a voice The first version’s prompts optimised for precision, and every reply read like a bank statement. The fix was two paragraphs of prompt: talk like a friend who’s good with money, lead with the insight rather than the data, and never open with “Based on the data”. It was the cheapest change in the project, and the one people notice first. Before Based on the data, your savings rate is 22%. Your Food & Dining spend is ₹13,500, which is 28% of total spend. After Good news first: you’re keeping 22% of what comes in, which is more than most people. If you want more room, look at food. It’s ₹13,500 a month, and most of it happens on weekends."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "subscriptions",
+   "page": "North",
+   "title": "North · Subscriptions",
+   "aliases": [],
+   "id": "work.north.subscriptions",
+   "text": "(09)Subscriptions ₹199 a month sounds like nothing. ₹2,388 a year doesn’t. The subscriptions page is sorted by annual cost, and that column is the one in red, because that’s the number that gets people to cancel things. North finds recurring charges by itself from the gaps between payments, so nothing needs tagging by hand. Subscriptions: ₹22K a year across five services, sorted by what they cost you annually. Transactions stay plain on purpose: merchant initials, a colour per category, flags only when something repeats or looks unusual. Found, not tagged A charge counts as recurring when it comes back from the same merchant at a steady gap. The cadence also gives the yearly cost. Boring where it should be The transaction list is for checking, not for insight. It stays quiet so the other screens don’t have to compete with it."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "visual",
+   "page": "North",
+   "title": "North · Visual language",
+   "aliases": [],
+   "id": "work.north.visual",
+   "text": "(10)Visual language Quiet, so the numbers can be loud. I started from Linear’s dark system: a near-black canvas, four surface steps that sit close together, and hairline borders instead of heavy cards. Colour is rationed. Green comes from the mascot and means good. Orange means money leaking. Category colours only appear on data. Montserrat sets the interface and Poppins the headings, friendly without being cute. The mascot is a small cloud peeking over the bottom of the logo. Money is stressful, and a face on the first screen makes it a little less so. Canvas#08090a Nav#0f1011 Card#161718 Lifted#1d1f23 Hairline#23252a Text#f7f8f8 North green#6cca6b Leak orange#f59e0b"
+  },
+  {
+   "route": "/work/north",
+   "anchor": "engineering",
+   "page": "North",
+   "title": "North · Under the hood",
+   "aliases": [],
+   "id": "work.north.engineering",
+   "text": "(11)Under the hood AI engineering Maths in Python. Words from the model. The design only works if the answers are right and arrive quickly, so the engineering follows one rule: if a job has one right answer, a model shouldn’t be doing it. Health scores, subscription detection, month-on-month changes and the archetype are all plain Python. Models come in where language matters: understanding the question, weighing trade-offs, and saying it well. They never see raw transactions, only a structured report the Python side has already built. Fig. 03. Upload once. Every question after that runs through the graph. A graph, not a chatbot Behind the chat is a small graph of specialists. A router decides who handles a question, only one specialist answers, and anything that would change your data stops at a confirmation step. The Pipeline panel in the chat is that graph, shown live. The right model for the job Fast models where someone is waiting, a small cheap one for bulk work like categorising merchants, and the bigger one only where the advice has to be good. Memory If you tell North in March that you’re saving ₹50,000 by December, it should still know in May. So memory has three layers. Before a reply goes out, a fast check also compares it with what North has told you before, and rewrites it if the advice contradicts itself. Fig. 04. Three layers, from this turn to everything you’ve said. What changed from v1 Categories v1 sent every transaction to a large model. Now a lookup of known merchants goes first. Swiggy is always food. Personality The archetype moved out of the prompt and into plain code: the same answer, most of a second faster, and free. What-if ranges Fixed multipliers became ranges based on how much you actually vary. Steady spenders get tight ranges, erratic ones get honest ones. The flow v1 was a straight line from question to reply. v2 branches, pauses before writes, and reports each step to the interface."
+  },
+  {
+   "route": "/work/north",
+   "anchor": "next",
+   "page": "North",
+   "title": "North · What's next",
+   "aliases": [],
+   "id": "work.north.next",
+   "text": "(12)What’s next What isn’t done, and where it goes from here. It isn’t live It runs locally with Docker and a sample statement. Most of what matters in an AI product shows up when real people use it, and North hasn’t met any yet. The gate always opens The confirmation card exists and sits in the right place, but the backend auto-confirms for now. A real pause comes before anything touches real money. No evals Latency and cost are logged for every request. How often the router picks the wrong path isn’t. A thumbs up or down on replies is the first thing I’d add. The score is reasoned, not proven The health score weights follow common savings benchmarks, but nobody has checked them against real outcomes. I prioritised North the way I’d prioritise any backlog: plot it, do the top-left first, argue about the top-right later. Bank import sits alone in the corner on purpose. India’s Account Aggregator network would turn North from a demo into something you open every day, but it’s weeks of integration and compliance work. Worth doing once the core loop has proven itself. Fig. 05. Impact against effort. Filled dots have shipped; hollow ones are next. If I had one more week The archetype would stop being a card on the dashboard and become the first thing you see. It’s the one thing no other app tells you, and the best reason to come back."
+  },
+  {
+   "id": "work.spacered",
+   "route": "/work/spacered",
+   "anchor": null,
+   "page": "Spacered",
+   "title": "Spacered",
+   "aliases": [],
+   "text": "Spacered. spacered.studio, the site and CMS for Spacered, a design studio. Designed and built by Himanshu K Mahesh."
+  },
+  {
+   "route": "/work/spacered",
+   "anchor": "overview",
+   "page": "Spacered",
+   "title": "Spacered · Overview",
+   "aliases": [],
+   "id": "work.spacered.overview",
+   "text": "(01)Overview A studio site has one job: make someone want to book a call. spacered.studio is the studio’s front door. In a few scrolls it has to say what the studio does, show the standard of the work, and get the right visitor onto a call. And the studio has to be able to keep it current, adding case studies and pages, without waiting on a developer."
+  },
+  {
+   "route": "/work/spacered",
+   "anchor": "screens",
+   "page": "Spacered",
+   "title": "Spacered · Screens",
+   "aliases": [],
+   "id": "work.spacered.screens",
+   "text": "(02)Screens Black, red, and one big idea per screen. 01The hero: a particle field, the time and weather in Bengaluru, then the brands we work with. 02Services as one list, each row opening into what’s included. 03Discover, Define, Design, Deliver, each with its own line drawing. 04Before Spacered, after Spacered. The page goes to warp in between. 05Booking happens right on the page. 06The footer, with the wordmark set huge behind it."
+  },
+  {
+   "route": "/work/spacered",
+   "anchor": "how",
+   "page": "Spacered",
+   "title": "Spacered · How it works",
+   "aliases": [],
+   "id": "work.spacered.how",
+   "text": "(03)How it works From first scroll to a booked call. A first screen that sets the tone The hero opens on a live particle field, the time and weather in Bengaluru, and the brands the studio works with, so a visitor knows who’s behind it before they scroll. Services in one list Brand identity, product design, websites, spatial design and illustration, each row opening into exactly what’s included. A process you can picture Discover, Define, Design, Deliver, each step with its own line drawing, so working with the studio feels mapped out before the first call. Before and after, at warp The page jumps to light speed between \"before Spacered\" and \"after\". It’s drawn live rather than played from a video, so it stays sharp on any screen. Book without leaving A 30-minute discovery call is booked from a calendar right on the page. No form, no back-and-forth email. The studio runs it A built-in CMS lets the studio publish case studies from text, image and design-system blocks, with images optimised on upload, so a new one needs no code."
+  },
+  {
+   "route": "/work/spacered",
+   "anchor": "stack",
+   "page": "Spacered",
+   "title": "Spacered · Stack",
+   "aliases": [],
+   "id": "work.spacered.stack",
+   "text": "(04)Stack What it runs on. Site Next.jsReactTailwindMotionBase UIWebGL Content Payload CMSLexicalNeonUploadThingAVIF in WebAssembly Tooling BunOxcTypeScriptVercelPostHogCal.com"
+  },
+  {
+   "id": "notes.death-of-the-blank-canvas",
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": null,
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas",
+   "aliases": [],
+   "text": "Death of the Blank Canvas. AI can make a polished interface in a minute, so why do so many of them feel off? How design tools got here, what they still miss, and what it means to be a designer now."
+  },
+  {
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": "act-01",
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas · Act I · Everything looks finished now",
+   "aliases": [],
+   "id": "notes.death-of-the-blank-canvas.act-01",
+   "text": "(01)Act I How this started Everything looks finished now Every design project I’ve done started the same way: an empty frame and no idea where to begin. That part is gone. I type one sentence and get back a full interface, with a hero, cards, a nice font, soft shadows, the works. In about a minute. Why I care I sit on both sides of this. I run a small design studio, Spacered, and my day job is building AI systems. So I’m the person who’s supposed to be excited about this and also the person it’s supposed to replace. And honestly, the first few times it was exciting. It looked like a real product. Better than a lot of what I was designing a few years ago. The thing that bugs me But the longer I looked, the more something felt off. Not wrong exactly. Just empty. Everything was equally loud. Every section got a card. The spacing was tidy but didn’t mean anything. The copy sounded like a product but said nothing about this one. It looked like a design. It just didn’t look like anyone had decided anything. What the blank canvas was for Here’s the thing I didn’t appreciate until it was gone. The blank canvas was annoying, but it made you think first. Before you could draw anything you had to decide what the page was for, who it was for, and what mattered most. AI skips that part. You get an answer before you’ve finished asking the question. Which is great when you know what you want, and quietly dangerous when you don’t. If a tool can make a polished interface in a minute, what exactly was the designer doing all those hours?"
+  },
+  {
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": "act-02",
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas · Act II · Every tool removed a little more friction",
+   "aliases": [],
+   "id": "notes.death-of-the-blank-canvas.act-02",
+   "text": "(02)Act II How we got here Every tool removed a little more friction This didn’t come out of nowhere. Every big shift in design tools has done the same thing: shrink the distance between an idea and a screen. AI is just the biggest jump so far. 1990Photoshop ships. For years, interfaces get mocked up in a tool built for editing photos. 2010Sketch arrives, built for interface design. Symbols mean you stop redrawing the same button. 2014Material Design is published, and design systems go mainstream. Taste starts getting written down. 2016Figma launches in the browser. One file, everyone in it at once, no more final_v7. 2023v0 by Vercel turns a prompt into working UI code. Prompt-to-interface becomes a real thing. 2024Figma AI is announced, including generating a first draft of a screen from a prompt, right in the editor. 2025Figma Make and Google’s Stitch go from a prompt to a working prototype. 2026Claude Design from Anthropic: describe what you want, get designs and prototypes, refine them by talking. What each jump actually removed SketchThe workarounds of designing UI in a photo editor. Design systemsRedrawing and re-deciding the same components every project. FigmaHandoff friction, file versions, and designing alone. AIThe drawing itself. You describe, it draws. Every one of these made designers faster. But the first three still needed you to make every decision by hand. AI is the first one that makes the decisions for you, whether you asked it to or not. That’s the part that feels different. The prompt is the new brief A prompt is just a brief. And a vague brief always got you a vague design, even from a person. The difference is a junior designer would come back with questions. Who’s this for? What should they do first? What are we not doing? The tool doesn’t ask. It fills every gap in your brief with the most average answer, and makes it look great. So the skill quietly shifts from drawing to writing a brief that leaves no gaps."
+  },
+  {
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": "act-03",
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas · Act III · Great at the first draft, shaky on the craft",
+   "aliases": [],
+   "id": "notes.death-of-the-blank-canvas.act-03",
+   "text": "(03)Act III Where it is today Great at the first draft, shaky on the craft I’ve been using these tools a lot, for client work and for my own stuff. The pattern I keep running into is pretty consistent: the first impression is amazing, and the details are where it slips. Hierarchy goes first Hierarchy is really one decision: what is this page for? Once you know that, one thing gets to be loud and everything else steps back. Generated pages tend to skip the decision. Every section gets a card, a heading and the same amount of space, so nothing leads. It’s the Flat setting in Fig 1. Everything’s there, and your eye has nowhere to land. The fix isn’t a better model. It’s telling it what matters, or deciding it yourself after. Contrast is a choice, not a style. Contrast Each section stands as tall as it matters. Point at one to make it the focus. On Flat, every section ends up about the same height, which is what a lot of generated pages feel like. Typography Safe, readable scales. Rarely a voice. It picks fonts that look good, not fonts that say something about the product. Spacing Tidy, even padding everywhere. What’s missing is rhythm: space that groups things on purpose and separates what should feel separate. Consistency Solid inside one screen. Across a whole flow it drifts, unless you give it a system to stick to. Iteration Feedback often makes a design different instead of better. Fix one thing and something else moves. Precise edits Generating a whole new screen is easy for it. Changing exactly one thing and leaving the rest alone is still the hard part, and that’s most of real design work. Words The copy sounds like a product and says nothing. Placeholder confidence. Good design starts with what the page actually needs to say. Where it’s genuinely great ExploringTen directions in the time it takes to sketch one. First draftsGetting past the blank canvas, which was always the worst part. Boring statesEmpty, loading, error. The screens nobody wants to design. Testing ideasA clickable prototype before an idea has had time to get precious. And it’s getting better fast. Some of the problems above were much worse a year ago. I don’t think the gap closes by itself though, because the gap isn’t really about quality."
+  },
+  {
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": "act-04",
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas · Act IV · Generating a UI isn’t designing an experience",
+   "aliases": [],
+   "id": "notes.death-of-the-blank-canvas.act-04#1",
+   "text": "(04)Act IV The deeper part Generating a UI isn’t designing an experience A screen is the output. The design is all the decisions behind it. That difference is the whole story. Polish got cheap For a long time, polish was a signal. Good type, careful spacing, a nice gradient meant someone had spent time on it. Now polish is free. Every tool gives it to you by default. Which means polish has stopped being proof of design. When everything looks good, looking good stops telling you anything. Why it feels off, and how it stops A model makes the most likely interface for your prompt. That’s basically the average of every good looking interface it’s seen. The average is clean, safe and familiar. It’s also nobody’s. Fig 2 is the same page going from generated to designed. Nothing new gets added. Every step is a decision: what leads, how things group, a real type scale, and then the most important one, what to cut. AI is great at adding. Another section, another card, another gradient. Good design is mostly taking things away until only what matters is left. Taste is the decisions you make, and even more the ones you refuse. Decisions 0 decisions · 19 blocks The same landing page. Generated, everything gets the same weight and the same padding. Each step is one design decision: what leads, how things group, a real type scale, and finally what to cut. Nothing here needed a better tool. It needed someone to decide. Design systems are taste written down A design system is a pile of decisions someone already made: this type scale, these spacing steps, this is how a button behaves. Without one, every screen a tool generates invents its own answers, like the No system step in Fig 3. Give it your system and those decisions are already made, so the output stops being generic and starts being yours."
+  },
+  {
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": "act-04",
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas · Act IV · Generating a UI isn’t designing an experience",
+   "aliases": [],
+   "id": "notes.death-of-the-blank-canvas.act-04#2",
+   "text": "That’s why I think design systems are about to matter more than ever. They’re how your taste gets into the machine. Rules 3 button styles · 3 heading sizes One onboarding flow, generated screen by screen. Without a system every screen invents its own button, heading and card. Give the tool a system and the decisions are already made, so all three screens agree. What I tell people nowUse AI to get to a first draft fast. Then do the actual design: decide what matters, cut what doesn’t, and make it feel like it was made for someone."
+  },
+  {
+   "route": "/notes/death-of-the-blank-canvas",
+   "anchor": "act-05",
+   "page": "Death of the Blank Canvas",
+   "title": "Death of the Blank Canvas · Act V · The canvas is gone. The judgement isn’t.",
+   "aliases": [],
+   "id": "notes.death-of-the-blank-canvas.act-05",
+   "text": "(05)Act V Where this is going The canvas is gone. The judgement isn’t. So is AI replacing parts of the design process, or changing what it means to be a designer? I think it’s both, and the second one matters more. From canvas to conversation The main surface of design is moving from a canvas to a conversation. You describe, react, redirect. And the output is increasingly real code, so the line between the design file and the product is getting very thin. That means designers who understand how things get built, and how to talk to these tools precisely, are going to have a real edge. How I work now Think firstDecide what the page is for and who it’s for, before any tool is open. Go wideGenerate a lot of directions fast. This is where AI earns its keep. Pick and cutChoose one, then remove everything that isn’t pulling its weight. SystemiseRebuild it on real tokens and components so it holds up past one screen. Sweat itThe last 10% by hand. Spacing, type, the copy. That’s still where it gets good. What’s being replaced Pushing pixels. The first layout. Five variations by hand. The empty state for the fourteenth time. Honestly, I won’t miss most of it. What’s changing The job moves to both ends: framing the problem at the start, and editing at the end. Less illustrator, more editor and director. What doesn’t change Understanding people. What they’re trying to do, what confuses them, what they’ll care about. No tool generates that for you. The blank canvas is dead. But it was never the hard part. If anyone can make it look good, the job is knowing what it should be. Now if you’ll excuse me, I have a blank canvas to not open."
+  },
+  {
+   "id": "notes.how-to-build-a-mind-that-plays-chess",
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": null,
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess",
+   "aliases": [],
+   "text": "How to Build a Mind That Plays Chess. I binge-watched GothamChess, got curious about the engine bar, and went down the rabbit hole: search, evaluation, AlphaZero, Stockfish's NNUE, and what any of it has to do with the agents I build at work."
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-01",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act I · Too much GothamChess",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-01",
+   "text": "(01)Act I How this started Too much GothamChess For the last few months I’ve been binge-watching GothamChess. One recap turns into five, it’s suddenly 2 a.m., and I’m watching a game from the 1800s I had no reason to care about. At some point I stopped watching the players and started watching the engine. The bar on the side If you’ve watched Levy, you know the setup. There’s an evaluation bar next to the board, and every so often he checks what the engine thinks. Sometimes it agrees with him. Sometimes a move that looks completely normal gets flagged as a blunder, the bar swings hard, and the best move turns out to be something nobody in the game even considered. I’m not a strong player. I know the rules, a couple of openings, and that’s about it. But I build AI systems at work, and that bar started bugging me. How does it know? What I wanted to figure out CalculationDoes the engine just look at every possible move? JudgementOr does it actually know what a good position looks like? MechanismAnd when it plays better than any human ever has, what’s going on inside? So I went down the rabbit hole. Papers, the Chess Programming Wiki, a lot of Stockfish docs. This post is what I found, written by someone who isn’t a chess person and learned most of this along the way. The question I kept coming back to: when we build an intelligent system, are we teaching it how to think, or just teaching it to find the right answer?"
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-02",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act II · Chess is a search problem, but not a simple one",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-02#1",
+   "text": "(02)Act II The engineering puzzle Chess is a search problem, but not a simple one My first thought as an engineer was that this should be easy. The rules are fixed, the board is finite, and generating legal moves is a weekend project. So list every move, play each one forward, pick the best. Turns out people have been trying exactly that since 1950, and it doesn’t work. It started with one paper In 1950 Claude Shannon, the same Shannon behind information theory, wrote a paper on programming a computer to play chess. He described two ways to do it. Type A looks at every move to a fixed depth. Type B only looks at the moves that seem worth it, the way a human does, and goes deeper on those. What surprised me is how much of the next fifty years was basically those two ideas taking turns winning, depending on what the hardware of the time could handle. 1950Shannon lays out minimax and the evaluation function, and estimates around 10¹²⁰ possible games. 1952Turing plays a game with a chess program he wrote on paper, working out every move by hand. 1950sAlpha-beta pruning shows up in early programs. Knuth and Moore analyse it properly in 1975. 1970sChess 4.x wins with Type A. Brute force plus faster machines beat the clever selective programs. 1983Belle, built on custom hardware at Bell Labs, is the first machine to play at master level. 1997Deep Blue beats Garry Kasparov, searching around 200 million positions a second on custom chips. Why you can’t just check everything A normal middlegame position has around 35 legal moves. Each of those has about 35 replies. So looking ahead multiplies, it doesn’t add. N(d) ≈ bᵈ b branching factor, around 35 in the middlegame d depth, in plies (one move by one side) N positions at the bottom of the tree From the starting position the exact counts go"
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-02",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act II · Chess is a search problem, but not a simple one",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-02#2",
+   "text": "20, 400, 8,902, 197,281, and after just three moves each you’re at 119,060,324. Ten plies deep is roughly 2.8 × 10¹⁵ positions. At a million positions a second that’s close to a century. For one move. Your opponent gets a say The other thing I hadn’t thought about: you can’t judge a move on its own, because the other side gets to reply. The classic way to handle this is minimax. You assume you’ll play your best move, your opponent will play the reply that’s worst for you, and you follow that all the way down the tree. V(s) = E(s) at the horizon V(s) = max over moves a of V(s·a) my turn V(s) = min over moves a of V(s·a) their turn V(s) value of position s, from my side E(s) the evaluation function, used where search stops s·a the position after playing move a Basically, a move is only as good as the worst thing that can happen after it. Which is also what Levy keeps telling his viewers when they hang a piece. Alpha-beta: skip what can’t matter This was the first idea in the whole rabbit hole that made me go “oh, that’s clever.” While searching, the engine tracks two numbers: α, the best score it’s already guaranteed, and β, the best the opponent is guaranteed. If a branch is already proven worse than something you have, you stop looking at it. Nothing further down can change your decision. best case: b^⌈d/2⌉ + b^⌊d/2⌋ − 1 positions visited with perfect move ordering (Knuth and Moore, 1975) That’s about the square root of the full tree, so for the same work you search roughly twice as deep. The catch is “perfect move ordering.” Alpha-beta only prunes well if it looks at the best moves first, which is a bit of a chicken and egg problem. Search 7 of 9 leaves · value 3 My move (top,"
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-02",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act II · Chess is a search problem, but not a simple one",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-02#3",
+   "text": "max) chooses among three replies (min). Minimax checks all nine leaves. Alpha-beta knows after the first branch that it can get 3; the moment the second branch shows a 2, that branch can only be worse, so its last two leaves are never searched. Same answer, less work. So engines cheat, a little Every strong engine since has piled tricks on top of alpha-beta to get the move order right and spend its time unevenly. Three that stood out to me: Iterative deepeningSearch 1 move deep, then 2, then 3. Each pass tells the next one which moves to try first. Null-move pruningIf I skip my turn and I’m still winning, my real moves probably are too. Stop early. Quiescence searchDon’t stop in the middle of a capture sequence. Play the tactics out, then judge. The result is what Fig 2 shows: most of the effort goes to a few lines and almost none goes anywhere else. Shannon’s brute force Type A, slowly turning into Type B. Reach Each square stands as tall as the search spent on it. Reach sets how widely the engine looks before it commits. Where I was wrongI went in thinking the hard part was speed. It isn’t. The hard part is deciding what not to look at. A good engine is mostly a really disciplined way of ignoring things."
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-03",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act II · Calculating isn’t the same as judging",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-03",
+   "text": "(03)Act II Evaluation Calculating isn’t the same as judging Here’s something I didn’t get at first. Search only gets you to the edge of what you can see. Once you’re there, something still has to look at the position and say whether it’s good. An engine can calculate a future and still have no idea what it’s worth. Two different jobs I kept mixing these up, so writing them down helped: Searchexplores what could happen next. Evaluationguesses how good a position is. Pruningand move ordering keep the search affordable. The systemis only as strong as how these three fit together. How evaluation used to work For decades the evaluation was a weighted sum of things people thought mattered, measured in pawns: E(s) = Σᵢ wᵢ · fᵢ(s) fᵢ(s) a feature: material, mobility, king safety, passed pawns and so on wᵢ its weight. Material starts at pawn 1, knight 3, bishop 3, rook 5, queen 9 The piece values are the ones every beginner learns. Real engines went way past that, with hundreds of terms and weights that shift between the middlegame and the endgame. Stockfish even has a setup called Fishtest where volunteers’ computers have played billions of games just to decide whether a change makes the engine stronger. A simple example Say Black has castled, king on g8, pawns on f7, g7 and h7. White pushes a pawn to f6 and Black just takes it with the g-pawn: gxf6. An evaluation that only counts material says Black is a pawn up. Nice. A better one notices the g-file is now wide open in front of Black’s king, the f-pawns are doubled, and White’s queen and rook are about to show up. Same position, completely different verdict. This is the exact kind of moment where the bar on Levy’s screen swings and chat loses its mind. Search and evaluation cover for each other, too. If the search stops one move too early, the engine can walk straight into something it would have seen one move later. That’s called the horizon effect. A smarter evaluation makes it less likely. A deeper search makes a dumb evaluation less dangerous. But every one of those terms was written by a person. Which made me wonder what happens if you let the machine figure out what a good position looks like on its own. Terms Each term the evaluation counts puts a weight on the right pan. The numbers are made up to show the idea, in pawns."
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-04",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act III · The machine that taught itself",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-04#1",
+   "text": "(04)Act III The shift The machine that taught itself In 2017 DeepMind published AlphaZero. It got the rules of chess and nothing else. No opening books, no human games, no hand-written evaluation. It started out playing random moves and got better by playing against itself. The network Give it a position and it returns a value, who it thinks is winning, and a policy, which moves look worth trying. The search It still searches, using Monte Carlo tree search, but only around 60,000 positions a second. Stockfish at the time was doing tens of millions. Self-play Every game it plays against itself becomes training data. Search makes the network better, and the better network makes the next search better. How it decides where to look At every position, AlphaZero sends its next visit to whichever move scores highest on a rule called PUCT: a* = argmaxₐ [ Q(s,a) + c · P(s,a) · √N(s) / (1 + N(s,a)) ] Q(s,a) how good move a has looked in the search so far P(s,a) how much the network liked move a before searching N how many times the position and the move were visited c how much to trust the network over the results The way I think about the second term is curiosity. It’s big for moves the network likes and shrinks as a move gets explored. So at first the network steers, and as visits pile up, the actual results take over. What it learns from After every self-play game, the network gets trained to agree with two things: who actually won, and which moves the search ended up preferring. loss = (z − v)² − πᵀ log p + c‖θ‖² z the result of the game: win, draw or loss π how the search split its visits between moves v, p the network’s value and policy c‖θ‖² a small penalty so the weights don’t overfit Once I saw it"
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-04",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act III · The machine that taught itself",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-04#2",
+   "text": "like this it clicked. The search is the teacher and the network is the student, and every time the student improves, the teacher gets better too. What it proved, and what it didn’t No copyingNobody told it how to play. It found its own strategy. Learned judgementIts sense of a good position came from training, not from a list someone wrote. Both togetherThe network guided the search, and the search trained the network. The fine printThousands of specialised chips, a perfect simulator of the game, and one clear goal. Not general intelligence. The same approach also learned shogi and Go, which is what makes it more than a chess result. Where I was wrongI expected the story to be “neural network beats algorithm.” It wasn’t. The network is what made the algorithm worth running."
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-05",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act III · Plot twist: the old engine didn’t lose",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-05",
+   "text": "(05)Act III Hybrid engines Plot twist: the old engine didn’t lose After AlphaZero I assumed neural networks just took over and the old engines retired. That’s not what happened at all. 2008Stockfish comes out. Open source, hand-written evaluation, alpha-beta search tuned by its community. 2017AlphaZero learns chess from self-play and beats the Stockfish of that time in a match. 2018Leela Chess Zero rebuilds the AlphaZero idea in the open. Yu Nasu proposes NNUE for shogi. 2020Stockfish 12 adds an NNUE evaluator on top of its classic search and gets a lot stronger. 2023Stockfish 16 drops the hand-written evaluation completely. The network judges, the search decides where to look. The “efficiently updatable” part This is my favourite bit of engineering in the whole story. NNUE’s inputs are basically “which piece is on which square,” relative to each king. That’s about 41,000 possible inputs in the original design, but only around thirty are on at any moment. The first layer adds up one column of weights for every active input. And here’s the trick: two positions next to each other in a search differ by just one move, so only two or three inputs change. A ← A − W[:, removed] + W[:, added] A the accumulator, the first layer’s output, kept between positions W[:, i] the column of weights for input i So instead of recomputing, the engine just patches the sum. The rest of the network is tiny and runs on a normal CPU with integer maths, fast enough to keep up with a search checking millions of positions a second. The boring stuff wins Latency, memory, how well the weights fit in cache, positions per second. None of this makes headlines, but it decides who wins as much as the model does. Leela runs big networks on GPUs. Stockfish runs a tiny network with a ridiculous search. They’ve traded wins at the top of engine competitions for years, and which one is better depends a lot on the hardware and the time control. So the real question was never neural networks versus algorithms. It’s how you combine them for the problem you actually have."
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-06",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act IV · What this has to do with building agents",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-06",
+   "text": "(06)Act IV Back to my day job What this has to do with building agents At work I build AI agents. We’ve put roughly forty of them into production, and a lot of my time goes into the parts around the model: tools, evals, guardrails. Reading about chess engines felt weirdly familiar. Engine vs agent Chess engineAn AI agent Generates candidate movesComes up with possible actions or approaches Evaluates positionsGuesses whether an output is any good Searches aheadPlans steps and sequences of tool calls Prunes and orders movesSpends a limited budget on the promising options Learns from self-playLearns from data, feedback or its own runs Loose analogies. The machinery underneath is very different. The model isn’t the system Stockfish’s network is tiny next to AlphaZero’s and it’s still one of the strongest players on the planet. Agents feel the same to me. When one breaks, it’s usually the tools, the context or a missing check, not the model. Compute is a budget An engine can’t look at every line and an agent can’t try every approach forever. Every extra step costs time and money. Deciding where to spend the effort is most of the actual work. A guess isn’t a result An evaluation is just an estimate until the search checks it. An agent’s answer is the same. That’s why I care so much about evals. They’re the closest thing we have to searching one move deeper before committing. We know how to build machines that play chess better than any human. What does it take to build ones that behave well when the rules aren’t fixed and nobody agrees on what winning means?"
+  },
+  {
+   "route": "/notes/how-to-build-a-mind-that-plays-chess",
+   "anchor": "act-07",
+   "page": "How to Build a Mind That Plays Chess",
+   "title": "How to Build a Mind That Plays Chess · Act V · Back to watching GothamChess",
+   "aliases": [],
+   "id": "notes.how-to-build-a-mind-that-plays-chess.act-07",
+   "text": "(07)Act V Back to the board Back to watching GothamChess I started this because of a bar on the side of a YouTube video. I thought I’d find a neat story about computers getting better at a game. I found a much better engineering problem than I expected. What I’m taking away From chessSolving something hard isn’t about checking every possibility. From enginesLearning, judging, searching and being efficient only work as a team. For my workThe interesting part of an AI system is how the whole thing decides, not just the model in the middle. So, think or find the answer? I don’t think they’re opposites anymore. The engine finds answers by searching, and it searches well because it learned what’s worth looking at. Maybe that’s most of what thinking is, at least the part we know how to build. Chess is a clean world with fixed rules and a clear score. The stuff I work on isn’t. Which is exactly why I think the lessons are worth stealing. I started with “how does a machine decide what to do next?” I’m ending with a different question: how do you build a system that knows what’s worth considering in the first place? Anyway. Back to Levy. He’s probably uploaded three videos while I was writing this. What I read Claude E. Shannon, “Programming a Computer for Playing Chess,” Philosophical Magazine, 1950. Donald E. Knuth and Ronald W. Moore, “An Analysis of Alpha-Beta Pruning,” Artificial Intelligence, 1975. David Silver et al., “A general reinforcement learning algorithm that masters chess, shogi, and Go through self-play”, Science, 2018. The Stockfish team, NNUE docs, on the network and its updates. The Chess Programming Wiki, where I lost most of a weekend. GothamChess, for getting me into this in the first place."
+  }
+ ]
+}

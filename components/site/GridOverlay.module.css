@@ -1,6 +1,6 @@
 .overlay {
   position: fixed;
-  inset: 0;
+  inset: 0 var(--ask-w) 0 0;
   z-index: var(--z-overlay);
   pointer-events: none;
 }

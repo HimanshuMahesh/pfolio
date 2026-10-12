@@ -1,0 +1,24 @@
+/* Hima's face. Sized by font-size (1em square), so one face works on the
+   44px key and the 26px badge alike. The eye paths are drawn by JS. */
+.face {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 1em;
+  height: 1em;
+}
+
+.eyes {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  fill: none;
+  stroke: #f6f8ff;
+  stroke-width: 9;
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 0.04em rgb(255 255 255 / 0.55));
+  transition: stroke 0.4s;
+}
+
+/* Thinking: the lines take on a faint lavender while they scan */
+.face[data-mood="thinking"] .eyes { stroke: #e3dcff; }

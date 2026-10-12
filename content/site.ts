@@ -17,7 +17,7 @@ export const site = {
       : "http://localhost:3000"),
   description:
     "Himanshu K Mahesh is an AI engineer at Tavant and runs Spacered, a new-age design agency in Bengaluru. He is also building TaskLearn and Visume.",
-  email: "himanshukm1109@gmail.com",
+  email: "himanshu@spacered.studio",
   location: {
     city: "Bengaluru",
     country: "India",
@@ -60,7 +60,7 @@ export const navItems: NavItem[] = [
 export type SocialLink = { label: string; handle: string; href: string };
 
 export const socialLinks: SocialLink[] = [
-  { label: "LinkedIn", handle: "in/himanshumahesh", href: "https://www.linkedin.com/in/himanshumahesh/" },
+  { label: "LinkedIn", handle: "in/himanshu-mahesh", href: "https://www.linkedin.com/in/himanshu-mahesh/" },
   { label: "GitHub", handle: "@HimanshuMahesh", href: "https://github.com/HimanshuMahesh" },
   { label: "Spacered", handle: "spacered.studio", href: "https://spacered.studio" },
   // TODO: real X handle and URL

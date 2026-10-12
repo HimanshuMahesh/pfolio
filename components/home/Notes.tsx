@@ -68,7 +68,7 @@ export function NoteRow({ note, index }: { note: Note; index: number }) {
 /** (02) Writing — the latest notes as text-only cards, two to a row. */
 export function Notes() {
   return (
-    <section className={cx("wrap", "section")} id="writing" aria-labelledby="writing-heading">
+    <section className={cx("wrap", "section")} id="writing" data-section="writing" data-section-title="Writing" data-section-aliases="written, writing, blog, blogs, articles, notes, essays, posts" aria-labelledby="writing-heading">
       <SectionHead
         index="02"
         label="Writing"

@@ -5,7 +5,7 @@ import { cx, place } from "@/lib/grid";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: `Fun — ${site.name}`,
+  title: `Fun · ${site.name}`,
   description: `Side quests by ${site.name}: sketches, experiments and photos.`,
 };
 

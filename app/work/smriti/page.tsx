@@ -19,7 +19,7 @@ import {
 } from "@/components/case/Brief";
 
 export const metadata: Metadata = {
-  title: `Smriti — ${site.name}`,
+  title: `Smriti · ${site.name}`,
   description:
     "Smriti, project management for Xython Biotech's R&D team. Product design and engineering by Himanshu K Mahesh.",
 };

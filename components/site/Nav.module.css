@@ -15,7 +15,8 @@
 
   position: fixed;
   top: var(--nav-top);
-  inset-inline: 0;
+  left: 0;
+  right: var(--ask-w); /* re-centres beside the docked Ask panel */
   z-index: var(--z-nav);
   padding-inline: var(--grid-margin);
   display: flex;

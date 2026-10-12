@@ -21,7 +21,7 @@ import {
 import { Video } from "@/components/case/Video";
 
 export const metadata: Metadata = {
-  title: `Visume — ${site.name}`,
+  title: `Visume · ${site.name}`,
   description:
     "Visume replaces resume screening with a five-minute AI video interview. Product design and AI engineering by Himanshu K Mahesh.",
 };

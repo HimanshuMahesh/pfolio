@@ -50,8 +50,10 @@ function Fan({ assets }: { assets: Array<string | null> }) {
  * screens when the entry has assets.
  */
 export function Entries({ id, index, title, note, entries }: Props) {
+  // Each list is a navigable section, and so is each row (for Hima, see docs/hima-ai-plan.md §4).
+  const key = title.toLowerCase().replace(/[^a-z0-9]+/g, "-");
   return (
-    <section className={styles.section} aria-labelledby={id}>
+    <section className={styles.section} id={key} data-section={key} data-section-title={title} aria-labelledby={id}>
       <SectionHead id={id} index={index} label={title} aside={note} />
       <ol className={styles.list}>
         {entries.map((entry, i) => {
@@ -60,6 +62,10 @@ export function Entries({ id, index, title, note, entries }: Props) {
             <li
               key={entry.title}
               className={styles.item}
+              id={`${key}-${entry.slug}`}
+              data-section={`${key}.${entry.slug}`}
+              data-section-title={`${title} · ${entry.sub.split(" · ")[0]}`}
+              data-section-aliases={entry.aliases?.join(", ")}
               data-reveal
               tabIndex={0}
               style={{ "--reveal-delay": `${i * 60}ms` } as CSSProperties}

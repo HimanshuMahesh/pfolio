@@ -7,7 +7,7 @@ import styles from "./Blogs.module.css";
 /** Every note, newest first — where the home page's "All notes" link lands. */
 export function Blogs() {
   return (
-    <section className={styles.blogs} id="blogs" aria-labelledby="blogs-heading">
+    <section className={styles.blogs} id="blogs" data-section="blogs" data-section-title="Blogs" data-section-aliases="written, writing, blog, articles, notes, essays, posts" aria-labelledby="blogs-heading">
       <SectionHead id="blogs-heading" index="02" label="Blogs" aside={`${notes.length} notes`} />
       <div className={cx("grid", styles.list)}>
         {notes.map((note, i) => (

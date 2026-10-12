@@ -18,6 +18,10 @@
 @property --d  { syntax: "*"; inherits: false; }
 @property --bc { syntax: "<color>";  inherits: true; initial-value: #2d2d32; }
 @property --bl { syntax: "<length>"; inherits: true; initial-value: 6px; }
+/* How much room the page gives the docked Ask panel (homepage, ≥ 1024px). */
+@property --ask-w { syntax: "<length>"; inherits: true; initial-value: 0px; }
+/* How wide Hima's glow is at the page edge (animated as it flares) */
+@property --halo-w { syntax: "<length>"; inherits: true; initial-value: 8px; }
 
 /* ---- Colour: dark (default) ----------------------------------------------
    The site is designed dark first. `data-theme="light"` on <html> swaps the
@@ -56,23 +60,24 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --color-bg: #f5f4f0;
-  --color-surface: #fcfcfa;
-  --color-placeholder: #ebeae5;
-  --color-ink: #121213;
-  --color-ink-2: #46463f;
-  --color-copy: #5b5b54;
-  --color-muted: #6f6f68;
-  --color-faint: #c6c5be;
-  --color-line: #e3e2dc;
-  --color-line-2: #cfcec7;
+  /* bright, warm beige paper; greys lean warm-brown, not olive */
+  --color-bg: #fbf6ec;
+  --color-surface: #fffcf6;
+  --color-placeholder: #f2eadb;
+  --color-ink: #16130f;
+  --color-ink-2: #4a4239;
+  --color-copy: #5e564b;
+  --color-muted: #766d60;
+  --color-faint: #d6ccba;
+  --color-line: #ece3d2;
+  --color-line-2: #ddd2be;
   --color-accent: #2f5fe0;
   --color-accent-soft: rgb(47 95 224 / 0.1);
   --color-button: #2f63e6;
   --color-button-hover: #2556d6;
 
-  --glass: rgb(252 252 250 / 0.62);
-  --glass-strong: rgb(252 252 250 / 0.86);
+  --glass: rgb(255 252 246 / 0.62);
+  --glass-strong: rgb(255 252 246 / 0.86);
   --glass-edge: rgb(0 0 0 / 0.07);
   --glass-edge-strong: rgb(0 0 0 / 0.09);
   --glass-shine: rgb(255 255 255 / 0.8);
@@ -152,6 +157,7 @@
   /* ---- Depth ----------------------------------------------------------- */
   --z-content: 1;
   --z-nav: 50;
+  --z-ask: 55;                   /* the Ask panel and its key */
   --z-overlay: 60;
 }
 

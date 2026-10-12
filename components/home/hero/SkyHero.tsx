@@ -72,17 +72,17 @@ export function SkyHero({ portrait, children }: Props) {
         </div>
       </div>
 
-      <section ref={section} className={cx("wrap", styles.hero)} aria-label="Introduction">
+      <section ref={section} className={cx("wrap", styles.hero)} aria-label="Introduction" id="hero" data-section="hero" data-section-title="Intro" data-section-aliases="who, about him, startups, clients, ola electric, triplespeed, cortekz, based in bengaluru">
         <div className={styles.column}>
           {/* Open sky above the horizon; the scrub label lands here too. */}
-          <div ref={band} className={styles.band}>
+          <div ref={band} className={styles.band} data-ask-skip>
             <span ref={hint} className={styles.hint}>
               <span className="hide-m">Hover the sky</span>
               <span className="show-m">Drag the sky</span>
             </span>
           </div>
 
-          <div className={styles.row} data-reveal="load">
+          <div className={styles.row} data-reveal="load" data-ask-skip>
             <div ref={horizon} className={styles.portrait} data-bp="portrait">
               {portrait}
             </div>

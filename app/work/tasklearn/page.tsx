@@ -18,7 +18,7 @@ import {
 import { Video } from "@/components/case/Video";
 
 export const metadata: Metadata = {
-  title: `TaskLearn — ${site.name}`,
+  title: `TaskLearn · ${site.name}`,
   description:
     "TaskLearn, an AI learning platform where you do real work and get it reviewed. Product design and AI engineering by Himanshu K Mahesh.",
 };

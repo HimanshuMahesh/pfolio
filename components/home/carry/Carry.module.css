@@ -3,16 +3,22 @@
    background, so the band has no edges of its own: the ends fade instead. */
 .strip {
   /* Drawing px → CSS px. One fluid factor keeps the whole set at one scale and
-     tracks the viewport: about 0.58 on a phone, 0.82 at the 1440 frame. */
-  --u: clamp(0.58px, 0.49px + 0.0229vw, 0.82px);
+     tracks the viewport: about 0.48 on a phone (two objects in view), 0.82 at the 1440 frame. */
+  --u: clamp(0.46px, 0.36px + 0.032vw, 0.82px);
   --gap: var(--grid-gutter);
   --duration: 60s;
-  /* Work above already ends on its own gap; Writing opens straight on its head, so give it air. */
-  margin-bottom: var(--space-8);
+  /* Sit centred between Work and Writing: Work ends on a full section gap, so take
+     some of it back above and give it to the space below. Measured to balance the
+     visible gaps at phone, tablet and desktop widths. */
+  margin-top: calc(var(--section-gap) * -0.375);
+  margin-bottom: calc(var(--section-gap) * 0.375);
 }
 
 .viewport {
+  /* Clip the double-length track hard, so it can never widen the page on phones. */
   overflow: hidden;
+  overflow: clip;
+  contain: paint;
   padding-block: var(--space-4);
   mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
 }
@@ -22,7 +28,11 @@
   width: max-content;
   animation: carry-drift var(--duration) linear infinite;
 }
-.viewport:hover .track { animation-play-state: paused; }
+/* Hover effects only where there is a real pointer: on touch, a tap would leave
+   the strip stuck paused with one object lifted. */
+@media (hover: hover) {
+  .viewport:hover .track { animation-play-state: paused; }
+}
 
 .set {
   display: flex;
@@ -65,14 +75,17 @@
 
 /* Hover: the object lifts and its live drawing (shutter, flash, sound,
    screen, second hand) crossfades in over the still. */
-.item:hover .art { transform: translateY(-6px); }
 .live {
   position: absolute;
   inset: 0;
   opacity: 0;
   transition: opacity 0.35s;
 }
-.item:hover .live { opacity: 1; }
+@media (hover: hover) {
+  .item:hover .art { transform: translateY(-6px); }
+  .item:hover .live { opacity: 1; }
+  .item:hover .note { color: var(--color-ink-2); }
+}
 
 /* Dark is the default theme; light swaps the drawing. */
 .light { display: none !important; }
@@ -84,7 +97,7 @@
 .note {
   max-width: min(27ch, 100%);
   margin: var(--space-2) 0 0;
-  font-size: clamp(13px, 1.1vw, 15px);
+  font-size: clamp(12px, 1.1vw, 15px);
   line-height: 1.35;
   color: var(--color-muted);
   text-align: center;
@@ -92,7 +105,6 @@
   transition: color 0.3s;
 }
 .item:nth-child(even) .note { transform: rotate(1.2deg); }
-.item:hover .note { color: var(--color-ink-2); }
 
 @keyframes carry-drift {
   to { transform: translateX(-50%); }

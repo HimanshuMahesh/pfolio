@@ -25,3 +25,21 @@
 /* Sections sit directly under one another; the gap is the previous
    section's bottom padding, so the rhythm is one number. */
 .section { padding-bottom: var(--section-gap); }
+
+/* ---- Room for the Ask panel ------------------------------------------------
+   On the homepage at ≥ 1024px the Ask panel docks on the right and the whole
+   page narrows to make room, as one motion: --ask-w animates once on <html>,
+   and the body, the nav and the panel all read it. Opening eases out long;
+   closing is quicker. Below 1024px the panel floats over the page instead. */
+html { transition: --ask-w 0.42s cubic-bezier(0.4, 0, 0.2, 1); }
+body { margin-right: var(--ask-w); }
+@media (min-width: 1024px) {
+  html[data-ask-open] {
+    --ask-w: var(--ask-panel);
+    transition: --ask-w 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+    /* The window's scrollbar would sit outside the panel; the page still scrolls. */
+    scrollbar-width: none;
+  }
+}
+:root { --ask-panel: 400px; }
+@media (min-width: 1440px) { :root { --ask-panel: 440px; } }
