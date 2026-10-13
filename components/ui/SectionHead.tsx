@@ -13,7 +13,7 @@ type Props = {
   id?: string;
 };
 
-/** The label row that opens a section: "(02) Writing ··· All notes ↗". */
+/** The label row that opens a section: "(02) Writing ··· All notes". */
 export function SectionHead({ index, label, aside, className, id }: Props) {
   const Label = id ? "h2" : "p";
   return (

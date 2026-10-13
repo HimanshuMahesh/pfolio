@@ -93,7 +93,7 @@ function SideQuestFrames() {
 }
 
 export function Hero() {
-  const [tasklearn, visume] = ventures;
+  const [tasklearn, visume, spacered] = ventures;
   const startupNames = new Intl.ListFormat("en").format(startups.map((s) => s.name));
 
   return (
@@ -117,7 +117,10 @@ export function Hero() {
         <p data-bp="copy-1">
           I’m an AI engineer at{" "}
           <Brand mark={<span className={styles.tavant}>T</span>}>Tavant</Brand>, and I run{" "}
-          <Brand mark={<Image src={spaceredMark} alt="" className={styles.spacered} />}>Spacered</Brand>, a design
+          <HoverReveal href={spacered.href} panel={<VentureCard venture={spacered} />} contain interactive>
+            <Brand mark={<Image src={spaceredMark} alt="" className={styles.spacered} />}>{spacered.name}</Brand>
+          </HoverReveal>
+          , a design
           studio working with several{" "}
           <HoverReveal lead="deep-tech and fast-moving" panel={<StartupCloud />}>
             startups

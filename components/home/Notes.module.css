@@ -123,6 +123,9 @@
 
 .arrow { width: 14px; height: 14px; flex: none; transition: transform var(--dur-base) var(--ease-out); }
 .link:hover .arrow { transform: translate(2px, -2px); }
+/* "All notes" in the section head: the icon sits on the text's centre line. */
+.allNotes { display: inline-flex; align-items: center; gap: 4px; }
+.allNotes:hover .arrow { transform: translate(2px, -2px); }
 
 @media (min-width: 768px) {
   .text { padding: var(--space-6); }

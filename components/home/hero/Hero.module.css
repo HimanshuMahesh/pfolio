@@ -56,6 +56,9 @@
 .intro:has([data-hover]:is(:hover, :focus-within, [data-open])) .brand { color: var(--color-faint); }
 .intro:has([data-hover]:is(:hover, :focus-within, [data-open])) :global(.di-trigger) { color: var(--color-faint); }
 .intro:has([data-hover]:is(:hover, :focus-within, [data-open])) .brandMark { opacity: 0.35; }
+/* A brand that is itself the open hover word stays lit. */
+.intro [data-hover]:is(:hover, :focus-within, [data-open]) .brand { color: var(--color-ink); }
+.intro [data-hover]:is(:hover, :focus-within, [data-open]) .brandMark { opacity: 1; }
 .intro:has([data-hover]:is(:hover, :focus-within, [data-open]))
   [data-hover]:not(:hover, :focus-within, [data-open]) > * {
   color: var(--color-faint);

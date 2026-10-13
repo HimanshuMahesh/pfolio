@@ -73,8 +73,8 @@ export function Notes() {
         index="02"
         label="Writing"
         aside={
-          <Link href={notesIndexHref}>
-            All notes <span className="arr">↗</span>
+          <Link href={notesIndexHref} className={styles.allNotes}>
+            All notes <ArrowUpRightIcon weight="duotone" className={styles.arrow} />
           </Link>
         }
       />

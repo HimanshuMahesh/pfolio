@@ -4,6 +4,7 @@ import olaLogo from "@/assets/startups/ola-electric.png";
 import triplespeedLogo from "@/assets/startups/triplespeed.png";
 import cortekzMark from "@/assets/startups/cortekz-mark.svg";
 import visumeOg from "@/assets/og/visume.png";
+import spaceredOg from "@/assets/og/spacered.jpg";
 
 /* The people and products named in the hero introduction. */
 
@@ -46,7 +47,7 @@ export type Venture = {
   og: StaticImageData;
 };
 
-/** What I'm building — each shows its OG card on hover. */
+/** What I'm building, plus my studio — each shows its OG card on hover. */
 export const ventures: Venture[] = [
   {
     name: "TaskLearn",
@@ -61,5 +62,12 @@ export const ventures: Venture[] = [
     domain: "visume.co.in",
     tagline: "Ending the era of soulless hiring",
     og: visumeOg,
+  },
+  {
+    name: "Spacered",
+    href: "https://spacered.studio",
+    domain: "spacered.studio",
+    tagline: "Independent design studio for brands, products and systems",
+    og: spaceredOg,
   },
 ];
