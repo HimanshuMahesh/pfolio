@@ -1,5 +1,5 @@
 {
- "version": "6fa3614cee",
+ "version": "1be4e6640d",
  "sections": [
   {
    "id": "home",
@@ -177,7 +177,7 @@
     "resume"
    ],
    "id": "about.intro",
-   "text": "About “Ever since I was a kid, I knew I wanted to visualize complex data to increase shareholder value.” [ tl;dr ] I’m Himanshu Mahesh. I build AI things, design the parts people actually touch, and can’t really leave anything half-shipped. Based in [ Bengaluru, India ]. Off the clock I’m usually halfway through a book, deep in some movie or pop culture rabbit hole, or up way too late for an [ F1 ] race. I also save corners of the internet before they vanish, and I’ll take any excuse to travel. I’m an AI engineer at [ Tavant ]. Before that I helped take TaskLearn (10k+ learners) and Visume (1k+ interviews) from zero to launch at GridRnD, and I run Spacered, a small design studio, on the side. AirDrop I’d like to share my resume. Accept Things I currently enjoy Reading [ avid ] Movies & pop culture Formula 1 [ every race ] Internet archiving Travel [ whenever I can ] play song?"
+   "text": "About “Ever since I was a kid, I knew I wanted to visualize complex data to increase shareholder value.” [ tl;dr ] I’m Himanshu Mahesh. I build AI things, design the parts people actually touch, and can’t really leave anything half-shipped. Based in [ Bengaluru, India ]. Off the clock I’m usually halfway through a book, deep in some movie or pop culture rabbit hole, or up way too late for an [ F1 ] race. I also save corners of the internet before they vanish, and I’ll take any excuse to travel. I’m an AI engineer at [ Tavant ]. Before that I helped take TaskLearn (10k+ learners) and Visume (1k+ interviews) from zero to launch at GridRnD, and I run Spacered, a small design studio, on the side. AirDrop I’d like to share my resume. Accept Things I currently enjoy Reading [ avid ] Movies & pop culture Formula 1 [ every race ] Internet archiving Travel [ whenever I can ] give it a spin?"
   },
   {
    "route": "/about",

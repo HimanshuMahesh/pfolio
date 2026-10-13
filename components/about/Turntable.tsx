@@ -6,8 +6,7 @@ import styles from "./Turntable.module.css";
 
 const hand = Architects_Daughter({ weight: "400", subsets: ["latin"], display: "swap" });
 
-const SONG = { src: "/about/hero-kiwanuka.mp3", title: "Hero", artist: "Michael Kiwanuka" };
-/** Arm swing time; the needle drops (and the clip starts) once it lands. */
+/** Arm swing time; the record starts turning once the needle lands. */
 const DROP_MS = 1100;
 
 /**
@@ -18,7 +17,7 @@ const DROP_MS = 1100;
  * Platter centre (44, 46), r 40; record r ≈ 36.5; the stylus sits in the
  * lead-in grooves at (63, 66.5). At rest the arm sits swung out on its rest;
  * a click swings it onto the record, which turns at 33⅓ rpm (1.8 s a turn)
- * while its reflections stay put, and plays thirty seconds of a song.
+ * while its reflections stay put. It's silent: no song ships with the site.
  */
 type Props = {
   /** The bento card's classes; the deck fills it, the handwritten note hangs below it. */
@@ -28,42 +27,25 @@ type Props = {
 
 export function Turntable({ className, style }: Props) {
   const [state, setState] = useState<"idle" | "dropping" | "playing">("idle");
-  const audio = useRef<HTMLAudioElement | null>(null);
   const timer = useRef<number | undefined>(undefined);
 
   useEffect(
     () => () => {
       window.clearTimeout(timer.current);
-      audio.current?.pause();
     },
     [],
   );
 
   function stop() {
     window.clearTimeout(timer.current);
-    const a = audio.current;
-    if (a) {
-      a.pause();
-      a.currentTime = 0;
-    }
     setState("idle");
   }
 
   function toggle() {
     if (state !== "idle") return stop();
-    if (!audio.current) {
-      audio.current = new Audio(SONG.src);
-      audio.current.volume = 0.85;
-      audio.current.addEventListener("ended", stop);
-    }
-    // Start loading now so the clip is ready when the needle lands.
-    audio.current.load();
     setState("dropping");
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    timer.current = window.setTimeout(() => {
-      setState("playing");
-      audio.current?.play().catch(stop);
-    }, reduced ? 0 : DROP_MS);
+    timer.current = window.setTimeout(() => setState("playing"), reduced ? 0 : DROP_MS);
   }
 
   const on = state !== "idle";
@@ -166,13 +148,13 @@ export function Turntable({ className, style }: Props) {
             className={styles.hit}
             onClick={toggle}
             aria-pressed={on}
-            aria-label={on ? `Stop ${SONG.title} by ${SONG.artist}` : `Play thirty seconds of ${SONG.title} by ${SONG.artist}`}
+            aria-label={on ? "Stop the record" : "Spin the record"}
           />
         </div>
       </div>
 
       <p className={`${styles.note} ${hand.className}`} aria-live="polite">
-        {on ? `now playing · ${SONG.title}, ${SONG.artist}` : "play song?"}
+        {on ? "spinning · 33⅓" : "give it a spin?"}
       </p>
     </div>
   );
