@@ -39,7 +39,7 @@ export default function TaskLearnCaseStudy() {
         title="TaskLearn"
         lede="An AI learning platform where you learn by doing the job. Pick a task written like a brief from a real team, ship the work, and get it reviewed the way a senior would review it. Everything you pass lands on a public portfolio."
         link={{ href: "https://tasklearn.app", label: "tasklearn.app", live: true }}
-        role="Early team at GridRnD. Product design, AI engineering, full-stack"
+        role="Early team at GridRnD, built with Tejas, Dev and Ruhi. Product design, AI engineering, full-stack"
         timeline="2025 to 2026, live"
         platform="Web app"
         stack="React 19, Express, Prisma, Postgres"

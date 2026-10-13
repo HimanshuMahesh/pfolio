@@ -39,7 +39,7 @@ export default function SpaceredCaseStudy() {
         title="Spacered"
         lede="The site for my design studio. Its job is to sell the work, so it has to be the work too: a particle-field hero, a before-and-after that jumps to light speed, and a CMS the studio runs without me."
         link={{ href: "https://spacered.studio", label: "spacered.studio", live: true }}
-        role="Design and build"
+        role="Design and build. Runs the studio with Abhi and Avi"
         timeline="2026, live"
         platform="Website + CMS"
         stack="Next.js 16, Payload, Postgres, WebGL"

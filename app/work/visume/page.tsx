@@ -42,7 +42,7 @@ export default function VisumeCaseStudy() {
         title="Visume"
         lede="Resume screening, replaced by a five-minute AI interview. Candidates record once. Hiring teams get a ranked shortlist with the video, the transcript and a score for each person."
         link={{ href: "https://visume.co.in", label: "visume.co.in", live: true }}
-        role="Early team at GridRnD. Product design, AI engineering, full-stack"
+        role="Early team at GridRnD, built with Tejas, Dev and Ruhi. Product design, AI engineering, full-stack"
         timeline="2025 to 2026, live"
         platform="Web app, desktop and mobile"
         stack="React, Express, Prisma, MySQL"

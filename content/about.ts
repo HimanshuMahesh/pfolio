@@ -54,7 +54,7 @@ export const experience: Entry[] = [
   {
     // TODO: confirm title — resume says "Designer"; he now runs the studio
     slug: "spacered",
-    aliases: ["studio", "agency", "design studio", "clients", "ola electric", "triplespeed", "cortekz"],
+    aliases: ["studio", "agency", "design studio", "clients", "ola electric", "triplespeed", "cortekz", "abhi", "avi"],
     title: "Designer",
     date: "Jan 2026 — Present",
     sub: "Spacered · New-age design agency",
@@ -67,11 +67,11 @@ export const experience: Entry[] = [
       "/work/spacered/booking.jpg",
     ],
     description:
-      "A design agency working with deep-tech and fast-moving startups, including Ola Electric, TripleSpeed and Cortekz. Set up the studio’s positioning, service structure and visual identity system, and built a 10-agent internal stack covering the full client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output does not scale linearly with headcount.",
+      "A design agency, built and run with Abhi and Avi, working with deep-tech and fast-moving startups, including Ola Electric, TripleSpeed and Cortekz. Set up the studio’s positioning, service structure and visual identity system, and built a 10-agent internal stack covering the full client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output does not scale linearly with headcount.",
   },
   {
     slug: "gridrnd",
-    aliases: ["tasklearn", "visume", "product studio", "side projects"],
+    aliases: ["tasklearn", "visume", "product studio", "side projects", "tejas", "ruhi"],
     title: "Early Team Member",
     date: "Feb 2025 — May 2026",
     sub: "GridRnD · Early-stage product studio",
@@ -84,7 +84,7 @@ export const experience: Entry[] = [
       "/work/tasklearn/journey.jpg",
     ],
     description:
-      "Joined early on two products and carried both to launch: TaskLearn, an AI learning platform now at 10,000+ learners, and Visume, an AI video-interview screener with 1,000+ interviews taken. Owned product design and user flows across both, and worked the stack as a generalist wherever something needed building: frontend, candidate scoring logic, and the AI interview experience itself.",
+      "Joined early and built two products with Tejas, Dev and Ruhi, carrying both to launch: TaskLearn, an AI learning platform now at 10,000+ learners, and Visume, an AI video-interview screener with 1,000+ interviews taken. Owned product design and user flows across both, and worked the stack as a generalist wherever something needed building: frontend, candidate scoring logic, and the AI interview experience itself.",
   },
   {
     slug: "education",

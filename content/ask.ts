@@ -51,9 +51,9 @@ export const topics: Topic[] = [
   },
   {
     id: "spacered",
-    keys: ["spacered", "studio", "agency", "clients", "ola", "triplespeed", "cortekz", "branding", "brand"],
+    keys: ["spacered", "abhi", "avi", "studio", "agency", "clients", "ola", "triplespeed", "cortekz", "branding", "brand"],
     answer:
-      "Spacered is the design studio he runs. It works with deep-tech and fast-moving startups, Ola Electric, TripleSpeed and Cortekz among them.\n\nHe set up the studio’s positioning, service structure and identity, and built a 10-agent internal stack that runs the whole client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output doesn’t scale with headcount. [See the case study](/work/spacered).",
+      "Spacered is the design studio he built and runs with Abhi and Avi. It works with deep-tech and fast-moving startups, Ola Electric, TripleSpeed and Cortekz among them.\n\nHe set up the studio’s positioning, service structure and identity, and built a 10-agent internal stack that runs the whole client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output doesn’t scale with headcount. [See the case study](/work/spacered).",
     next: ["What is Studio OS?", "Tell me about TaskLearn and Visume"],
   },
   {
@@ -65,23 +65,23 @@ export const topics: Topic[] = [
   },
   {
     id: "tasklearn",
-    keys: ["tasklearn", "task learn", "learning", "learners", "badges", "edtech"],
+    keys: ["tasklearn", "task learn", "tejas", "ruhi", "learning", "learners", "badges", "edtech"],
     answer:
-      "TaskLearn is an AI learning platform where you learn a skill by doing real tasks and earning badges. It’s at 10,000+ learners.\n\nHe joined GridRnD early and carried it to launch, owning the product design and user flows, and building wherever something needed building. [Read the case study](/work/tasklearn) or try it at [tasklearn.app](https://tasklearn.app).",
+      "TaskLearn is an AI learning platform where you learn a skill by doing real tasks and earning badges. It’s at 10,000+ learners.\n\nHe built it with Tejas, Dev and Ruhi, joining GridRnD early and carrying it to launch, owning the product design and user flows, and building wherever something needed building. [Read the case study](/work/tasklearn) or try it at [tasklearn.app](https://tasklearn.app).",
     next: ["What about Visume?", "How does he mix design and engineering?"],
   },
   {
     id: "visume",
     keys: ["visume", "hiring", "interview", "interviews", "resume screening", "recruit", "video"],
     answer:
-      "Visume replaces resume screening with a 5-minute AI video interview. More than 1,000 interviews have been taken on it so far.\n\nHe owned the product design and flows, and worked on the candidate scoring logic and the interview experience itself. [Read the case study](/work/visume) or visit [visume.co.in](https://visume.co.in).",
+      "Visume replaces resume screening with a 5-minute AI video interview. More than 1,000 interviews have been taken on it so far.\n\nHe built it with Tejas, Dev and Ruhi. He owned the product design and flows, and worked on the candidate scoring logic and the interview experience itself. [Read the case study](/work/visume) or visit [visume.co.in](https://visume.co.in).",
     next: ["Tell me about TaskLearn", "What does he do at Tavant?"],
   },
   {
     id: "gridrnd",
     keys: ["gridrnd", "grid rnd", "early team", "building", "side projects", "products", "startup", "startups"],
     answer:
-      "Outside the day job he’s building two products with GridRnD, an early-stage product studio: TaskLearn and Visume. He joined early and carried both to launch.",
+      "Outside the day job he’s building two products with GridRnD, an early-stage product studio: TaskLearn and Visume, built with Tejas, Dev and Ruhi. He joined early and carried both to launch.",
     next: ["Tell me about TaskLearn", "What about Visume?"],
   },
   {

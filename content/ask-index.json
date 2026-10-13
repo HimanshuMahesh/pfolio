@@ -1,5 +1,5 @@
 {
- "version": "9af6830d9c",
+ "version": "6fa3614cee",
  "sections": [
   {
    "id": "home",
@@ -123,7 +123,7 @@
     "posts"
    ],
    "id": "home.writing",
-   "text": "(02)Writing All notes ↗ Notes Things I’ve learned building products, written down so I don’t forget them. Design04.1 Death of the Blank Canvas: designing with AI AI can make a polished interface in a minute, so why do so many of them feel off? How design tools got here, what they still miss, and what it means to be a designer now. Oct 12, 202610 minRead note AI04.2 How to Build a Mind That Plays Chess I binge-watched GothamChess, got curious about the engine bar, and went down the rabbit hole. Search, evaluation, AlphaZero, and what it all has to do with building agents. Oct 11, 202615 minRead note"
+   "text": "(02)Writing All notes Notes Things I’ve learned building products, written down so I don’t forget them. Design04.1 Death of the Blank Canvas: designing with AI AI can make a polished interface in a minute, so why do so many of them feel off? How design tools got here, what they still miss, and what it means to be a designer now. Oct 12, 202610 minRead note AI04.2 How to Build a Mind That Plays Chess I binge-watched GothamChess, got curious about the engine bar, and went down the rabbit hole. Search, evaluation, AlphaZero, and what it all has to do with building agents. Oct 11, 202615 minRead note"
   },
   {
    "route": "/",
@@ -177,7 +177,7 @@
     "resume"
    ],
    "id": "about.intro",
-   "text": "About “Ever since I was a kid, I knew I wanted to visualize complex data to increase shareholder value.” [ tl;dr ] I’m Himanshu Mahesh. I build AI things, design the parts people actually touch, and can’t really leave anything half-shipped. Based in [ Bengaluru, India ]. Off the clock I’m usually halfway through a book, deep in some movie or pop culture rabbit hole, or up way too late for an [ F1 ] race. I also save corners of the internet before they vanish, and I’ll take any excuse to travel. I’m an AI engineer at [ Tavant ]. Before that I helped take TaskLearn (10k+ learners) and Visume (1k+ interviews) from zero to launch at GridRnD, and I run Spacered, a small design studio, on the side. AirDrop I’d like to share my resume. Accept Things I currently enjoy Reading [ avid ] Movies & pop culture Formula 1 [ every race ] Internet archiving Travel [ whenever I can ] SIDE A33⅓ START·STOP3345"
+   "text": "About “Ever since I was a kid, I knew I wanted to visualize complex data to increase shareholder value.” [ tl;dr ] I’m Himanshu Mahesh. I build AI things, design the parts people actually touch, and can’t really leave anything half-shipped. Based in [ Bengaluru, India ]. Off the clock I’m usually halfway through a book, deep in some movie or pop culture rabbit hole, or up way too late for an [ F1 ] race. I also save corners of the internet before they vanish, and I’ll take any excuse to travel. I’m an AI engineer at [ Tavant ]. Before that I helped take TaskLearn (10k+ learners) and Visume (1k+ interviews) from zero to launch at GridRnD, and I run Spacered, a small design studio, on the side. AirDrop I’d like to share my resume. Accept Things I currently enjoy Reading [ avid ] Movies & pop culture Formula 1 [ every race ] Internet archiving Travel [ whenever I can ] play song?"
   },
   {
    "route": "/about",
@@ -219,10 +219,12 @@
     "clients",
     "ola electric",
     "triplespeed",
-    "cortekz"
+    "cortekz",
+    "abhi",
+    "avi"
    ],
    "id": "about.experience.spacered",
-   "text": "Designer Jan 2026 — Present Spacered · New-age design agency A design agency working with deep-tech and fast-moving startups, including Ola Electric, TripleSpeed and Cortekz. Set up the studio’s positioning, service structure and visual identity system, and built a 10-agent internal stack covering the full client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output does not scale linearly with headcount."
+   "text": "Designer Jan 2026 — Present Spacered · New-age design agency A design agency, built and run with Abhi and Avi, working with deep-tech and fast-moving startups, including Ola Electric, TripleSpeed and Cortekz. Set up the studio’s positioning, service structure and visual identity system, and built a 10-agent internal stack covering the full client lifecycle, from lead intake and proposals through delivery, invoicing and case studies, so output does not scale linearly with headcount."
   },
   {
    "route": "/about",
@@ -233,10 +235,12 @@
     "tasklearn",
     "visume",
     "product studio",
-    "side projects"
+    "side projects",
+    "tejas",
+    "ruhi"
    ],
    "id": "about.experience.gridrnd",
-   "text": "Early Team Member Feb 2025 — May 2026 GridRnD · Early-stage product studio Joined early on two products and carried both to launch: TaskLearn, an AI learning platform now at 10,000+ learners, and Visume, an AI video-interview screener with 1,000+ interviews taken. Owned product design and user flows across both, and worked the stack as a generalist wherever something needed building: frontend, candidate scoring logic, and the AI interview experience itself."
+   "text": "Early Team Member Feb 2025 — May 2026 GridRnD · Early-stage product studio Joined early and built two products with Tejas, Dev and Ruhi, carrying both to launch: TaskLearn, an AI learning platform now at 10,000+ learners, and Visume, an AI video-interview screener with 1,000+ interviews taken. Owned product design and user flows across both, and worked the stack as a generalist wherever something needed building: frontend, candidate scoring logic, and the AI interview experience itself."
   },
   {
    "route": "/about",
