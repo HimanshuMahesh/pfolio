@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState, type CSSProperties } from "react";
 import { createPortal } from "react-dom";
-import { downloadStub, drawStub, loadStubFonts, newStub, type Stub } from "@/lib/stub";
+import { HoloCard } from "@/components/ui/HoloCard";
+import { downloadStub, drawStub, loadStubFonts, newStub, STUB_FOIL_AREA, type Stub } from "@/lib/stub";
 import styles from "./StubButton.module.css";
 
 /** Pixel confetti, fired once as the stub lands. */
@@ -31,71 +32,27 @@ function Burst({ stub }: { stub: Stub }) {
   );
 }
 
-/** Leans toward the pointer on an underdamped spring. */
-function useSpringTilt() {
-  const ref = useRef<HTMLCanvasElement>(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const s = { x: 0, y: 0, vx: 0, vy: 0, tx: 0, ty: 0 };
-    const k = 220;
-    const c = 2 * Math.sqrt(k) * 0.55;
-    let raf = 0;
-    let last = 0;
-    const step = (t: number) => {
-      const dt = Math.min(0.064, (t - (last || t)) / 1000);
-      last = t;
-      s.vx += (k * (s.tx - s.x) - c * s.vx) * dt;
-      s.vy += (k * (s.ty - s.y) - c * s.vy) * dt;
-      s.x += s.vx * dt;
-      s.y += s.vy * dt;
-      el.style.transform = `rotateX(${-s.y * 12}deg) rotateY(${s.x * 12}deg)`;
-      if (Math.abs(s.vx) + Math.abs(s.vy) + Math.abs(s.tx - s.x) + Math.abs(s.ty - s.y) > 0.001) raf = requestAnimationFrame(step);
-      else raf = last = 0;
-    };
-    const kick = () => {
-      if (!raf) raf = requestAnimationFrame(step);
-    };
-    const move = (e: PointerEvent) => {
-      const b = el.getBoundingClientRect();
-      s.tx = ((e.clientX - b.left) / b.width - 0.5) * 2;
-      s.ty = ((e.clientY - b.top) / b.height - 0.5) * 2;
-      kick();
-    };
-    const home = () => {
-      s.tx = s.ty = 0;
-      kick();
-    };
-    el.addEventListener("pointermove", move);
-    el.addEventListener("pointerleave", home);
-    el.addEventListener("pointerup", home);
-    return () => {
-      cancelAnimationFrame(raf);
-      el.removeEventListener("pointermove", move);
-      el.removeEventListener("pointerleave", home);
-      el.removeEventListener("pointerup", home);
-    };
-  }, []);
-  return ref;
-}
-
 function StubModal({ stub, onClose }: { stub: Stub; onClose: () => void }) {
-  const canvas = useSpringTilt();
-  const [ready, setReady] = useState(false);
+  // Drawn off screen: the PNG is what's downloaded, its data URL is the card's art.
+  const canvas = useRef<HTMLCanvasElement | null>(null);
+  const [art, setArt] = useState<string | null>(null);
+  const ready = art !== null;
   const thanks = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     let live = true;
     loadStubFonts().then(() => {
-      if (!live || !canvas.current) return;
-      drawStub(canvas.current, stub);
-      setReady(true);
+      if (!live) return;
+      const c = document.createElement("canvas");
+      drawStub(c, stub);
+      canvas.current = c;
+      setArt(c.toDataURL("image/png"));
       thanks.current?.focus({ preventScroll: true });
     });
     return () => {
       live = false;
     };
-  }, [stub, canvas]);
+  }, [stub]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
@@ -134,14 +91,22 @@ function StubModal({ stub, onClose }: { stub: Stub; onClose: () => void }) {
         </button>
         <div className={styles.reveal}>
           <div className={styles.float}>
-            <div className={styles.shadow}>
-              <canvas
-                ref={canvas}
-                className={styles.canvas}
-                role="img"
-                aria-label={`Stub from ${stub.from}, on ${stub.on}, at ${stub.at}. “${stub.quote[0]}” — ${stub.quote[1]}`}
+            {art && (
+              <HoloCard
+                image={art}
+                alt={`Stub from ${stub.from}, on ${stub.on}, at ${stub.at}. “${stub.quote[0]}” — ${stub.quote[1]}`}
+                preset={stub.foil}
+                intensity={0.8}
+                foilArea={STUB_FOIL_AREA}
+                foilOutside={0.12}
+                edgeSparkle={0.55}
+                frame={3}
+                glare={0.45}
+                width="min(300px, 78vw)"
+                radius={16}
+                className={styles.card}
               />
-            </div>
+            )}
           </div>
         </div>
       </div>

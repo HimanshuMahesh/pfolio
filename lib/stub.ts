@@ -1,7 +1,7 @@
 /**
- * Visitor stubs: a ticket drawn on a canvas with checker-block pixel art in a
- * random colour, the visitor's place / device / time and a quote. The canvas is
- * both what's shown and what's downloaded.
+ * Visitor stubs: a trading card drawn on a canvas with checker-block pixel art
+ * in a random colour, the visitor's place / device / time and a quote. The
+ * canvas is what's downloaded; on screen it sits under a holographic foil.
  */
 
 /* ---- storage (every access can throw: private mode, blocked site data) ---- */
@@ -133,6 +133,7 @@ function place() {
 
 /* ---- the stub ---- */
 const DIRS = [[1, 0], [0, 1], [1, 1], [1, -1], [-1, 0], [0, -1], [-1, -1], [-1, 1]] as const;
+const FOILS = ["bursts", "stars", "cosmos", "shards", "glitter", "swirl"] as const;
 
 export type Stub = {
   now: Date;
@@ -142,6 +143,10 @@ export type Stub = {
   quote: [string, string];
   hue: Hue;
   dir: number;
+  /** Card number, printed on the art and seeding the barcode. */
+  serial: number;
+  /** Which holographic foil the card gets. */
+  foil: (typeof FOILS)[number];
 };
 
 export function newStub(): Stub {
@@ -158,6 +163,8 @@ export function newStub(): Stub {
     quote: randomQuote(),
     hue: HUES[Math.floor(r() * HUES.length)],
     dir: Math.floor(r() * DIRS.length),
+    serial: 1 + Math.floor(r() * 9999),
+    foil: FOILS[Math.floor(r() * FOILS.length)],
   };
 }
 
@@ -167,15 +174,23 @@ export function stubFilename(s: Stub) {
   return `stub-${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}.png`;
 }
 
-/* ---- drawing ---- */
+/* ---- drawing: a trading card, 63:88, the art window foiled on screen ---- */
 const W = 280;
-const CELL = 14;
-const COLS = 20;
-const ROWS = 11;
-const ART = CELL * ROWS;
-const H = ART + 182;
-const R = 14;
+const H = 391;
+const R = 16;
+const PAD = 12;
+const CELL = 16;
+const COLS = 16;
+const ROWS = 12;
+const ART = { x: PAD, y: PAD, w: CELL * COLS, h: CELL * ROWS };
+const CUT = ART.y + ART.h + 16;
 const NOTCH = 11;
+const INK = "#1d2231";
+const MUTE = "#8d93a3";
+const PAPER = "#fbf8f1";
+
+/** The art window as [x, y, w, h] fractions of the card, where the foil goes. */
+export const STUB_FOIL_AREA: [number, number, number, number] = [ART.x / W, ART.y / H, ART.w / W, ART.h / H];
 
 /** Flat checker blocks shaded along a random direction. */
 export function paintPixels(ctx: CanvasRenderingContext2D, s: Pick<Stub, "hue" | "dir">, cols: number, rows: number, cell: number) {
@@ -197,6 +212,7 @@ function fonts() {
   const v = (name: string) => cs.getPropertyValue(name).trim();
   return {
     sans: `${v("--font-zalando") || '"Zalando Sans SemiExpanded"'}, system-ui, sans-serif`,
+    pixel: `${v("--font-bitcount") || '"Bitcount Grid Single"'}, ui-monospace, monospace`,
     mono: 'ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace',
   };
 }
@@ -204,9 +220,7 @@ function fonts() {
 export async function loadStubFonts() {
   const f = fonts();
   try {
-    await Promise.all([
-      document.fonts.load(`500 19px ${f.sans}`),
-    ]);
+    await Promise.all([document.fonts.load(`500 18px ${f.sans}`), document.fonts.load(`400 46px ${f.pixel}`)]);
   } catch {}
 }
 
@@ -214,6 +228,13 @@ function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: numbe
   ctx.beginPath();
   if (ctx.roundRect) ctx.roundRect(x, y, w, h, r);
   else ctx.rect(x, y, w, h);
+}
+
+/** Shortens text with an ellipsis until it fits. */
+function fit(ctx: CanvasRenderingContext2D, text: string, max: number) {
+  let t = text;
+  while (ctx.measureText(t).width > max && t.length > 4) t = t.slice(0, -2) + "…";
+  return t;
 }
 
 export function drawStub(canvas: HTMLCanvasElement, s: Stub, scale = 3) {
@@ -225,35 +246,81 @@ export function drawStub(canvas: HTMLCanvasElement, s: Stub, scale = 3) {
   ctx.setTransform(scale, 0, 0, scale, 0, 0);
   ctx.clearRect(0, 0, W, H);
 
+  // paper, warming slightly toward the bottom
   ctx.save();
   roundRect(ctx, 0, 0, W, H, R);
   ctx.clip();
-  ctx.fillStyle = "#fdfcf9";
+  ctx.fillStyle = PAPER;
   ctx.fillRect(0, 0, W, H);
-  paintPixels(ctx, s, COLS, ROWS, CELL);
+  const warm = ctx.createLinearGradient(0, CUT, 0, H);
+  warm.addColorStop(0, "rgba(255,255,255,0)");
+  warm.addColorStop(1, "rgba(120,90,40,0.05)");
+  ctx.fillStyle = warm;
+  ctx.fillRect(0, CUT, W, H - CUT);
 
-  // FROM / ON / AT
-  const y0 = ART + 16;
+  // art window: pixel blocks, darkening toward the bottom for the type
+  ctx.save();
+  roundRect(ctx, ART.x, ART.y, ART.w, ART.h, 10);
+  ctx.clip();
+  ctx.translate(ART.x, ART.y);
+  paintPixels(ctx, s, COLS, ROWS, CELL);
+  const shade = ctx.createLinearGradient(0, 0, 0, ART.h);
+  shade.addColorStop(0.5, "rgba(0,0,0,0)");
+  shade.addColorStop(1, "rgba(0,0,0,0.32)");
+  ctx.fillStyle = shade;
+  ctx.fillRect(0, 0, ART.w, ART.h);
+
+  // top chips: what it is, and its number
+  ctx.font = `600 8.5px ${f.mono}`;
+  const chip = (text: string, x: number, right = false) => {
+    const w = ctx.measureText(text).width + 14;
+    const left = right ? x - w : x;
+    ctx.fillStyle = "rgba(10,12,20,0.42)";
+    roundRect(ctx, left, 10, w, 18, 9);
+    ctx.fill();
+    ctx.fillStyle = "#fff";
+    ctx.fillText(text, left + 7, 22.5);
+  };
+  chip("VISITOR STUB", 10);
+  chip(`No. ${String(s.serial).padStart(4, "0")}`, ART.w - 10, true);
+
+  // the big pixel word, bottom left
+  ctx.fillStyle = "#fff";
+  ctx.shadowColor = "rgba(0,0,0,0.25)";
+  ctx.shadowOffsetY = 2;
+  ctx.font = `400 46px ${f.pixel}`;
+  ctx.fillText("HI!", 14, ART.h - 30);
+  ctx.shadowColor = "transparent";
+  ctx.font = `600 8.5px ${f.mono}`;
+  ctx.fillStyle = "rgba(255,255,255,0.85)";
+  ctx.fillText("THANKS FOR DROPPING BY", 16, ART.h - 14);
+  ctx.restore();
+
+  ctx.strokeStyle = "rgba(0,0,0,0.12)";
+  ctx.lineWidth = 1;
+  roundRect(ctx, ART.x + 0.5, ART.y + 0.5, ART.w - 1, ART.h - 1, 10);
+  ctx.stroke();
+
+  // FROM / ON / AT, value right-aligned across a dotted leader
   const rows: Array<[string, string]> = [["FROM", s.from], ["ON", s.on], ["AT", s.at]];
   rows.forEach(([k, v], i) => {
-    const y = y0 + 20 + i * 21;
-    ctx.fillStyle = "#9097a6";
-    ctx.font = `500 10px ${f.mono}`;
-    ctx.fillText(k, 18, y);
-    ctx.fillStyle = "#20263a";
-    ctx.font = `500 11px ${f.mono}`;
-    let t = v.toUpperCase();
-    while (ctx.measureText(t).width > W - 84 && t.length > 4) t = t.slice(0, -2) + "…";
-    ctx.fillText(t, 66, y);
+    const y = CUT + 26 + i * 20;
+    ctx.font = `500 9px ${f.mono}`;
+    ctx.fillStyle = MUTE;
+    ctx.fillText(k, PAD + 6, y);
+    const kw = ctx.measureText(k).width;
+    ctx.font = `600 10.5px ${f.mono}`;
+    ctx.fillStyle = INK;
+    const t = fit(ctx, v.toUpperCase(), W - PAD * 2 - 72);
+    const tw = ctx.measureText(t).width;
+    ctx.fillText(t, W - PAD - 6 - tw, y);
+    ctx.fillStyle = "#d6d2c8";
+    for (let x = PAD + 12 + kw; x < W - PAD - 12 - tw; x += 4) ctx.fillRect(x, y - 3, 1, 1);
   });
 
-  // quote
-  ctx.strokeStyle = "#e6e8ee";
-  ctx.lineWidth = 1;
-  ctx.beginPath();
-  ctx.moveTo(18, y0 + 76);
-  ctx.lineTo(W - 18, y0 + 76);
-  ctx.stroke();
+  // quote, shrunk until it fits its box
+  const qTop = CUT + 82;
+  const qBottom = H - 34;
   const [text, who] = s.quote;
   const wrap = (size: number) => {
     ctx.font = `500 ${size}px ${f.sans}`;
@@ -261,24 +328,41 @@ export function drawStub(canvas: HTMLCanvasElement, s: Stub, scale = 3) {
     let line = "";
     for (const w of `“${text}”`.split(" ")) {
       const t = line ? line + " " + w : w;
-      if (ctx.measureText(t).width > W - 36 && line) {
+      if (ctx.measureText(t).width > W - PAD * 2 - 12 && line) {
         lines.push(line);
         line = w;
       } else line = t;
     }
     return [...lines, line];
   };
-  let size = 19;
+  let size = 18;
   let lines = wrap(size);
-  if (lines.length > 2) {
-    size = 16;
-    lines = wrap(size);
+  while (size > 12 && lines.length * (size + 3) + 16 > qBottom - qTop) lines = wrap(--size);
+  ctx.strokeStyle = "#e7e2d7";
+  ctx.beginPath();
+  ctx.moveTo(PAD + 6, qTop - 14);
+  ctx.lineTo(W - PAD - 6, qTop - 14);
+  ctx.stroke();
+  ctx.font = `500 ${size}px ${f.sans}`;
+  ctx.fillStyle = INK;
+  const base = qTop + size * 0.6;
+  lines.forEach((l, i) => ctx.fillText(l, PAD + 6, base + i * (size + 3)));
+  ctx.fillStyle = MUTE;
+  ctx.font = `500 8.5px ${f.mono}`;
+  ctx.fillText(`— ${who.toUpperCase()}`, PAD + 6, base + (lines.length - 1) * (size + 3) + 17);
+
+  // footer: whose card it is, and a barcode in the stub's colour
+  const fy = H - 16;
+  ctx.font = `600 8px ${f.mono}`;
+  ctx.fillStyle = MUTE;
+  ctx.fillText("HIMANSHU K MAHESH · /FUN", PAD + 6, fy);
+  const r = rng(s.serial * 7919);
+  ctx.fillStyle = `hsl(${s.hue.h} ${s.hue.s}% ${Math.min(s.hue.l[0], 40)}%)`;
+  for (let x = W - PAD - 6; x > W - PAD - 76; ) {
+    const bw = r() < 0.35 ? 2 : 1;
+    ctx.fillRect(x - bw, fy - 9, bw, 11);
+    x -= bw + 1 + Math.floor(r() * 2);
   }
-  ctx.fillStyle = "#20263a";
-  lines.forEach((l, i) => ctx.fillText(l, 18, y0 + 100 + i * (size + 2)));
-  ctx.fillStyle = "#8b91a1";
-  ctx.font = `500 9px ${f.mono}`;
-  ctx.fillText(`— ${who.toUpperCase()}`, 18, y0 + 100 + (lines.length - 1) * (size + 2) + 20);
 
   // hairline edge
   ctx.strokeStyle = "rgba(0,0,0,.08)";
@@ -288,18 +372,18 @@ export function drawStub(canvas: HTMLCanvasElement, s: Stub, scale = 3) {
 
   // perforation + transparent notches
   ctx.save();
-  ctx.strokeStyle = "#cfd3dc";
+  ctx.strokeStyle = "#d3cec3";
   ctx.lineWidth = 1.5;
   ctx.setLineDash([2, 4]);
   ctx.lineCap = "round";
   ctx.beginPath();
-  ctx.moveTo(NOTCH + 8, ART);
-  ctx.lineTo(W - NOTCH - 8, ART);
+  ctx.moveTo(NOTCH + 8, CUT);
+  ctx.lineTo(W - NOTCH - 8, CUT);
   ctx.stroke();
   ctx.globalCompositeOperation = "destination-out";
   ctx.beginPath();
-  ctx.arc(0, ART, NOTCH, 0, Math.PI * 2);
-  ctx.arc(W, ART, NOTCH, 0, Math.PI * 2);
+  ctx.arc(0, CUT, NOTCH, 0, Math.PI * 2);
+  ctx.arc(W, CUT, NOTCH, 0, Math.PI * 2);
   ctx.fill();
   ctx.restore();
 }
