@@ -8,7 +8,7 @@ import styles from "./Blogs.module.css";
 export function Blogs() {
   return (
     <section className={styles.blogs} id="blogs" data-section="blogs" data-section-title="Blogs" data-section-aliases="written, writing, blog, articles, notes, essays, posts" aria-labelledby="blogs-heading">
-      <SectionHead id="blogs-heading" index="02" label="Blogs" aside={`${notes.length} notes`} />
+      <SectionHead id="blogs-heading" index="03" label="Blogs" aside={`${notes.length} notes`} />
       <div className={cx("grid", styles.list)}>
         {notes.map((note, i) => (
           <NoteRow key={note.slug} note={note} index={i} />

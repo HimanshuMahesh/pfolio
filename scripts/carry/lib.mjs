@@ -137,17 +137,19 @@ const EXTRA_CSS = `.carry-glass{fill:var(--carry-glass);stroke:none}.carry-glass
  * Writes four files per figure: still and live, each in dark and light. Body
  * entries are markup strings, or `{ still, live }` pairs for parts that the
  * live drawing replaces or adds (`still` may be ""). `css` holds the live
- * drawing's keyframes; it only ships in the live files.
+ * drawing's keyframes; it only ships in the live files. `dir` is where the
+ * files go (the carry folder by default) and `themes` adds CSS per theme, such
+ * as accent palettes for tinted parts.
  */
-export function write(name, { width, height, label, body, css = "" }) {
-  mkdirSync(OUT, { recursive: true });
+export function write(name, { width, height, label, body, css = "" }, { dir = OUT, themes = {} } = {}) {
+  mkdirSync(dir, { recursive: true });
   for (const mode of ["still", "live"]) {
     const markup = body.map((part) => (typeof part === "string" ? part : part[mode] ?? "")).join("");
     const motion = mode === "live" ? `${LIVE_CSS}${css}` : "";
     for (const theme of ["dark", "light"]) {
       const file = `${name}-${theme}${mode === "live" ? "-live" : ""}.svg`;
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" class="iso-svg iso" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${label.replace(/"/g, "&quot;")}"><style>.iso{${THEMES[theme].replace(/s+/g, "")}}${DRAW_CSS}${EXTRA_CSS}${motion}</style>${markup}</svg>`;
-      writeFileSync(join(OUT, file), svg);
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" class="iso-svg iso" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" role="img" aria-label="${label.replace(/"/g, "&quot;")}"><style>.iso{${THEMES[theme].replace(/s+/g, "")}}${DRAW_CSS}${EXTRA_CSS}${themes[theme] ?? ""}${motion}</style>${markup}</svg>`;
+      writeFileSync(join(dir, file), svg);
       console.log(`wrote ${file}  ${(svg.length / 1024).toFixed(1)} KB`);
     }
   }

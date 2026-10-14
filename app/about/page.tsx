@@ -3,6 +3,7 @@ import { site } from "@/content/site";
 import { experience, experiencePeriod } from "@/content/about";
 import { Bento } from "@/components/about/Bento";
 import { Entries } from "@/components/about/Entries";
+import { Wishlist } from "@/components/about/Wishlist";
 import { Blogs } from "@/components/about/Blogs";
 import { Ask } from "@/components/ask/Ask";
 import { cx, place } from "@/lib/grid";
@@ -20,6 +21,7 @@ export default function AboutPage() {
         <div style={place({ d: "2 / 12" })}>
           <Bento />
           <Entries id="experience-heading" index="01" title="Experience" note={experiencePeriod} entries={experience} />
+          <Wishlist />
           <Blogs />
         </div>
       </div>
