@@ -20,7 +20,7 @@ export type Startup = {
   wordmarkSize?: number;
 };
 
-/** Startups Spacered works with — shown when hovering "deep-tech and fast-moving startups". */
+/** Startups Spacered works with — shown when hovering "ambitious and fast-moving startups". */
 export const startups: Startup[] = [
   { name: "Ola Electric", logo: olaLogo, height: 20, wordmark: "Electric", wordmarkSize: 14 },
   { name: "TripleSpeed", logo: triplespeedLogo, height: 24 },

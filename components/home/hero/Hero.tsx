@@ -117,12 +117,10 @@ export function Hero() {
         <p data-bp="copy-1">
           I’m an AI engineer at{" "}
           <Brand mark={<span className={styles.tavant}>T</span>}>Tavant</Brand>, and I run{" "}
-          <HoverReveal href={spacered.href} panel={<VentureCard venture={spacered} />} contain interactive>
-            <Brand mark={<Image src={spaceredMark} alt="" className={styles.spacered} />}>{spacered.name}</Brand>
-          </HoverReveal>
+          <Brand mark={<Image src={spaceredMark} alt="" className={styles.spacered} />}>{spacered.name}</Brand>
           , a design
           studio working with several{" "}
-          <HoverReveal lead="deep-tech and fast-moving" panel={<StartupCloud />}>
+          <HoverReveal lead="ambitious and fast-moving" panel={<StartupCloud />}>
             startups
             <span className="sr-only">, including {startupNames}</span>
           </HoverReveal>
