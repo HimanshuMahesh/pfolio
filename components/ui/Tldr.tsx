@@ -32,7 +32,7 @@ export function Tldr({ className }: { className?: string }) {
 
   /** Hovering a TaskLearn / Visume link shows its preview card above the ink, kept inside the photo. */
   const show = (el: HTMLElement) => {
-    const venture = ventures.find((v) => el.getAttribute("href")?.startsWith(v.href));
+    const venture = ventures.find((v) => v.name !== "Spacered" && el.getAttribute("href")?.startsWith(v.href));
     if (!venture || !frame.current) return;
     const f = frame.current.getBoundingClientRect();
     const r = el.getBoundingClientRect();
