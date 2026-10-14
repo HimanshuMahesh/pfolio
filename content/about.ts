@@ -47,7 +47,12 @@ export const experience: Entry[] = [
     date: "Jan 2026 — Jul 2026",
     sub: "Tavant · Enterprise AI platform engineering",
     mark: { kind: "tavant" },
-    placeholders: 5,
+    assets: [
+      "/about/tavant/cafe.jpg",
+      "/about/tavant/agent.jpg",
+      "/about/tavant/karpathy.jpg",
+      "/about/tavant/atrium.jpg",
+    ],
     description:
       "Built roughly 40 production agents across data science automation and Ad Ops. Building an agent builder that ships as part of the Tavant platform: a Claude Code plugin that turns a spec into a production-ready agent, with tools, evals and guardrails wired in from the start instead of bolted on afterwards. Wrote MCP servers so agents reach internal tools through one interface, built eval harnesses to test behaviour before release, and ran studies on new models, agent frameworks and protocols to see what actually holds up in production.",
   },
@@ -93,7 +98,13 @@ export const experience: Entry[] = [
     date: "2022 — 2026",
     sub: "Dayananda Sagar Academy of Technology and Management · CGPA 9.0/10.0",
     mark: { kind: "text", text: "DS" },
-    placeholders: 5,
+    assets: [
+      "/about/college/fest.jpg",
+      "/about/college/boat.jpg",
+      "/about/college/tree.jpg",
+      "/about/college/lake.jpg",
+      "/about/college/fest-2.jpg",
+    ],
     description:
       "Four years of computer science in Bengaluru, alongside two products, two national hackathons and a design studio. Before that, Pre-University in Science at Deeksha PU College (2020 — 2022, 92%).",
   },
